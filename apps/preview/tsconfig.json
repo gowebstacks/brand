@@ -26,7 +26,10 @@
       "@/*": [
         "./src/*"
       ],
-      "@slides/*": [
+      "@webstacks/slides": [
+        "../../slides/components/index.ts"
+      ],
+      "@webstacks/slides/*": [
         "../../slides/*"
       ]
     },

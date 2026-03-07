@@ -5,7 +5,7 @@ import CaseStudyDeck from "../../../../slides/examples/case-study";
 import ClientPresentationDeck from "../../../../slides/examples/client-presentation";
 
 const decks = [
-  { id: "sales-pitch", label: "Sales Pitch", count: 12, Component: SalesPitchDeck },
+  { id: "sales-pitch", label: "Sales Pitch", count: 13, Component: SalesPitchDeck },
   { id: "case-study", label: "Case Study", count: 8, Component: CaseStudyDeck },
   { id: "client-presentation", label: "Client Presentation", count: 20, Component: ClientPresentationDeck },
 ];

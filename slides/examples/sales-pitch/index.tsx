@@ -1,26 +1,31 @@
 /**
- * Sales Pitch Deck — ~12 slides
+ * Sales Pitch Deck — ~13 slides
  *
  * A complete reference deck demonstrating how to compose slide components
  * into a full sales presentation. This follows the recommended pacing
  * from guidelines/slides.md.
  *
  * Deck flow:
- * 1. Title → 2. Problem → 3. Stat → 4. Solution → 5. How It Works →
- * 6. Feature 1 → 7. Feature 2 → 8. Quote → 9. Results →
- * 10. Case Study Teaser → 11. Logo Grid → 12. CTA
+ * 1. Title → 2. Philosophy → 3. Meet Webstacks → 4. Clients →
+ * 5. Problem Stat → 6. Solution → 7. How It Works →
+ * 8. Feature 1 → 9. Feature 2 → 10. Quote → 11. Results →
+ * 12. Case Study Teaser → 13. CTA
  */
-import { Text } from "@webstacks/ui";
+import { useState, useEffect } from "react";
+import { Heading, Text } from "@webstacks/ui";
 import {
+  SlideBase,
   TitleSlide,
   ContentSlide,
   StatSlide,
   SplitSlide,
   QuoteSlide,
   ImageSlide,
-  LogoGridSlide,
   CTASlide,
 } from "../../components";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { sanityClient, urlFor } from "../../lib/sanity";
+import { companiesWithLogosQuery } from "../../lib/queries";
 
 /* ── Slide 1: Title ─────────────────────────────────── */
 export function Slide01_Title() {
@@ -43,29 +48,253 @@ export function Slide01_Title() {
   );
 }
 
-/* ── Slide 2: Problem ───────────────────────────────── */
-export function Slide02_Problem() {
+/* ── Slide 2: Philosophy ───────────────────────────────── */
+const philosophyItems = [
+  "Brand Matures",
+  "Messaging Changes",
+  "Products Expand",
+  "Campaigns Launch",
+  "Conversion Goals Shift",
+  "Teams Grow",
+];
+
+export function Slide02_Philosophy() {
   return (
-    <ContentSlide
-      eyebrow="The Challenge"
-      title="Your Website Is Leaving Revenue on the Table"
-      theme="light"
-    >
-      <Text size={500}>
-        Most B2B SaaS websites suffer from slow performance, inconsistent
-        branding, and poor conversion optimization. Marketing teams wait weeks
-        for engineering to ship simple changes.
-      </Text>
-      <Text size={400} className="text-muted-foreground">
-        The result: missed pipeline, longer sales cycles, and frustrated teams
-        on both sides.
-      </Text>
-    </ContentSlide>
+    <SlideBase theme="dark" className="!p-0">
+      {/* 3D accent shapes — top corners */}
+      <img
+        src="/images/3d-shapes/glass-panels.png"
+        alt=""
+        className="pointer-events-none absolute -left-[18%] -top-[30%] w-[45%] -rotate-12 object-contain select-none"
+        aria-hidden="true"
+      />
+      <img
+        src="/images/3d-shapes/glass-cubes.png"
+        alt=""
+        className="pointer-events-none absolute -right-[15%] -top-[30%] w-[50%] object-contain select-none"
+        aria-hidden="true"
+      />
+
+      {/* Centered content */}
+      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 px-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          Our Philosophy
+        </Text>
+        <Heading as="h2" size={1} align="center">
+          Your website is a product, not a project.
+        </Heading>
+
+        {/* Bullet row */}
+        <div className="mt-4 flex items-center gap-6 rounded-sm bg-white/5 px-8 py-4">
+          {philosophyItems.map((item) => (
+            <div key={item} className="flex items-center gap-2 whitespace-nowrap">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="shrink-0 text-foreground"
+              >
+                <path
+                  d="M3 8.5L6.5 12L13 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <Text as="span" size={300} className="opacity-70">
+                {item}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+          <Text as="span" size={100} className="opacity-50">
+            webstacks.com
+          </Text>
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
   );
 }
 
-/* ── Slide 3: Stat — Scale of the problem ───────────── */
-export function Slide03_ProblemStat() {
+/* ── Slide 3: Meet Webstacks ───────────────────────────── */
+const stats = [
+  { value: "$4.3B", label: "Raised by Our Clients" },
+  { value: "50+", label: "In-House Experts" },
+  { value: "150+", label: "Websites Launched" },
+  { value: "97%", label: "Client Retention Rate" },
+];
+
+export function Slide03_MeetWebstacks() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      {/* Left column — text + globe */}
+      <div className="absolute left-0 top-0 flex h-full w-[50%] flex-col justify-between pl-16 pt-16 pb-16">
+        <div className="flex flex-col gap-4">
+          <Text
+            as="span"
+            size={200}
+            className="font-mono uppercase tracking-widest opacity-60"
+          >
+            A Composable Web Agency
+          </Text>
+          <Heading as="h2" size={1}>
+            Meet Webstacks
+          </Heading>
+          <Text size={400} className="max-w-[90%] opacity-70">
+            Webstacks has empowered marketing teams to break free from website
+            bottlenecks with a composable approach built for speed and scale.
+          </Text>
+        </div>
+
+        {/* 3D shape accent — bottom left, floating (clear of footer) */}
+        <img
+          src="/images/3d-shapes/stacked-discs.png"
+          alt=""
+          className="pointer-events-none absolute -left-[20%] bottom-[10%] w-[80%] -rotate-6 object-contain select-none"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Right column — 2×2 stat grid */}
+      <div className="absolute right-0 top-0 flex h-full w-[50%] items-center pr-16 pt-16 pb-16">
+        <div className="grid h-[75%] w-full grid-cols-2 gap-3">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col justify-between rounded-sm bg-white/[0.04] p-8"
+            >
+              <Heading as="h3" size={1}>
+                {stat.value}
+              </Heading>
+              <Text
+                as="span"
+                size={100}
+                className="font-mono uppercase tracking-widest opacity-50"
+              >
+                {stat.label}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+          <Text as="span" size={100} className="opacity-50">
+            webstacks.com
+          </Text>
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 4: Clients ──────────────────────────────── */
+const fallbackCompanies = [
+  "Capital One", "SevenRooms", "Curative", "Braze", "Fireworks", "Cribl",
+  "LogicMonitor", "BetterUp", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis",
+];
+
+interface ClientCompany {
+  name: string;
+  logoUrl: string;
+  needsInvert?: boolean;
+}
+
+export function Slide04_Clients({
+  companies,
+}: {
+  companies?: ClientCompany[];
+}) {
+  const hasLogos = companies && companies.length > 0;
+  const displayCompanies = hasLogos
+    ? companies.slice(0, 16)
+    : fallbackCompanies.map((name): ClientCompany => ({ name, logoUrl: "" }));
+
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      {/* Top content row */}
+      <div className="flex items-start justify-between px-16 pt-16 pb-10">
+        <Heading as="h2" size={3} className="max-w-[55%]">
+          We&apos;re the agency behind some of the best websites on the internet.
+        </Heading>
+        <Text size={400} className="max-w-[35%] pt-2 opacity-70">
+          From fast growing startups to established enterprises.
+        </Text>
+      </div>
+
+      {/* 6-col logo grid */}
+      <div className="grid grid-cols-6 gap-px px-16">
+        {displayCompanies.map((company) => (
+          <div
+            key={company.name}
+            className="flex aspect-square items-center justify-center bg-white/[0.04] px-6"
+          >
+            {company.logoUrl ? (
+              <img
+                src={company.logoUrl}
+                alt={company.name}
+                className={`h-8 max-w-[120px] object-contain${company.needsInvert ? " brightness-0 invert" : ""}`}
+              />
+            ) : (
+              <Text as="span" size={200} className="opacity-40 text-center">
+                {company.name}
+              </Text>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+          <Text as="span" size={100} className="opacity-50">
+            webstacks.com
+          </Text>
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 5: Stat — Scale of the problem ───────────── */
+export function Slide05_ProblemStat() {
   return (
     <StatSlide
       eyebrow="Industry Data"
@@ -77,8 +306,8 @@ export function Slide03_ProblemStat() {
   );
 }
 
-/* ── Slide 4: Solution ──────────────────────────────── */
-export function Slide04_Solution() {
+/* ── Slide 6: Solution ──────────────────────────────── */
+export function Slide06_Solution() {
   return (
     <ContentSlide
       eyebrow="Our Approach"
@@ -99,8 +328,8 @@ export function Slide04_Solution() {
   );
 }
 
-/* ── Slide 5: How It Works (Split) ──────────────────── */
-export function Slide05_HowItWorks() {
+/* ── Slide 7: How It Works (Split) ──────────────────── */
+export function Slide07_HowItWorks() {
   return (
     <SplitSlide
       eyebrow="How It Works"
@@ -131,8 +360,8 @@ export function Slide05_HowItWorks() {
   );
 }
 
-/* ── Slide 6: Feature 1 ─────────────────────────────── */
-export function Slide06_Feature1() {
+/* ── Slide 8: Feature 1 ─────────────────────────────── */
+export function Slide08_Feature1() {
   return (
     <ContentSlide
       eyebrow="Performance"
@@ -154,8 +383,8 @@ export function Slide06_Feature1() {
   );
 }
 
-/* ── Slide 7: Feature 2 ─────────────────────────────── */
-export function Slide07_Feature2() {
+/* ── Slide 9: Feature 2 ─────────────────────────────── */
+export function Slide09_Feature2() {
   return (
     <SplitSlide
       eyebrow="Flexibility"
@@ -177,8 +406,8 @@ export function Slide07_Feature2() {
   );
 }
 
-/* ── Slide 8: Quote ──────────────────────────────────── */
-export function Slide08_Quote() {
+/* ── Slide 10: Quote ─────────────────────────────────── */
+export function Slide10_Quote() {
   return (
     <QuoteSlide
       quote="Webstacks completely transformed how we think about our website. It's not just a brochure anymore — it's our best-performing sales channel."
@@ -191,8 +420,8 @@ export function Slide08_Quote() {
   );
 }
 
-/* ── Slide 9: Results Stat ──────────────────────────── */
-export function Slide09_Results() {
+/* ── Slide 11: Results Stat ─────────────────────────── */
+export function Slide11_Results() {
   return (
     <StatSlide
       eyebrow="Results"
@@ -203,8 +432,8 @@ export function Slide09_Results() {
   );
 }
 
-/* ── Slide 10: Case Study Teaser ─────────────────────── */
-export function Slide10_CaseStudy() {
+/* ── Slide 12: Case Study Teaser ────────────────────── */
+export function Slide12_CaseStudy() {
   return (
     <ImageSlide
       imageSrc="/images/case-study-hero.jpg"
@@ -215,28 +444,8 @@ export function Slide10_CaseStudy() {
   );
 }
 
-/* ── Slide 11: Logo Grid ─────────────────────────────── */
-export function Slide11_Logos() {
-  return (
-    <LogoGridSlide
-      title="Trusted by Leading SaaS Companies"
-      logos={[
-        { name: "TechCorp", src: "/logos/techcorp.svg" },
-        { name: "CloudBase", src: "/logos/cloudbase.svg" },
-        { name: "DataFlow", src: "/logos/dataflow.svg" },
-        { name: "ScaleUp", src: "/logos/scaleup.svg" },
-        { name: "DevStack", src: "/logos/devstack.svg" },
-        { name: "GrowthIO", src: "/logos/growthio.svg" },
-        { name: "PipelineHQ", src: "/logos/pipelinehq.svg" },
-        { name: "MetricLab", src: "/logos/metriclab.svg" },
-      ]}
-      theme="light"
-    />
-  );
-}
-
-/* ── Slide 12: CTA ───────────────────────────────────── */
-export function Slide12_CTA() {
+/* ── Slide 13: CTA ───────────────────────────────────── */
+export function Slide13_CTA() {
   return (
     <CTASlide
       title="Let's Build Your Best-Performing Channel"
@@ -251,24 +460,54 @@ export function Slide12_CTA() {
 }
 
 /**
- * Full deck — renders all 12 slides in sequence.
+ * Full deck — renders all 13 slides in sequence.
  * Use this as a reference for how to compose a complete deck.
  */
 export default function SalesPitchDeck() {
+  const [companies, setCompanies] = useState<ClientCompany[]>([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(companiesWithLogosQuery)
+      .then((results: Array<{ _id: string; name: string; logoOnDark?: SanityImageSource; logoOnLight?: SanityImageSource }>) => {
+        const seen = new Set<string>();
+        const deduped = results.filter((c) => {
+          if (seen.has(c.name)) return false;
+          seen.add(c.name);
+          return true;
+        });
+        setCompanies(
+          deduped.map((c) => {
+            const useDark = !!c.logoOnDark;
+            const source = (useDark ? c.logoOnDark : c.logoOnLight)!;
+            return {
+              name: c.name,
+              logoUrl: urlFor(source).height(64).url(),
+              needsInvert: !useDark,
+            };
+          })
+        );
+      })
+      .catch(() => {
+        // Silently fall back to text-only display
+      });
+  }, []);
+
   return (
     <div className="flex flex-col gap-8">
       <Slide01_Title />
-      <Slide02_Problem />
-      <Slide03_ProblemStat />
-      <Slide04_Solution />
-      <Slide05_HowItWorks />
-      <Slide06_Feature1 />
-      <Slide07_Feature2 />
-      <Slide08_Quote />
-      <Slide09_Results />
-      <Slide10_CaseStudy />
-      <Slide11_Logos />
-      <Slide12_CTA />
+      <Slide02_Philosophy />
+      <Slide03_MeetWebstacks />
+      <Slide04_Clients companies={companies} />
+      <Slide05_ProblemStat />
+      <Slide06_Solution />
+      <Slide07_HowItWorks />
+      <Slide08_Feature1 />
+      <Slide09_Feature2 />
+      <Slide10_Quote />
+      <Slide11_Results />
+      <Slide12_CaseStudy />
+      <Slide13_CTA />
     </div>
   );
 }

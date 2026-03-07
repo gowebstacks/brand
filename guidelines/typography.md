@@ -79,21 +79,22 @@ Every slide type has a defined heading and text size. AI tools must follow this 
 - Lead paragraphs (`size={500}`) appear once per slide max — subsequent paragraphs drop to `size={400}`.
 - Subtitles (`size={600}`) only appear under `size={1}` or `size="display"` headings.
 - Quote text (`size={700}`) is only used in QuoteSlide — never for body text or headings.
-- Never use `size={100}` on slides — too small at presentation distance. Minimum is `size={200}` for eyebrows.
+- `size={100}` is reserved for micro-text only: dates, team member roles, footer text, and fine-print labels. Never use it for body content or eyebrows — minimum for those is `size={200}`.
 
 ### Complete Size Map by Slide Type
 
 | Slide Type | Heading | Eyebrow | Primary text | Secondary text | Notes |
 |------------|---------|---------|-------------|----------------|-------|
-| TitleSlide | `Heading size={1}` | `Text size={200}` mono | `Text size={600}` subtitle | — | Centered, minimal elements |
+| TitleSlide (simple) | `Heading size={1}` | `Text size={200}` mono | `Text size={600}` subtitle | — | Centered, minimal elements |
+| TitleSlide (rich) | `Heading size={1}` | Logo lockup as eyebrow | `Text size={500}` subtitle | `Text size={100}` date/roles/footer, `Text size={200}` names | Date, logo, title, team grid, footer bar |
 | ContentSlide | `Heading size={3}` | `Text size={200}` mono | `Text size={500}` lead | `Text size={400}` body/bullets | Max 3–5 text elements |
 | SplitSlide | `Heading size={3}` | `Text size={200}` mono | `Text size={400}` body | — | Content side only |
 | StatSlide | `Heading size="display"` | `Text size={200}` mono | `Text size={600}` description | `Text size={300}` context | Centered, 3 elements max |
-| QuoteSlide | — (no heading) | — | `Text size={700}` italic quote | `Text size={400}` name, `Text size={300}` title | Author name uses `weight="medium"` |
+| QuoteSlide | — (no heading) | — | `Text size={700}` italic quote | `Text size={400}` name, `Text size={300}` title | — |
 | ImageSlide | `Heading size={2}` | — | `Text size={500}` subtitle | — | Over image, max 2 elements |
 | ComparisonSlide | `Heading size={3}` | — | `Text size={400}` items | `Text size={400}` `weight="medium"` labels | Labels use medium weight |
 | AgendaSlide | `Heading size={3}` | — | `Text size={500}` items | `Text size={400}` mono numbers | Active item uses `weight="medium"` |
-| TeamSlide | `Heading size={3}` | — | `Text size={400}` `weight="medium"` name | `Text size={300}` role | — |
+| TeamSlide | `Heading size={3}` | — | `Text size={400}` name | `Text size={300}` role | Square headshots, 48px, no border-radius |
 | CTASlide | `Heading size={1}` | — | `Text size={600}` subtitle | `Text size={300}` contact | Centered, hero moment |
 | LogoGridSlide | `Heading size={3}` | — | `Text size={400}` subtitle | — | — |
 | SectionSlide | `Heading size={1}` | `Text size={200}` mono | `Text size={500}` subtitle | — | Centered, minimal — use as section dividers |
@@ -127,5 +128,5 @@ Weights above Medium (SemiBold, Bold, etc.) are **never used** in Webstacks bran
 - **Do** keep body text at 400 or 500 for readability on slides
 - **Don't** use bold or semibold weights — ever
 - **Don't** use medium weight on full sentences — only for individual words
-- **Don't** set body text below size 300 on slides (too small at presentation distance)
+- **Don't** set body text below size 300 on slides (too small at presentation distance). `size={100}` is only for micro-text (dates, roles, footer)
 - **Don't** manually set letter-spacing — the Heading component handles this

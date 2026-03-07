@@ -9,12 +9,25 @@
 ## Slide Types
 
 ### Title / Cover Slide
-The first slide. Sets the tone for the entire deck.
-- Company logo (top-left or centered)
-- Large heading: `size={1}`
-- Subtitle or date
+The first slide. Sets the tone for the entire deck. Supports two layout modes:
+
+**Simple layout** (default — no `heroImage` or `teamMembers`):
+- Eyebrow + large heading + subtitle, centered vertically
+- Use for minimal cover slides
+
+**Rich layout** (when `heroImage` or `teamMembers` are provided):
+- Date (mono, uppercase) top-left
+- Webstacks logo lockup as eyebrow above the title
+- Optional client logo alongside Webstacks logo (with `×` separator)
+- Large heading: `size={1}`, left-aligned
+- Subtitle below title
+- "PREPARED & PRESENTED BY" label + team member grid (3-column, square headshots at 48px)
+- Footer bar: Webstacks symbol + URL + copyright
+- 3D decorative shape as hero image, full-bleed on the right side (absolutely positioned, cropped across edges)
+
 - Always `theme="dark"` for the opening slide
 - Component: `<TitleSlide>`
+- Props: `title`, `subtitle?`, `eyebrow?`, `date?`, `clientLogoSrc?`, `heroImage?`, `teamMembers?`, `theme?`
 
 ### Content Slide
 The workhorse. Text content with optional supporting image.
@@ -158,6 +171,7 @@ Display 2–3 key metrics side by side.
 - **Break with stats/quotes**: Use stat or quote slides to punctuate content sections
 - **Image every 3–4 slides**: Include visual imagery regularly
 - **Max text slides in a row**: 2 — then use a visual break
+- **3D decorative shapes**: Use 3D rendered shapes (from `/images/3d-shapes/`) as hero accents on title and section slides. Position them full-bleed on the right side, scaled large and cropped across edges for a bold, modern feel
 
 ## Slide Content Density
 - **Title slides**: 1–2 text elements

@@ -143,3 +143,4 @@ Correct blue usage:
 - **Don't** use teal or violet as slide backgrounds
 - **Don't** use more than 3 colors per slide (excluding neutrals)
 - **Don't** use accent colors at full saturation for large areas
+- **Don't** use blue or any color for icons (checkmarks, arrows, decorative icons) — icons should always be white (`text-foreground`) on dark slides and black (`text-foreground`) on light slides

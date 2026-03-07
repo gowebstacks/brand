@@ -78,6 +78,7 @@ Examples of correct blue accent usage:
 - **Don't**: `className="text-white"` or `className="text-black"` — use semantic tokens
 - **Don't**: `style={{ color: "var(--color-teal-500)" }}` — never inline primitive CSS vars
 - **Don't**: use `bg-primary` as a slide or section background — blue is accent only
+- **Don't**: use `text-primary` for icons (checkmarks, arrows, etc.) — icons should always be white (`text-foreground`) on slides
 
 ## Typography
 
@@ -90,7 +91,7 @@ Examples of correct blue accent usage:
 
 | Role | Heading size | Which slides |
 |------|-------------|--------------|
-| Hero / deck opener | `size={1}` | TitleSlide, CTASlide |
+| Hero / deck opener | `size={1}` | TitleSlide (simple + rich), CTASlide |
 | Display stat number | `size="display"` | StatSlide (the big number only) |
 | Standalone title (minimal body text) | `size={2}` | ImageSlide |
 | Section divider heading | `size={1}` | SectionSlide |
@@ -114,7 +115,33 @@ Examples of correct blue accent usage:
 - Only one `size={500}` lead paragraph per slide — subsequent paragraphs use `size={400}`
 - `size={600}` subtitles only appear under `size={1}` or `size="display"` headings
 - `size={700}` is exclusively for quotes — never body text
-- Minimum slide text is `size={200}` (for eyebrows) — never use `size={100}` on slides
+- `size={100}` is reserved for micro-text only (dates, team member roles, footer text). Minimum for body content and eyebrows is `size={200}`
+
+## TitleSlide — Rich Layout
+
+TitleSlide supports a rich layout mode when `heroImage` or `teamMembers` props are provided. Without these, it falls back to the simple centered layout (eyebrow + title + subtitle).
+
+**Rich layout props:**
+```tsx
+<TitleSlide
+  date="March 04, 2026"                           // mono, uppercase, top-left
+  title="Exploring an Agency Partnership"          // Heading size={1}
+  subtitle="Accelerating the evolution of..."      // Text size={500}, muted
+  heroImage="/images/3d-shapes/layered-diamonds.png"  // full-bleed right, cropped
+  clientLogoSrc="/logos/client.svg"                // optional, next to Webstacks logo
+  teamMembers={[
+    { name: "Name", role: "Role", avatarSrc: "/images/headshots/..." },
+  ]}
+  theme="dark"
+/>
+```
+
+**Layout rules:**
+- Left content column (~65%), right side for hero image
+- Webstacks logo lockup acts as eyebrow above the title
+- Team members in a 3-column grid with square headshots (48px, no border-radius)
+- Footer bar at bottom: Webstacks symbol + URL + copyright
+- 3D shapes should be full-bleed, overflowing and cropped generously across edges. Apply slight rotation so they feel organic and floating, not rigidly placed. When pairing two shapes, vary size, rotation, and crop so the composition feels dynamic. **Never overlap the footer bar** — the bottom ~48px is a safe area
 
 ## Button Style
 
@@ -149,9 +176,9 @@ Read these files for detailed brand rules:
 ## Example Decks
 
 Study these for composition patterns:
-- `slides/examples/sales-pitch.tsx` — Full 12-slide sales deck
-- `slides/examples/case-study.tsx` — Full 8-slide case study
-- `slides/examples/client-presentation.tsx` — Full 20-slide client presentation with section dividers, three-up cards, and multi-stat slides
+- `slides/examples/sales-pitch/index.tsx` — Full 12-slide sales deck (uses TitleSlide rich layout)
+- `slides/examples/case-study/index.tsx` — Full 8-slide case study
+- `slides/examples/client-presentation/index.tsx` — Full 20-slide client presentation with section dividers, three-up cards, and multi-stat slides
 
 ## Design Tokens
 

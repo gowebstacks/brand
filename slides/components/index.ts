@@ -33,3 +33,12 @@ export type { CTASlideProps } from "./CTASlide";
 
 export { LogoGridSlide } from "./LogoGridSlide";
 export type { LogoGridSlideProps, LogoItem } from "./LogoGridSlide";
+
+export { ThreeUpSlide } from "./ThreeUpSlide";
+export type { ThreeUpSlideProps, ThreeUpItem } from "./ThreeUpSlide";
+
+export { SectionSlide } from "./SectionSlide";
+export type { SectionSlideProps } from "./SectionSlide";
+
+export { MultiStatSlide } from "./MultiStatSlide";
+export type { MultiStatSlideProps, StatItem } from "./MultiStatSlide";

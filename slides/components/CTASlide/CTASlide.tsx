@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Heading, Text, Stack, Button } from "@webstacks/ui";
-import { SlideBase, type SlideBaseProps } from "./SlideBase";
+import { SlideBase, type SlideBaseProps } from "../SlideBase";
 
 export interface CTASlideProps {
   /** Main heading (e.g. "Let's Build Something Great") */

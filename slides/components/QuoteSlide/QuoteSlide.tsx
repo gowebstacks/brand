@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, Stack } from "@webstacks/ui";
-import { SlideBase, type SlideBaseProps } from "./SlideBase";
+import { SlideBase, type SlideBaseProps } from "../SlideBase";
 
 export interface QuoteSlideProps {
   /** The quote text (without quotation marks — they are added automatically) */

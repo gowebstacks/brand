@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Heading, Text, Stack } from "@webstacks/ui";
-import { SlideBase } from "./SlideBase";
+import { SlideBase } from "../SlideBase";
 
 export interface ImageSlideProps {
   /** Background image URL */

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Heading, Text, Stack } from "@webstacks/ui";
-import { SlideBase, type SlideBaseProps } from "./SlideBase";
+import { SlideBase, type SlideBaseProps } from "../SlideBase";
 
 export interface StatSlideProps {
   /** The headline number or stat (e.g. "3.2x", "98%", "$4.2M") */

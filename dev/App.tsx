@@ -1,10 +1,12 @@
 import { useState } from "react";
 import SalesPitchDeck from "../slides/examples/sales-pitch";
 import CaseStudyDeck from "../slides/examples/case-study";
+import ClientPresentationDeck from "../slides/examples/client-presentation";
 
 const decks = {
   "sales-pitch": { label: "Sales Pitch (12 slides)", Component: SalesPitchDeck },
   "case-study": { label: "Case Study (8 slides)", Component: CaseStudyDeck },
+  "client-presentation": { label: "Client Presentation (20 slides)", Component: ClientPresentationDeck },
 } as const;
 
 type DeckKey = keyof typeof decks;

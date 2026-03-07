@@ -44,23 +44,63 @@ All heading sizes include negative letter-spacing for tighter, more polished app
 | `600` | 1.25rem / 20px | Large body / subtitles |
 | `700` | 1.5rem / 24px | Pull quotes, statements |
 
-## Slide Typography Rules
+## Slide Typography Hierarchy
 
-### Title Slides
-- Heading: `size={1}` or `size="display"` (regular weight — no bold)
-- Subtitle: `<Text size={600}>`, regular weight
-- Eyebrow: `<Text>` with `font-mono uppercase tracking-widest text-sm`
+Every slide type has a defined heading and text size. AI tools must follow this exactly — do not improvise sizes.
 
-### Content Slides
-- Slide title: `<Heading size={3}>` or `<Heading size={2}>` (regular weight)
-- Body text: `<Text size={400}>` or `<Text size={500}>`
-- Bullet points: `<Text size={400}>` with `leading-relaxed`
+### Heading Sizes by Slide Role
 
-### Stat Slides
-- Big number: `<Heading size="display">` (regular weight)
-- Label: `<Text size={500}>`
+| Role | Heading size | Used in |
+|------|-------------|---------|
+| Hero / deck opener | `size={1}` | TitleSlide, CTASlide, SectionSlide |
+| Display stat | `size="display"` | StatSlide, MultiStatSlide (stat numbers) |
+| Standalone title (minimal text) | `size={2}` | ImageSlide |
+| Slide title (with body content) | `size={3}` | ContentSlide, SplitSlide, ComparisonSlide, AgendaSlide, TeamSlide, LogoGridSlide, ThreeUpSlide, MultiStatSlide (title) |
 
-### Eyebrow Labels
+**Rules:**
+- `size={1}` is reserved for hero moments (TitleSlide, CTASlide, SectionSlide) — slides with minimal competing text.
+- `size="display"` is only for stat numbers in StatSlide and MultiStatSlide — never for titles or headings.
+- `size={2}` is for slides with a title but minimal body text (ImageSlide overlay).
+- `size={3}` is the standard slide title whenever body content, lists, or grids are present.
+- Never use `size={4}`, `size={5}`, or `size={6}` for slide titles — those are for sub-elements within slides only.
+
+### Text Sizes by Role
+
+| Role | Text size | Used in |
+|------|----------|---------|
+| Eyebrow | `size={200}` + `font-mono uppercase tracking-widest` | Above headings on any slide |
+| Caption / source / contact | `size={300}` | StatSlide context, CTASlide contact, attribution lines |
+| Body text / list items | `size={400}` | ContentSlide, SplitSlide, ComparisonSlide items, AgendaSlide items |
+| Lead paragraph | `size={500}` | First paragraph on ContentSlide, ImageSlide subtitle |
+| Subtitle (under hero heading) | `size={600}` | TitleSlide subtitle, CTASlide subtitle, StatSlide description |
+| Quote text | `size={700}` | QuoteSlide (always italic) |
+
+**Rules:**
+- Lead paragraphs (`size={500}`) appear once per slide max — subsequent paragraphs drop to `size={400}`.
+- Subtitles (`size={600}`) only appear under `size={1}` or `size="display"` headings.
+- Quote text (`size={700}`) is only used in QuoteSlide — never for body text or headings.
+- Never use `size={100}` on slides — too small at presentation distance. Minimum is `size={200}` for eyebrows.
+
+### Complete Size Map by Slide Type
+
+| Slide Type | Heading | Eyebrow | Primary text | Secondary text | Notes |
+|------------|---------|---------|-------------|----------------|-------|
+| TitleSlide | `Heading size={1}` | `Text size={200}` mono | `Text size={600}` subtitle | — | Centered, minimal elements |
+| ContentSlide | `Heading size={3}` | `Text size={200}` mono | `Text size={500}` lead | `Text size={400}` body/bullets | Max 3–5 text elements |
+| SplitSlide | `Heading size={3}` | `Text size={200}` mono | `Text size={400}` body | — | Content side only |
+| StatSlide | `Heading size="display"` | `Text size={200}` mono | `Text size={600}` description | `Text size={300}` context | Centered, 3 elements max |
+| QuoteSlide | — (no heading) | — | `Text size={700}` italic quote | `Text size={400}` name, `Text size={300}` title | Author name uses `weight="medium"` |
+| ImageSlide | `Heading size={2}` | — | `Text size={500}` subtitle | — | Over image, max 2 elements |
+| ComparisonSlide | `Heading size={3}` | — | `Text size={400}` items | `Text size={400}` `weight="medium"` labels | Labels use medium weight |
+| AgendaSlide | `Heading size={3}` | — | `Text size={500}` items | `Text size={400}` mono numbers | Active item uses `weight="medium"` |
+| TeamSlide | `Heading size={3}` | — | `Text size={400}` `weight="medium"` name | `Text size={300}` role | — |
+| CTASlide | `Heading size={1}` | — | `Text size={600}` subtitle | `Text size={300}` contact | Centered, hero moment |
+| LogoGridSlide | `Heading size={3}` | — | `Text size={400}` subtitle | — | — |
+| SectionSlide | `Heading size={1}` | `Text size={200}` mono | `Text size={500}` subtitle | — | Centered, minimal — use as section dividers |
+| ThreeUpSlide | `Heading size={3}` | `Text size={200}` mono | `Text size={500}` `weight="medium"` card title | `Text size={400}` card description | 3 cards in a row |
+| MultiStatSlide | `Heading size={3}` title | `Text size={200}` mono | `Heading size="display"` stat numbers | `Text size={400}` stat descriptions | 2–3 stats side by side |
+
+### Eyebrow Pattern
 Use the mono font for eyebrow text above headings:
 ```tsx
 <Text as="span" size={200} className="font-mono uppercase tracking-widest text-muted-foreground">

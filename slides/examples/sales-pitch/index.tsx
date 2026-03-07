@@ -20,7 +20,7 @@ import {
   ImageSlide,
   LogoGridSlide,
   CTASlide,
-} from "../components";
+} from "../../components";
 
 /* ── Slide 1: Title ─────────────────────────────────── */
 export function Slide01_Title() {
@@ -81,7 +81,7 @@ export function Slide04_Solution() {
         We combine strategic design with modern engineering so you ship faster and
         convert better.
       </Text>
-      <Text size={400}>
+      <Text size={400} className="text-muted-foreground">
         From headless CMS architecture to conversion-optimized landing pages,
         we handle everything so your marketing team can move at the speed of
         your business.
@@ -100,18 +100,24 @@ export function Slide05_HowItWorks() {
       media="/images/process-diagram.svg"
       theme="light"
     >
-      <Text size={400}>
-        <strong>1. Discovery</strong> — Audit your current site, define goals, and map the user journey.
-      </Text>
-      <Text size={400}>
-        <strong>2. Design</strong> — Create a component-driven design system that scales.
-      </Text>
-      <Text size={400}>
-        <strong>3. Build</strong> — Engineer with Next.js, headless CMS, and performance best practices.
-      </Text>
-      <Text size={400}>
-        <strong>4. Optimize</strong> — A/B test, analyze, and iterate for continuous improvement.
-      </Text>
+      <div className="space-y-4">
+        <div>
+          <Text size={500} weight="medium">1. Discovery</Text>
+          <Text size={300} className="text-muted-foreground">Audit your current site, define goals, and map the user journey.</Text>
+        </div>
+        <div>
+          <Text size={500} weight="medium">2. Design</Text>
+          <Text size={300} className="text-muted-foreground">Create a component-driven design system that scales.</Text>
+        </div>
+        <div>
+          <Text size={500} weight="medium">3. Build</Text>
+          <Text size={300} className="text-muted-foreground">Engineer with Next.js, headless CMS, and performance best practices.</Text>
+        </div>
+        <div>
+          <Text size={500} weight="medium">4. Optimize</Text>
+          <Text size={300} className="text-muted-foreground">A/B test, analyze, and iterate for continuous improvement.</Text>
+        </div>
+      </div>
     </SplitSlide>
   );
 }
@@ -124,14 +130,14 @@ export function Slide06_Feature1() {
       title="Sub-Second Load Times, Every Time"
       imageSrc="/images/lighthouse-score.png"
       imageAlt="Lighthouse performance score showing 98/100"
-      theme="light"
+      theme="dark"
     >
-      <Text size={400}>
+      <Text size={500}>
         Our sites consistently score 95+ on Core Web Vitals. We use edge
         rendering, optimized images, and smart caching to deliver blazing-fast
         experiences.
       </Text>
-      <Text size={400}>
+      <Text size={400} className="text-muted-foreground">
         Faster sites mean better SEO rankings, lower bounce rates, and higher
         conversion rates.
       </Text>
@@ -150,12 +156,12 @@ export function Slide07_Feature2() {
       media="/images/cms-editor.png"
       theme="light"
     >
-      <Text size={400}>
+      <Text size={500}>
         We build on headless CMS platforms (Sanity, Contentful) with visual
         editing, so your content team can update pages, launch campaigns, and
         run experiments independently.
       </Text>
-      <Text size={400}>
+      <Text size={300} className="text-muted-foreground">
         No more bottlenecks. No more tickets for copy changes.
       </Text>
     </SplitSlide>

@@ -19,6 +19,9 @@ import {
   TeamSlide,
   CTASlide,
   LogoGridSlide,
+  ThreeUpSlide,
+  SectionSlide,
+  MultiStatSlide,
 } from "./slides/components";
 ```
 
@@ -81,8 +84,37 @@ Examples of correct blue accent usage:
 - **Font**: Saans (sans-serif) for everything; TT Interphases Pro Mono for eyebrows/code
 - **Eyebrow pattern**: `<Text as="span" size={200} className="font-mono uppercase tracking-widest">`
 - **Headings**: Always use the `<Heading>` component at **regular weight** (no bold/semibold) — it applies proper tracking
-- **Body**: Use `<Text size={400}>` or `<Text size={500}>`
-- **IMPORTANT — Weight rule**: Never use anything bolder than `weight="medium"`. Headings and headlines are always regular weight. Medium is only for emphasizing individual words.
+- **IMPORTANT — Weight rule**: Never use anything bolder than `weight="medium"`. Headings and headlines are always regular weight. Medium is only for emphasizing individual words or names.
+
+### Heading Sizes — FOLLOW EXACTLY
+
+| Role | Heading size | Which slides |
+|------|-------------|--------------|
+| Hero / deck opener | `size={1}` | TitleSlide, CTASlide |
+| Display stat number | `size="display"` | StatSlide (the big number only) |
+| Standalone title (minimal body text) | `size={2}` | ImageSlide |
+| Section divider heading | `size={1}` | SectionSlide |
+| Slide title (with body content) | `size={3}` | ContentSlide, SplitSlide, ComparisonSlide, AgendaSlide, TeamSlide, LogoGridSlide, ThreeUpSlide, MultiStatSlide |
+| Display stat (multi) | `size="display"` | MultiStatSlide (each stat number) |
+
+**Do not improvise heading sizes.** `size={1}` is only for hero moments (opening/closing). `size="display"` is only for stat numbers. `size={3}` is the standard for any slide with body content. Never use `size={4}`–`size={6}` for slide titles.
+
+### Text Sizes — FOLLOW EXACTLY
+
+| Role | Text size | When to use |
+|------|----------|-------------|
+| Eyebrow | `size={200}` mono uppercase | Above headings |
+| Caption / source / contact | `size={300}` | StatSlide context, CTASlide contact, attribution |
+| Body text / list items | `size={400}` | Standard body, bullets, list items |
+| Lead paragraph | `size={500}` | First paragraph on content slides, ImageSlide subtitle |
+| Subtitle (under hero heading) | `size={600}` | TitleSlide subtitle, CTASlide subtitle, StatSlide description |
+| Quote text | `size={700}` italic | QuoteSlide only |
+
+**Rules:**
+- Only one `size={500}` lead paragraph per slide — subsequent paragraphs use `size={400}`
+- `size={600}` subtitles only appear under `size={1}` or `size="display"` headings
+- `size={700}` is exclusively for quotes — never body text
+- Minimum slide text is `size={200}` (for eyebrows) — never use `size={100}` on slides
 
 ## Button Style
 
@@ -101,6 +133,9 @@ Title → Problem → Stat → Solution → How It Works → Feature × 2 → Qu
 **Case Study (~8 slides):**
 Title → Challenge → Approach → Key Metric → Solution Detail → Results → Quote → CTA
 
+**Client Presentation (~20 slides):**
+Cover → Section (About) → Capabilities (three-up) → Logo Grid → Section (Process) → Discovery (three-up) → Design (three-up) → Build (split) → Section (Results) → Team → Quote → Client Story 1 (content → comparison → multi-stat) → Client Story 2 (content → split → multi-stat) → Client Quote → Section (Next Steps) → CTA
+
 ## Key Guidelines
 
 Read these files for detailed brand rules:
@@ -116,6 +151,7 @@ Read these files for detailed brand rules:
 Study these for composition patterns:
 - `slides/examples/sales-pitch.tsx` — Full 12-slide sales deck
 - `slides/examples/case-study.tsx` — Full 8-slide case study
+- `slides/examples/client-presentation.tsx` — Full 20-slide client presentation with section dividers, three-up cards, and multi-stat slides
 
 ## Design Tokens
 

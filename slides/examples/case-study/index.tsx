@@ -17,7 +17,7 @@ import {
   ComparisonSlide,
   QuoteSlide,
   CTASlide,
-} from "../components";
+} from "../../components";
 
 /* ── Slide 1: Title ─────────────────────────────────── */
 export function Slide01_Title() {
@@ -44,8 +44,8 @@ export function Slide02_Challenge() {
         2019. The marketing team couldn't update content without engineering
         help, pages loaded slowly, and conversion rates were declining.
       </Text>
-      <Text size={400} className="text-muted-foreground">
-        Key pain points:
+      <Text size={300} className="text-muted-foreground uppercase tracking-widest font-mono">
+        Key pain points
       </Text>
       <ul className="space-y-2 ml-4">
         <Text as="li" size={400}>4.2s average page load time</Text>
@@ -67,22 +67,28 @@ export function Slide03_Approach() {
       media="/images/techcorp-architecture.svg"
       theme="light"
     >
-      <Text size={400}>
+      <Text size={500}>
         We rebuilt TechCorp's site from the ground up using Next.js and Sanity CMS,
         with a modular component library that marketing could mix and match.
       </Text>
-      <Text size={400}>
-        <strong>Phase 1:</strong> Discovery and content audit (2 weeks)
-      </Text>
-      <Text size={400}>
-        <strong>Phase 2:</strong> Design system and component library (3 weeks)
-      </Text>
-      <Text size={400}>
-        <strong>Phase 3:</strong> Build and migrate (4 weeks)
-      </Text>
-      <Text size={400}>
-        <strong>Phase 4:</strong> Optimize and iterate (ongoing)
-      </Text>
+      <div className="space-y-3">
+        <div>
+          <Text size={400} weight="medium">Phase 1</Text>
+          <Text size={300} className="text-muted-foreground">Discovery and content audit (2 weeks)</Text>
+        </div>
+        <div>
+          <Text size={400} weight="medium">Phase 2</Text>
+          <Text size={300} className="text-muted-foreground">Design system and component library (3 weeks)</Text>
+        </div>
+        <div>
+          <Text size={400} weight="medium">Phase 3</Text>
+          <Text size={300} className="text-muted-foreground">Build and migrate (4 weeks)</Text>
+        </div>
+        <div>
+          <Text size={400} weight="medium">Phase 4</Text>
+          <Text size={300} className="text-muted-foreground">Optimize and iterate (ongoing)</Text>
+        </div>
+      </div>
     </SplitSlide>
   );
 }

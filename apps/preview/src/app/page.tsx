@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import SalesPitchDeck from "@webstacks/slides/examples/sales-pitch";
-import CaseStudyDeck from "@webstacks/slides/examples/case-study";
-import ClientPresentationDeck from "@webstacks/slides/examples/client-presentation";
+import SalesPitchDeck from "../../../../slides/examples/sales-pitch";
+import CaseStudyDeck from "../../../../slides/examples/case-study";
+import ClientPresentationDeck from "../../../../slides/examples/client-presentation";
 
 const decks = {
   "sales-pitch": { label: "Sales Pitch (12 slides)", Component: SalesPitchDeck },

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@webstacks/ui", "@webstacks/slides"],
+  transpilePackages: ["@webstacks/ui"],
 };
 
 export default nextConfig;

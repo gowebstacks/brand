@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
-import SalesPitchDeck from "../slides/examples/sales-pitch";
-import CaseStudyDeck from "../slides/examples/case-study";
-import ClientPresentationDeck from "../slides/examples/client-presentation";
+import SalesPitchDeck from "../../../../slides/examples/sales-pitch";
+import CaseStudyDeck from "../../../../slides/examples/case-study";
+import ClientPresentationDeck from "../../../../slides/examples/client-presentation";
 
 const decks = {
   "sales-pitch": { label: "Sales Pitch (12 slides)", Component: SalesPitchDeck },
@@ -11,7 +13,7 @@ const decks = {
 
 type DeckKey = keyof typeof decks;
 
-export function App() {
+export default function PreviewPage() {
   const [activeDeck, setActiveDeck] = useState<DeckKey>("sales-pitch");
   const { Component } = decks[activeDeck];
 

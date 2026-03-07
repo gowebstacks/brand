@@ -2,7 +2,10 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
-  content: ["./slides/**/*.{ts,tsx}"],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "../../slides/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {

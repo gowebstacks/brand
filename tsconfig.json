@@ -18,5 +18,5 @@
     }
   },
   "include": ["slides"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "apps"]
 }

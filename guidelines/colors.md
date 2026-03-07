@@ -133,6 +133,24 @@ Correct blue usage:
 | `text-neutral-500` | `text-muted-foreground` |
 | `border-neutral-200` | `border-border` |
 
+## Dark Slide Surface & Opacity Conventions
+
+On custom dark slides (built with `SlideBase className="!p-0"`), use these exact values:
+
+### Card Surfaces
+- `bg-white/[0.04]` — muted card backgrounds (stat cards, logo cards)
+- `bg-white/5` — slightly more visible surfaces (pill/chip backgrounds)
+- `border-white/10` — footer bar top border
+
+### Text Opacity
+Instead of `text-muted-foreground` (which works in themed components), custom dark slides use `opacity-*` on white text for precise control:
+- `opacity-70` — body text, descriptions
+- `opacity-60` — eyebrow labels
+- `opacity-50` — footer URL, card metadata labels
+- `opacity-40` — footer copyright, placeholder text
+
+These values must be used consistently. Do not mix with `text-muted-foreground` within the same custom slide.
+
 ## Do's and Don'ts
 - **Do** use high-contrast text/background combinations
 - **Do** use the chart color sequence for data: blue, teal, mint, purple, orange

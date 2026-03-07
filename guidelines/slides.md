@@ -119,19 +119,20 @@ Display 2–3 key metrics side by side.
 
 ## Deck Pacing
 
-### Sales Pitch (~12 slides)
+### Sales Pitch (~13 slides)
 1. Title — company + tagline
-2. Problem — the pain point
-3. Stat — the scale of the problem
-4. Solution — what we do
-5. How it works (split)
-6. Feature 1 (content)
-7. Feature 2 (content)
-8. Social proof (quote)
-9. Results (stat)
-10. Case study teaser (image)
-11. Logo grid (clients)
-12. CTA — next steps
+2. Philosophy — centered statement + bullet row
+3. Meet Webstacks — split with stat cards
+4. Clients — logo grid (Sanity-powered)
+5. Problem stat — single hero number
+6. Solution — what we do
+7. How it works (split)
+8. Feature 1 (content)
+9. Feature 2 (content)
+10. Social proof (quote)
+11. Results (stat)
+12. Case study teaser (image)
+13. CTA — next steps
 
 ### Case Study (~8 slides)
 1. Title — client name + outcome
@@ -203,6 +204,81 @@ See `guidelines/typography.md` for the full reference. Quick summary:
 | SectionSlide | `size={1}` | subtitle: `size={500}` |
 | ThreeUpSlide | `size={3}` | card title: `size={500}` medium, card body: `size={400}` |
 | MultiStatSlide | `size={3}` title, `size="display"` stats | description: `size={400}` |
+
+## Custom Slide Patterns
+
+When building custom slides with `SlideBase` directly (instead of a pre-built component), follow these patterns exactly.
+
+### Full-Bleed Layout
+Custom slides override default padding and manage it themselves:
+```tsx
+<SlideBase theme="dark" className="!p-0">
+  {/* Content with manual px-16 pt-16 */}
+  <div className="px-16 pt-16">...</div>
+  {/* Footer sits at absolute bottom */}
+</SlideBase>
+```
+
+### Footer Bar (Required on All Custom Dark Slides)
+Every custom dark slide must include this footer bar. Copy it exactly:
+```tsx
+<div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+  <div className="flex items-center gap-2">
+    <img src="/logos/symbol-negative.svg" alt="Webstacks" className="h-4 w-auto" />
+    <Text as="span" size={100} className="opacity-50">webstacks.com</Text>
+  </div>
+  <Text as="span" size={100} className="opacity-40">
+    &copy; Webstacks LLC Proprietary and Confidential
+  </Text>
+</div>
+```
+
+### Muted Card Surfaces
+On dark slides, use `bg-white/[0.04]` for subtle card backgrounds:
+```tsx
+<div className="rounded-sm bg-white/[0.04] p-8">
+  {/* Card content */}
+</div>
+```
+- Use `rounded-sm` (not `rounded-lg`) for cards within slides
+- Use `gap-3` between cards, or `gap-px` for edge-to-edge grids (logo grids)
+
+### Opacity Hierarchy on Dark Slides
+Use consistent opacity values across all custom dark slides:
+
+| Element | Opacity | Example |
+|---------|---------|---------|
+| Body text | `opacity-70` | Description paragraphs |
+| Eyebrow | `opacity-60` | Category labels above headings |
+| Footer URL | `opacity-50` | "webstacks.com" |
+| Footer copyright | `opacity-40` | Copyright line |
+| Fallback / placeholder text | `opacity-40` | Missing logo text |
+| Card labels (mono) | `opacity-50` | Stat labels, metadata |
+
+### 3D Decorative Shapes
+Position 3D shapes as large, cropped accents that bleed off the slide edges:
+```tsx
+<img
+  src="/images/3d-shapes/glass-panels.png"
+  alt=""
+  className="pointer-events-none absolute -left-[18%] -top-[30%] w-[45%] -rotate-12 object-contain select-none"
+  aria-hidden="true"
+/>
+```
+- Always: `pointer-events-none`, `select-none`, `aria-hidden="true"`, `alt=""`
+- Use negative offsets (`-left-[18%]`, `-top-[30%]`) to crop shapes across edges
+- Scale to 40–80% of slide width
+- Optional slight rotation (`-rotate-6`, `-rotate-12`) for dynamism
+- Place behind content with `relative z-10` on the content container
+
+### Logo Grid (Sanity-Powered)
+Client logos are fetched from Sanity CMS. The pattern:
+- **Query**: Fetch `company` documents by name from `slides/lib/queries.ts`
+- **Logo priority**: Use `logoOnDark` (white logo for dark bg). If unavailable, use `logoOnLight` with CSS `brightness-0 invert` to make it white
+- **Grid**: 6 columns, `gap-px`, square cards (`aspect-square`), `bg-white/[0.04]`
+- **Fallback**: Show company names as `Text size={200} opacity-40` if Sanity fetch fails
+- **Data fetching**: `useState` + `useEffect` in the deck component (since page is `"use client"`)
+- **To add/remove logos**: Edit the name array in `slides/lib/queries.ts` and the `fallbackCompanies` array in the slide file. See the comment block in `queries.ts` for full instructions.
 
 ## Animation & Transitions
 For exported or interactive decks:

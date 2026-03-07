@@ -1,22 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import SalesPitchDeck from "../../../../slides/examples/sales-pitch";
 import CaseStudyDeck from "../../../../slides/examples/case-study";
 import ClientPresentationDeck from "../../../../slides/examples/client-presentation";
 
-const decks = {
-  "sales-pitch": { label: "Sales Pitch (12 slides)", Component: SalesPitchDeck },
-  "case-study": { label: "Case Study (8 slides)", Component: CaseStudyDeck },
-  "client-presentation": { label: "Client Presentation (20 slides)", Component: ClientPresentationDeck },
-} as const;
-
-type DeckKey = keyof typeof decks;
+const decks = [
+  { id: "sales-pitch", label: "Sales Pitch", count: 12, Component: SalesPitchDeck },
+  { id: "case-study", label: "Case Study", count: 8, Component: CaseStudyDeck },
+  { id: "client-presentation", label: "Client Presentation", count: 20, Component: ClientPresentationDeck },
+];
 
 export default function PreviewPage() {
-  const [activeDeck, setActiveDeck] = useState<DeckKey>("sales-pitch");
-  const { Component } = decks[activeDeck];
-
   return (
     <div style={{ maxWidth: 1360, margin: "0 auto", padding: "32px 24px" }}>
       {/* Header */}
@@ -25,40 +19,25 @@ export default function PreviewPage() {
           Webstacks Brand — Slide Preview
         </h1>
         <p style={{ fontSize: 14, opacity: 0.6 }}>
-          Preview example decks. Slides render at 1280×720 (scroll down to see all).
+          Preview all example decks. Slides render at 1280×720.
         </p>
       </div>
 
-      {/* Deck selector */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
-        {(Object.keys(decks) as DeckKey[]).map((key) => (
-          <button
-            key={key}
-            onClick={() => setActiveDeck(key)}
-            style={{
-              padding: "8px 20px",
-              borderRadius: 9999,
-              border: activeDeck === key ? "2px solid hsl(217, 89%, 46%)" : "1px solid #444",
-              background: activeDeck === key ? "hsl(217, 89%, 46%)" : "transparent",
-              color: "#fff",
-              cursor: "pointer",
-              fontSize: 14,
-              fontWeight: 500,
-            }}
-          >
-            {decks[key].label}
-          </button>
+      {/* All decks */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 64 }}>
+        {decks.map(({ id, label, count, Component }) => (
+          <section key={id}>
+            <h2 style={{ fontSize: 18, fontWeight: 500, marginBottom: 16, color: "#fff" }}>
+              {label}{" "}
+              <span style={{ fontSize: 14, opacity: 0.5, fontWeight: 400 }}>
+                ({count} slides)
+              </span>
+            </h2>
+            <div style={{ transform: "scale(0.95)", transformOrigin: "top center" }}>
+              <Component />
+            </div>
+          </section>
         ))}
-      </div>
-
-      {/* Deck */}
-      <div
-        style={{
-          transform: "scale(0.95)",
-          transformOrigin: "top center",
-        }}
-      >
-        <Component />
       </div>
     </div>
   );

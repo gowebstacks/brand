@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./src/**/*.{ts,tsx}",
     "../../slides/**/*.{ts,tsx}",
+    "../../node_modules/@webstacks/ui/dist/**/*.js",
   ],
   theme: {
     extend: {

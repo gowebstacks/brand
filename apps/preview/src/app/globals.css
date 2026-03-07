@@ -3,7 +3,6 @@
 @import "@webstacks/ui/styles";
 @tailwind utilities;
 
-
 body {
   background: #111;
 }

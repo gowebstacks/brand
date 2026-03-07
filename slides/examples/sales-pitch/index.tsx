@@ -1,15 +1,13 @@
 /**
- * Sales Pitch Deck — ~13 slides
- *
- * A complete reference deck demonstrating how to compose slide components
- * into a full sales presentation. This follows the recommended pacing
- * from guidelines/slides.md.
+ * Sales Pitch Deck — 19 slides
  *
  * Deck flow:
- * 1. Title → 2. Philosophy → 3. Meet Webstacks → 4. Clients →
- * 5. Problem Stat → 6. Solution → 7. How It Works →
- * 8. Feature 1 → 9. Feature 2 → 10. Quote → 11. Results →
- * 12. Case Study Teaser → 13. CTA
+ * 1. Title → 2. Philosophy → 3. Meet Webstacks → 4. Clients
+ * 5. Retainer Title → 6. Who We Are → 7. Point of View → 8. Why Teams Bring Us In
+ * 9. What Makes Us Different → 10. Core Disciplines → 11. Strong Partner
+ * 12. Roadmap Matters → 13. Roadmap + Retainer → 14. Monthly Capacity
+ * 15. Flex Model → 16. Pod Model → 17. Kinds of Work
+ * 18. Commercial Framing → 19. How We Start
  */
 import { useState, useEffect } from "react";
 import { Heading, Text } from "@webstacks/ui";
@@ -114,9 +112,6 @@ export function Slide02_Philosophy() {
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -196,9 +191,6 @@ export function Slide03_MeetWebstacks() {
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -272,9 +264,6 @@ export function Slide04_Clients({
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -284,36 +273,31 @@ export function Slide04_Clients({
   );
 }
 
-/* ── Slide 5: Problem Stat (dark) ────────────────────── */
-export function Slide05_ProblemStat() {
+/* ── Slide 5: Retainer Title ──────────────────────────── */
+export function Slide05_RetainerTitle() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      {/* 3D accent shape — top-right corner */}
       <img
-        src="/images/3d-shapes/ridged-cylinder.png"
+        src="/images/3d-shapes/layered-diamonds.png"
         alt=""
-        className="pointer-events-none absolute -right-[15%] -top-[20%] w-[45%] object-contain select-none"
+        className="pointer-events-none absolute -right-[15%] -top-[20%] w-[50%] object-contain select-none"
         aria-hidden="true"
       />
 
-      {/* Centered content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4 px-16">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 px-16">
         <Text
           as="span"
           size={200}
           className="font-mono uppercase tracking-widest opacity-60"
         >
-          Industry Data
+          Webstacks
         </Text>
-        <Heading as="h2" size="display">
-          68%
+        <Heading as="h2" size={1} align="center">
+          Webstacks Retainer Engagement
         </Heading>
-        <Text size={600} align="center" className="max-w-[70%] opacity-70">
-          of B2B buyers say a company&apos;s website is the most influential
-          factor when evaluating vendors
-        </Text>
-        <Text as="span" size={300} className="mt-2 opacity-50">
-          Source: Demand Gen Report, 2024
+        <Text size={500} align="center" className="max-w-[70%] opacity-70">
+          An operating model for building, managing, and improving modern B2B
+          websites
         </Text>
       </div>
 
@@ -325,9 +309,6 @@ export function Slide05_ProblemStat() {
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -337,68 +318,46 @@ export function Slide05_ProblemStat() {
   );
 }
 
-/* ── Slide 6: Solution (light) ───────────────────────── */
-const capabilityCards = [
-  {
-    label: "Strategy",
-    description:
-      "Market research, competitive analysis, and conversion strategy that aligns your site with business goals.",
-  },
-  {
-    label: "Design",
-    description:
-      "Component-driven design systems that scale across campaigns, pages, and product launches.",
-  },
-  {
-    label: "Engineering",
-    description:
-      "Modern headless architecture with Next.js, React, and your CMS of choice — built for speed.",
-  },
+/* ── Slide 6: Who Webstacks Is ───────────────────────── */
+const whoWeAreItems = [
+  "a serious growth channel",
+  "a scalable content and campaign engine",
+  "a strong product and brand experience",
+  "a system their teams can actually manage",
 ];
 
-export function Slide06_Solution() {
+export function Slide06_WhoWeAre() {
   return (
     <SlideBase theme="light" className="!p-0">
       <div className="flex h-full">
-        {/* Left column — text */}
-        <div className="flex w-[55%] flex-col gap-4 pl-16 pt-16 pr-8">
+        {/* Left column */}
+        <div className="flex w-[50%] flex-col gap-4 pl-16 pt-16">
           <Text
             as="span"
             size={200}
             className="font-mono uppercase tracking-widest text-muted-foreground"
           >
-            Our Approach
+            Who We Are
           </Text>
           <Heading as="h2" size={3}>
-            Strategy, Design, and Engineering — Under One Roof
+            A web agency, by design
           </Heading>
-          <Text size={500}>
-            Webstacks is a full-service web team for growth-stage B2B SaaS
-            companies. We combine strategic design with modern engineering so you
-            ship faster and convert better.
+          <Text size={500} className="text-muted-foreground">
+            We focus on one thing: websites.
           </Text>
-          <Text size={400} className="text-muted-foreground">
-            From headless CMS architecture to conversion-optimized landing pages,
-            we handle everything so your marketing team can move at the speed of
-            your business.
+          <Text size={400} className="max-w-[90%] text-muted-foreground">
+            We partner with B2B companies that need a website to function as:
           </Text>
         </div>
 
-        {/* Right column — capability cards */}
-        <div className="flex w-[45%] flex-col gap-3 pr-16 pt-16 pb-16">
-          {capabilityCards.map((card) => (
+        {/* Right column — list cards */}
+        <div className="flex w-[50%] flex-col justify-center gap-3 pr-16">
+          {whoWeAreItems.map((item) => (
             <div
-              key={card.label}
-              className="flex flex-1 flex-col gap-3 rounded-sm bg-muted p-6"
+              key={item}
+              className="rounded-sm bg-muted px-6 py-4"
             >
-              <Text
-                as="span"
-                size={200}
-                className="font-mono uppercase tracking-widest text-muted-foreground"
-              >
-                {card.label}
-              </Text>
-              <Text size={400}>{card.description}</Text>
+              <Text size={400}>{item}</Text>
             </div>
           ))}
         </div>
@@ -407,201 +366,53 @@ export function Slide06_Solution() {
   );
 }
 
-/* ── Slide 7: How It Works (light) ───────────────────── */
-const processSteps = [
-  {
-    number: "01",
-    title: "Discovery",
-    description:
-      "Audit your current site, define goals, and map the user journey.",
-  },
-  {
-    number: "02",
-    title: "Design",
-    description:
-      "Create a component-driven design system that scales.",
-  },
-  {
-    number: "03",
-    title: "Build",
-    description:
-      "Engineer with Next.js, headless CMS, and performance best practices.",
-  },
-  {
-    number: "04",
-    title: "Optimize",
-    description:
-      "A/B test, analyze, and iterate for continuous improvement.",
-  },
+/* ── Slide 7: Our Point of View ──────────────────────── */
+const evolvesItems = [
+  "the business evolves",
+  "the brand matures",
+  "new products launch",
+  "campaigns change",
+  "conversion goals shift",
+  "internal teams grow",
 ];
 
-export function Slide07_HowItWorks() {
-  return (
-    <SlideBase theme="light" className="!p-0">
-      <div className="flex h-full flex-col px-16 pt-16">
-        <Text
-          as="span"
-          size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
-        >
-          How It Works
-        </Text>
-        <Heading as="h2" size={3} className="mt-4">
-          A Proven Process for High-Impact Websites
-        </Heading>
-
-        {/* 4-column process grid */}
-        <div className="mt-8 grid flex-1 grid-cols-4 gap-3 pb-16">
-          {processSteps.map((step) => (
-            <div
-              key={step.number}
-              className="flex flex-col justify-between rounded-sm bg-muted p-8"
-            >
-              <Text
-                as="span"
-                size={200}
-                className="font-mono text-muted-foreground"
-              >
-                {step.number}
-              </Text>
-              <div className="flex flex-col gap-2">
-                <Text size={500}>{step.title}</Text>
-                <Text size={400} className="text-muted-foreground">
-                  {step.description}
-                </Text>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </SlideBase>
-  );
-}
-
-/* ── Slide 8: Feature 1 — Performance (dark) ─────────── */
-const perfStats = [
-  { value: "95+", label: "Core Web Vitals" },
-  { value: "< 1s", label: "Avg. Load Time" },
-];
-
-export function Slide08_Feature1() {
+export function Slide07_PointOfView() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      {/* 3D accent shape — bottom-left */}
       <img
         src="/images/3d-shapes/spiral-band.png"
         alt=""
-        className="pointer-events-none absolute -bottom-[20%] -left-[15%] w-[45%] object-contain select-none"
+        className="pointer-events-none absolute -left-[18%] -bottom-[25%] w-[45%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full">
-        {/* Left column — text */}
-        <div className="flex w-[50%] flex-col gap-4 pl-16 pt-16">
-          <Text
-            as="span"
-            size={200}
-            className="font-mono uppercase tracking-widest opacity-60"
-          >
-            Performance
-          </Text>
-          <Heading as="h2" size={3}>
-            Sub-Second Load Times, Every Time
-          </Heading>
-          <Text size={500} className="opacity-70">
-            Our sites consistently score 95+ on Core Web Vitals. We use edge
-            rendering, optimized images, and smart caching to deliver
-            blazing-fast experiences.
-          </Text>
-          <Text size={400} className="opacity-70">
-            Faster sites mean better SEO rankings, lower bounce rates, and
-            higher conversion rates.
-          </Text>
-        </div>
-
-        {/* Right column — stat cards */}
-        <div className="flex w-[50%] flex-col gap-3 pl-8 pr-16 pt-16 pb-16">
-          {perfStats.map((card) => (
-            <div
-              key={card.label}
-              className="flex flex-1 flex-col justify-between rounded-sm bg-white/[0.04] p-8"
-            >
-              <Heading as="h3" size={1}>
-                {card.value}
-              </Heading>
-              <Text
-                as="span"
-                size={100}
-                className="font-mono uppercase tracking-widest opacity-50"
-              >
-                {card.label}
-              </Text>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
-    </SlideBase>
-  );
-}
-
-/* ── Slide 9: Feature 2 — CMS Flexibility (light) ────── */
-const cmsFeatures = ["Visual editing", "No-code page builder", "Instant publishing"];
-
-export function Slide09_Feature2() {
-  return (
-    <SlideBase theme="light" className="!p-0">
-      <div className="flex h-full flex-col px-16 pt-16 pb-16">
+      <div className="relative z-10 flex h-full flex-col justify-center gap-6 px-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
-          Flexibility
+          Our Point of View
         </Text>
-        <Heading as="h2" size={3} className="mt-4">
-          Your Marketing Team Ships Without Waiting on Engineering
+        <Heading as="h2" size={3}>
+          We believe the website is a product
         </Heading>
-        <div className="mt-4 max-w-[75%]">
-          <Text size={500}>
-            We build on headless CMS platforms like Sanity and Contentful with
-            visual editing, so your content team can update pages, launch
-            campaigns, and run experiments independently.
-          </Text>
-          <Text size={400} className="mt-3 text-muted-foreground">
-            No more bottlenecks. No more tickets for copy changes.
-          </Text>
-        </div>
+        <Text size={500} className="opacity-70">
+          It should evolve as:
+        </Text>
 
-        {/* Feature pills */}
-        <div className="mt-auto flex gap-3">
-          {cmsFeatures.map((feature) => (
+        <div className="mt-2 grid grid-cols-3 gap-3">
+          {evolvesItems.map((item) => (
             <div
-              key={feature}
-              className="flex items-center gap-3 rounded-sm bg-muted px-6 py-4"
+              key={item}
+              className="flex items-center gap-3 rounded-sm bg-white/[0.04] px-5 py-3"
             >
               <svg
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                className="shrink-0"
+                className="shrink-0 text-foreground"
               >
                 <path
                   d="M3 8.5L6.5 12L13 4"
@@ -611,8 +422,207 @@ export function Slide09_Feature2() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <Text as="span" size={300}>
-                {feature}
+              <Text as="span" size={400} className="opacity-70">
+                {item}
+              </Text>
+            </div>
+          ))}
+        </div>
+
+        <Text size={400} className="mt-2 opacity-50">
+          A website should not sit still.
+        </Text>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 8: Why Teams Bring Us In ──────────────────── */
+const painPoints = [
+  "Marketing needs to move faster than internal resources allow",
+  "The site becomes harder to manage as it grows",
+  "New launches and campaigns create constant demand",
+  "Teams start assembling pages instead of building a system",
+  "Strategy gets crowded out by production work",
+  "The website becomes reactive instead of intentional",
+];
+
+export function Slide08_WhyTeamsBringUsIn() {
+  return (
+    <SlideBase theme="light" className="!p-0">
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          The Challenge
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          What usually breaks down internally
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-2 gap-3">
+          {painPoints.map((item, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-4 rounded-sm bg-muted px-6 py-5"
+            >
+              <Text
+                as="span"
+                size={200}
+                className="mt-0.5 shrink-0 font-mono text-muted-foreground"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </Text>
+              <Text size={400}>{item}</Text>
+            </div>
+          ))}
+        </div>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 9: What Makes Webstacks Different ─────────── */
+const opinions = [
+  "Empowering marketing teams to own the website more effectively",
+  "Building systems, not one-off pages",
+  "Designing for reuse, consistency, and composability",
+  "Making CMS experiences more intuitive for non-technical teams",
+  "Pairing execution with real website strategy",
+  "Acting like a partner, not a ticket queue",
+];
+
+export function Slide09_WhatMakesUsDifferent() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <img
+        src="/images/3d-shapes/glass-cubes.png"
+        alt=""
+        className="pointer-events-none absolute -right-[15%] -bottom-[25%] w-[45%] object-contain select-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          Our Difference
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          What we are opinionated about
+        </Heading>
+
+        <div className="mt-8 flex flex-col gap-3">
+          {opinions.map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-4 rounded-sm bg-white/[0.04] px-6 py-4"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="shrink-0 text-foreground"
+              >
+                <path
+                  d="M3 8.5L6.5 12L13 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <Text as="span" size={400} className="opacity-70">
+                {item}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 10: Four Core Disciplines ─────────────────── */
+const disciplines = [
+  {
+    title: "Web Strategy",
+    description: "Roadmap, priorities, testing, goals, recommendations",
+  },
+  {
+    title: "Design",
+    description: "UX, systems, reusable components, consistency",
+  },
+  {
+    title: "Development",
+    description: "Frontend, backend, CMS, integrations, new functionality",
+  },
+  {
+    title: "Program Management",
+    description: "Visibility, planning, coordination, momentum",
+  },
+];
+
+export function Slide10_CoreDisciplines() {
+  return (
+    <SlideBase theme="light" className="!p-0">
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          Our Capabilities
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          How we show up as a web partner
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-4 gap-3">
+          {disciplines.map((d) => (
+            <div
+              key={d.title}
+              className="flex flex-col justify-between rounded-sm bg-muted p-8"
+              style={{ minHeight: 240 }}
+            >
+              <Heading as="h3" size={4}>
+                {d.title}
+              </Heading>
+              <Text size={400} className="text-muted-foreground">
+                {d.description}
               </Text>
             </div>
           ))}
@@ -622,87 +632,58 @@ export function Slide09_Feature2() {
   );
 }
 
-/* ── Slide 10: Quote (dark) ──────────────────────────── */
-export function Slide10_Quote() {
+/* ── Slide 11: Strong Web Partner ────────────────────── */
+const partnerActions = [
+  { title: "Stabilize", description: "what is slowing the team down" },
+  { title: "Systemize", description: "how the site is designed, built, and managed" },
+  { title: "Prioritize", description: "what matters most next" },
+  { title: "Improve", description: "the website continuously over time" },
+];
+
+export function Slide11_StrongPartner() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      {/* 3D accent shape — left side */}
       <img
-        src="/images/3d-shapes/glass-panels.png"
+        src="/images/3d-shapes/stacked-blocks.png"
         alt=""
-        className="pointer-events-none absolute -left-[25%] top-[10%] w-[50%] object-contain select-none"
+        className="pointer-events-none absolute -left-[15%] -top-[25%] w-[40%] object-contain select-none"
         aria-hidden="true"
       />
 
-      {/* Centered content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-16">
-        <div className="max-w-[80%] text-center">
-          <Text as="span" size={700} className="opacity-20">
-            &ldquo;
-          </Text>
-          <Text size={700} align="center" className="italic opacity-70">
-            Webstacks completely transformed how we think about our website.
-            It&apos;s not just a brochure anymore — it&apos;s our
-            best-performing sales channel.
-          </Text>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <Text as="span" size={400}>
-              Sarah Chen
-            </Text>
-            <Text as="span" size={300} className="opacity-50">
-              VP of Marketing, TechCorp
-            </Text>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
-    </SlideBase>
-  );
-}
-
-/* ── Slide 11: Results Stat (dark) ───────────────────── */
-export function Slide11_Results() {
-  return (
-    <SlideBase theme="dark" className="!p-0">
-      {/* 3D accent shape — bottom-right corner */}
-      <img
-        src="/images/3d-shapes/triple-pyramids.png"
-        alt=""
-        className="pointer-events-none absolute -bottom-[15%] -right-[15%] w-[45%] object-contain select-none"
-        aria-hidden="true"
-      />
-
-      {/* Centered content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4 px-16">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
           className="font-mono uppercase tracking-widest opacity-60"
         >
-          Results
+          The Role
         </Text>
-        <Heading as="h2" size="display">
-          3.2x
+        <Heading as="h2" size={3} className="mt-4">
+          A strong partner should help you do four things
         </Heading>
-        <Text size={600} align="center" className="max-w-[70%] opacity-70">
-          average increase in demo requests within 90 days of launch
-        </Text>
+
+        <div className="mt-auto mb-20 grid grid-cols-4 gap-3">
+          {partnerActions.map((a, i) => (
+            <div
+              key={a.title}
+              className="flex flex-col gap-3 rounded-sm bg-white/[0.04] p-8"
+            >
+              <Text
+                as="span"
+                size={200}
+                className="font-mono opacity-50"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </Text>
+              <Heading as="h3" size={4}>
+                {a.title}
+              </Heading>
+              <Text size={400} className="opacity-70">
+                {a.description}
+              </Text>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Footer bar */}
@@ -713,9 +694,6 @@ export function Slide11_Results() {
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -725,41 +703,101 @@ export function Slide11_Results() {
   );
 }
 
-/* ── Slide 12: Case Study Teaser (light) ─────────────── */
-export function Slide12_CaseStudy() {
+/* ── Slide 12: Why the Roadmap Matters ───────────────── */
+const withoutRoadmap = [
+  "Work becomes reactive",
+  "Priorities get fuzzy",
+  "Urgent requests crowd out meaningful progress",
+];
+
+const withRoadmap = [
+  "The team has direction",
+  "Initiatives ladder up to goals",
+  "Capacity can be used intentionally",
+  "Progress compounds over time",
+];
+
+export function Slide12_RoadmapMatters() {
   return (
     <SlideBase theme="light" className="!p-0">
-      <div className="flex h-full">
-        {/* Left column — text */}
-        <div className="flex w-[50%] flex-col gap-4 pl-16 pt-16 pb-16 pr-8">
-          <Text
-            as="span"
-            size={200}
-            className="font-mono uppercase tracking-widest text-muted-foreground"
-          >
-            Case Study
-          </Text>
-          <Heading as="h2" size={3}>
-            How TechCorp Increased Pipeline by 240%
-          </Heading>
-          <Text size={500}>
-            A complete website redesign that turned visitors into qualified
-            leads, driving measurable pipeline growth in under 90 days.
-          </Text>
-          <Text size={400} className="text-muted-foreground">
-            Read the full case study →
-          </Text>
-        </div>
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          Strategy
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          The roadmap is what keeps the work strategic
+        </Heading>
 
-        {/* Right column — image placeholder */}
-        <div className="relative flex w-[50%] items-center justify-center overflow-hidden pr-16 pt-16 pb-16">
-          <div className="h-full w-full overflow-hidden rounded-sm bg-muted">
-            <img
-              src="/images/3d-shapes/split-ring.png"
-              alt=""
-              className="h-full w-full object-contain p-12"
-              aria-hidden="true"
-            />
+        <div className="mt-8 grid grid-cols-2 gap-6">
+          {/* Without */}
+          <div className="flex flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest text-muted-foreground"
+            >
+              Without a Roadmap
+            </Text>
+            {withoutRoadmap.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-sm bg-muted px-6 py-4"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="shrink-0 text-muted-foreground"
+                >
+                  <path
+                    d="M4 8h8"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <Text size={400}>{item}</Text>
+              </div>
+            ))}
+          </div>
+
+          {/* With */}
+          <div className="flex flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest text-muted-foreground"
+            >
+              With a Roadmap
+            </Text>
+            {withRoadmap.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-sm bg-muted px-6 py-4"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="shrink-0 text-foreground"
+                >
+                  <path
+                    d="M3 8.5L6.5 12L13 4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <Text size={400}>{item}</Text>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -767,34 +805,77 @@ export function Slide12_CaseStudy() {
   );
 }
 
-/* ── Slide 13: CTA (dark) ────────────────────────────── */
-export function Slide13_CTA() {
+/* ── Slide 13: Roadmap + Retainer ────────────────────── */
+const roadmapDefines = [
+  "What to prioritize",
+  "What to sequence",
+  "What outcomes matter",
+];
+
+const retainerProvides = [
+  "Monthly capacity",
+  "Cross-functional execution",
+  "Flexibility across priorities",
+  "Continuity over time",
+];
+
+export function Slide13_RoadmapAndRetainer() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      {/* 3D accent shape — right side (bookend with title slide) */}
-      <img
-        src="/images/3d-shapes/layered-diamonds.png"
-        alt=""
-        className="pointer-events-none absolute -bottom-[15%] -right-[20%] w-[60%] object-contain select-none"
-        aria-hidden="true"
-      />
-
-      {/* Centered content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-16 text-center">
-        <Heading as="h2" size={1}>
-          Let&apos;s Build Your Best-Performing Channel
-        </Heading>
-        <Text size={600} className="mt-4 max-w-[70%] opacity-70">
-          Get a free website audit and see where you&apos;re leaving conversions
-          on the table.
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          The Model
         </Text>
-        <div className="mt-8 flex items-center gap-8">
-          <Text as="span" size={400} className="opacity-70">
-            hello@webstacks.com
-          </Text>
-          <Text as="span" size={400} className="opacity-70">
-            webstacks.com/contact
-          </Text>
+        <Heading as="h2" size={3} className="mt-4 max-w-[80%]">
+          The roadmap sets direction. The retainer creates momentum.
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-2 gap-6">
+          {/* Roadmap column */}
+          <div className="flex flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest opacity-50"
+            >
+              The Roadmap Defines
+            </Text>
+            {roadmapDefines.map((item) => (
+              <div
+                key={item}
+                className="rounded-sm bg-white/[0.04] px-6 py-4"
+              >
+                <Text size={400} className="opacity-70">
+                  {item}
+                </Text>
+              </div>
+            ))}
+          </div>
+
+          {/* Retainer column */}
+          <div className="flex flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest opacity-50"
+            >
+              The Retainer Provides
+            </Text>
+            {retainerProvides.map((item) => (
+              <div
+                key={item}
+                className="rounded-sm bg-white/[0.04] px-6 py-4"
+              >
+                <Text size={400} className="opacity-70">
+                  {item}
+                </Text>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -806,9 +887,417 @@ export function Slide13_CTA() {
             alt="Webstacks"
             className="h-4 w-auto"
           />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 14: Monthly Capacity ──────────────────────── */
+const roadmapInitiatives = [
+  "CRO improvements",
+  "New landing pages",
+  "Technical enhancements",
+  "CMS and UX improvements",
+];
+
+const adHocRequests = [
+  "Campaign launches",
+  "Content updates",
+  "Quick fixes",
+  "Small experiments",
+];
+
+export function Slide14_MonthlyCapacity() {
+  return (
+    <SlideBase theme="light" className="!p-0">
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          Capacity
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          Monthly capacity enables both speed and strategic progress
+        </Heading>
+
+        <div className="mt-6 flex items-start gap-6">
+          {/* Minimum engagement */}
+          <div className="flex flex-col gap-2 rounded-sm bg-muted p-6" style={{ minWidth: 200 }}>
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest text-muted-foreground"
+            >
+              Minimum Engagement
+            </Text>
+            <Heading as="h3" size={2}>
+              100+ hrs
+            </Heading>
+            <Text size={300} className="text-muted-foreground">
+              per month
+            </Text>
+          </div>
+
+          {/* Roadmap initiatives */}
+          <div className="flex flex-1 flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest text-muted-foreground"
+            >
+              Roadmap Initiatives — 60–70%
+            </Text>
+            <div className="grid grid-cols-2 gap-2">
+              {roadmapInitiatives.map((item) => (
+                <div key={item} className="rounded-sm bg-muted px-4 py-3">
+                  <Text size={300}>{item}</Text>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Ad hoc */}
+          <div className="flex flex-1 flex-col gap-3">
+            <Text
+              as="span"
+              size={200}
+              className="font-mono uppercase tracking-widest text-muted-foreground"
+            >
+              Ad Hoc Requests — 30–40%
+            </Text>
+            <div className="grid grid-cols-2 gap-2">
+              {adHocRequests.map((item) => (
+                <div key={item} className="rounded-sm bg-muted px-4 py-3">
+                  <Text size={300}>{item}</Text>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto mb-6">
+          <Text size={300} className="text-muted-foreground">
+            Executed across: Strategy | Design | Development | Program Management
           </Text>
+        </div>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 15: Why Flex Model Works ──────────────────── */
+const flexAreas = ["Strategy", "Design", "Development", "Program Management"];
+
+export function Slide15_FlexModel() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <img
+        src="/images/3d-shapes/twisted-torus.png"
+        alt=""
+        className="pointer-events-none absolute -right-[12%] -top-[20%] w-[40%] object-contain select-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          Flexibility
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          Capacity flexes with the work
+        </Heading>
+        <Text size={500} className="mt-4 max-w-[60%] opacity-70">
+          Hours are not locked into rigid departmental buckets. That means
+          capacity can move across:
+        </Text>
+
+        <div className="mt-6 flex gap-3">
+          {flexAreas.map((area) => (
+            <div
+              key={area}
+              className="rounded-sm bg-white/[0.04] px-6 py-4"
+            >
+              <Text size={400} className="opacity-70">
+                {area}
+              </Text>
+            </div>
+          ))}
+        </div>
+
+        <Text size={400} className="mt-6 max-w-[65%] opacity-50">
+          So if one month requires heavier development, or another requires more
+          planning and UX work, the team can adapt without restructuring the
+          engagement.
+        </Text>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 16: Pod Model ─────────────────────────────── */
+const podBenefits = [
+  "Multiple specialists can contribute when needed",
+  "Work can accelerate around priority initiatives",
+  "Competency leads provide continuity and context",
+  "You get depth without hiring a full internal team",
+];
+
+export function Slide16_PodModel() {
+  return (
+    <SlideBase theme="light" className="!p-0">
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          Team Structure
+        </Text>
+        <Heading as="h2" size={3} className="mt-4 max-w-[70%]">
+          You are not buying one person. You are getting a pod.
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-2 gap-3">
+          {podBenefits.map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 rounded-sm bg-muted px-6 py-5"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="shrink-0 text-foreground"
+              >
+                <path
+                  d="M3 8.5L6.5 12L13 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <Text size={400}>{item}</Text>
+            </div>
+          ))}
+        </div>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 17: Kinds of Work ─────────────────────────── */
+const workTypes = [
+  "Ongoing website optimization",
+  "New page and template creation",
+  "Campaign and launch support",
+  "CMS and editor experience improvements",
+  "Technical cleanup and enhancements",
+  "Design system expansion",
+  "Experimentation and conversion work",
+  "Roadmap planning and prioritization",
+];
+
+export function Slide17_KindsOfWork() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          Scope
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          What this model is built to support
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-2 gap-3">
+          {workTypes.map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-4 rounded-sm bg-white/[0.04] px-6 py-4"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="shrink-0 text-foreground"
+              >
+                <path
+                  d="M3 8.5L6.5 12L13 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <Text as="span" size={400} className="opacity-70">
+                {item}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 18: Commercial Framing ────────────────────── */
+const commercialPoints = [
+  { label: "Minimum Engagement", value: "6 Months" },
+  { label: "Blended Hourly Rate", value: "$200/hr" },
+  { label: "Recommended Start", value: "100+ hrs/mo" },
+];
+
+export function Slide18_CommercialFraming() {
+  return (
+    <SlideBase theme="light" className="!p-0">
+      <div className="flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest text-muted-foreground"
+        >
+          Commercials
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          How we typically structure engagements
+        </Heading>
+
+        <div className="mt-8 grid grid-cols-3 gap-3">
+          {commercialPoints.map((c) => (
+            <div
+              key={c.label}
+              className="flex flex-col justify-between rounded-sm bg-muted p-8"
+              style={{ minHeight: 180 }}
+            >
+              <Heading as="h3" size={1}>
+                {c.value}
+              </Heading>
+              <Text
+                as="span"
+                size={200}
+                className="font-mono uppercase tracking-widest text-muted-foreground"
+              >
+                {c.label}
+              </Text>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-auto mb-6 max-w-[70%]">
+          <Text size={400} className="text-muted-foreground">
+            Capacity scales based on goals, pace, and complexity. If the
+            capacity is too low, the work becomes too reactive and the value
+            drops quickly.
+          </Text>
+        </div>
+      </div>
+    </SlideBase>
+  );
+}
+
+/* ── Slide 19: How We Usually Start ──────────────────── */
+const startingSteps = [
+  "Review the current website, workflows, and systems",
+  "Identify immediate blockers and areas of friction",
+  "Align on goals and roadmap priorities",
+  "Recommend the right starting capacity",
+  "Begin execution with clear ownership and cadence",
+];
+
+export function Slide19_HowWeStart() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <img
+        src="/images/3d-shapes/layered-pebbles.png"
+        alt=""
+        className="pointer-events-none absolute -right-[12%] -bottom-[20%] w-[40%] object-contain select-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+        <Text
+          as="span"
+          size={200}
+          className="font-mono uppercase tracking-widest opacity-60"
+        >
+          Getting Started
+        </Text>
+        <Heading as="h2" size={3} className="mt-4">
+          A typical starting path
+        </Heading>
+
+        <div className="mt-8 flex flex-col gap-3">
+          {startingSteps.map((step, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 rounded-sm bg-white/[0.04] px-6 py-4"
+            >
+              <Text
+                as="span"
+                size={200}
+                className="shrink-0 font-mono opacity-50"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </Text>
+              <Text as="span" size={400} className="opacity-70">
+                {step}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
         </div>
         <Text as="span" size={100} className="opacity-40">
           &copy; Webstacks LLC Proprietary and Confidential
@@ -819,8 +1308,7 @@ export function Slide13_CTA() {
 }
 
 /**
- * Full deck — renders all 13 slides in sequence.
- * Use this as a reference for how to compose a complete deck.
+ * Full deck — renders all 19 slides in sequence.
  */
 export default function SalesPitchDeck() {
   const [companies, setCompanies] = useState<ClientCompany[]>([]);
@@ -858,15 +1346,6 @@ export default function SalesPitchDeck() {
       <Slide02_Philosophy />
       <Slide03_MeetWebstacks />
       <Slide04_Clients companies={companies} />
-      <Slide05_ProblemStat />
-      <Slide06_Solution />
-      <Slide07_HowItWorks />
-      <Slide08_Feature1 />
-      <Slide09_Feature2 />
-      <Slide10_Quote />
-      <Slide11_Results />
-      <Slide12_CaseStudy />
-      <Slide13_CTA />
     </div>
   );
 }

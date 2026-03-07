@@ -1,6 +1,7 @@
+@import "@webstacks/ui/styles";
+
 @tailwind base;
 @tailwind components;
-@import "@webstacks/ui/styles";
 @tailwind utilities;
 
 

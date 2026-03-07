@@ -1,0 +1,200 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "brand": "Webstacks",
+  "source": "@webstacks/ui",
+
+  "colors": {
+    "base": {
+      "white": { "value": "hsl(0, 0%, 100%)" },
+      "black": { "value": "hsl(0, 0%, 0%)" },
+      "cream": { "value": "hsl(45, 100%, 98%)" }
+    },
+    "teal": {
+      "description": "Primary brand color",
+      "50": { "value": "hsl(175, 15%, 83%)" },
+      "100": { "value": "hsl(177, 14%, 71%)" },
+      "200": { "value": "hsl(178, 14%, 56%)" },
+      "300": { "value": "hsl(177, 14%, 42%)" },
+      "400": { "value": "hsl(177, 37%, 27%)" },
+      "500": { "value": "hsl(177, 94%, 13%)", "role": "primary-brand" },
+      "600": { "value": "hsl(178, 93%, 11%)" },
+      "700": { "value": "hsl(177, 95%, 9%)" },
+      "800": { "value": "hsl(178, 94%, 6%)" },
+      "900": { "value": "hsl(177, 91%, 4%)" },
+      "1000": { "value": "hsl(175, 100%, 3%)" }
+    },
+    "blue": {
+      "description": "UI primary / interactive color",
+      "50": { "value": "hsl(207, 100%, 95%)" },
+      "100": { "value": "hsl(207, 100%, 87%)" },
+      "200": { "value": "hsl(207, 100%, 78%)" },
+      "300": { "value": "hsl(207, 100%, 68%)" },
+      "400": { "value": "hsl(207, 100%, 59%)" },
+      "500": { "value": "hsl(207, 100%, 50%)" },
+      "600": { "value": "hsl(212, 100%, 50%)", "role": "logo-icon" },
+      "700": { "value": "hsl(217, 89%, 46%)", "role": "primary-cta" },
+      "800": { "value": "hsl(219, 79%, 47%)" },
+      "900": { "value": "hsl(222, 74%, 41%)" }
+    },
+    "violet": {
+      "description": "Tertiary brand color",
+      "50": { "value": "hsl(263, 22%, 84%)" },
+      "100": { "value": "hsl(264, 22%, 73%)" },
+      "200": { "value": "hsl(263, 22%, 59%)" },
+      "300": { "value": "hsl(263, 22%, 46%)" },
+      "400": { "value": "hsl(263, 45%, 32%)" },
+      "500": { "value": "hsl(263, 94%, 19%)", "role": "tertiary-brand" },
+      "600": { "value": "hsl(263, 93%, 16%)" },
+      "700": { "value": "hsl(263, 94%, 13%)" },
+      "800": { "value": "hsl(263, 92%, 10%)" },
+      "900": { "value": "hsl(264, 94%, 6%)" },
+      "1000": { "value": "hsl(263, 90%, 4%)" }
+    },
+    "cyan": {
+      "500": { "value": "hsl(181, 100%, 49%)" }
+    },
+    "mint": {
+      "500": { "value": "hsl(163, 100%, 45%)" }
+    },
+    "magenta": {
+      "500": { "value": "hsl(321, 100%, 35%)" }
+    },
+    "orange": {
+      "500": { "value": "hsl(17, 100%, 59%)" }
+    },
+    "yellow": {
+      "500": { "value": "hsl(51, 100%, 50%)" }
+    },
+    "green": {
+      "500": { "value": "hsl(91, 85%, 62%)" }
+    },
+    "purple": {
+      "500": { "value": "hsl(277, 83%, 67%)" }
+    },
+    "pink": {
+      "500": { "value": "hsl(21, 100%, 86%)" }
+    },
+    "neutral": {
+      "50": { "value": "hsl(0, 0%, 93%)" },
+      "100": { "value": "hsl(0, 0%, 90%)" },
+      "200": { "value": "hsl(0, 0%, 63%)" },
+      "300": { "value": "hsl(0, 0%, 56%)" },
+      "400": { "value": "hsl(0, 0%, 53%)" },
+      "500": { "value": "hsl(0, 0%, 49%)" },
+      "600": { "value": "hsl(0, 0%, 27%)" },
+      "700": { "value": "hsl(0, 0%, 18%)" },
+      "800": { "value": "hsl(0, 0%, 16%)" },
+      "900": { "value": "hsl(0, 0%, 10%)" },
+      "950": { "value": "hsl(0, 0%, 6%)" }
+    },
+    "semantic": {
+      "error-600": { "value": "hsl(350, 88%, 59%)" },
+      "warning-500": { "value": "hsl(49, 100%, 73%)" },
+      "success-500": { "value": "hsl(152, 53%, 39%)" }
+    }
+  },
+
+  "typography": {
+    "fonts": {
+      "primary": {
+        "family": "Saans",
+        "weights": [300, 400, 500],
+        "maxWeight": "500 (medium) — never use bold or semibold",
+        "variable": "--font-body",
+        "fallback": "ui-sans-serif, system-ui, sans-serif"
+      },
+      "heading": {
+        "family": "Saans",
+        "weights": [300, 400, 500],
+        "defaultWeight": "400 (regular) — headings are always regular weight",
+        "variable": "--font-heading",
+        "fallback": "ui-sans-serif, system-ui, sans-serif"
+      },
+      "mono": {
+        "family": "TT Interphases Pro Mono",
+        "weights": [400, 700],
+        "variable": "--font-code",
+        "fallback": "ui-monospace, SFMono-Regular, monospace"
+      }
+    },
+    "scale": {
+      "xs": { "size": "0.75rem", "lineHeight": 1.5 },
+      "sm": { "size": "0.875rem", "lineHeight": 1.42 },
+      "md": { "size": "1rem", "lineHeight": 1.5 },
+      "lg": { "size": "1.125rem", "lineHeight": 1.55 },
+      "xl": { "size": "1.25rem", "lineHeight": 1.5 },
+      "2xl": { "size": "1.5rem", "lineHeight": 1.33, "letterSpacing": "-0.015em" },
+      "3xl": { "size": "1.875rem", "lineHeight": 1.1, "letterSpacing": "-0.02em" },
+      "4xl": { "size": "2.25rem", "lineHeight": 1.08, "letterSpacing": "-0.02em" },
+      "5xl": { "size": "3rem", "lineHeight": 1.05, "letterSpacing": "-0.022em" },
+      "6xl": { "size": "4rem", "lineHeight": 1.05, "letterSpacing": "-0.025em" },
+      "7xl": { "size": "5rem", "lineHeight": 1.1, "letterSpacing": "-0.03em" },
+      "8xl": { "size": "7rem", "lineHeight": 1.1, "letterSpacing": "-0.031em" }
+    },
+    "headingSizes": {
+      "display": { "base": "7xl", "lg": "8xl" },
+      "1": { "base": "5xl", "lg": "6xl" },
+      "2": { "base": "4xl", "lg": "5xl" },
+      "3": { "base": "3xl", "lg": "4xl" },
+      "4": { "base": "2xl", "lg": "3xl" },
+      "5": { "base": "xl", "lg": "2xl" },
+      "6": { "base": "lg", "lg": "xl" }
+    },
+    "textSizes": {
+      "100": "xs",
+      "200": "sm",
+      "300": "md",
+      "400": "md",
+      "500": "lg",
+      "600": "xl",
+      "700": "2xl"
+    }
+  },
+
+  "spacing": {
+    "condensed": "0.5rem",
+    "normal": "1rem",
+    "spacious": "1.5rem",
+    "extra-spacious": "2rem"
+  },
+
+  "borderRadius": {
+    "base": "0.5rem",
+    "sm": "calc(0.5rem - 4px)",
+    "md": "calc(0.5rem - 2px)",
+    "lg": "0.5rem",
+    "xl": "calc(0.5rem + 4px)",
+    "full": "9999px"
+  },
+
+  "buttons": {
+    "shape": "rounded-full (pill)",
+    "modes": ["filled", "stroke", "bleed", "link"],
+    "tones": ["primary", "secondary", "tertiary"],
+    "sizes": {
+      "sm": { "paddingX": "1rem", "paddingY": "0.5rem", "fontSize": "0.75rem" },
+      "md": { "paddingX": "1.5rem", "paddingY": "0.75rem", "fontSize": "0.875rem" },
+      "lg": { "paddingX": "2rem", "paddingY": "1rem", "fontSize": "1rem" }
+    }
+  },
+
+  "slides": {
+    "aspectRatio": "16:9",
+    "resolutions": {
+      "standard": { "width": 1280, "height": 720 },
+      "highRes": { "width": 1920, "height": 1080 }
+    },
+    "padding": "64px",
+    "safeArea": "48px"
+  },
+
+  "charts": {
+    "colorSequence": [
+      "blue-600",
+      "teal-500",
+      "mint-500",
+      "purple-500",
+      "orange-500"
+    ]
+  }
+}

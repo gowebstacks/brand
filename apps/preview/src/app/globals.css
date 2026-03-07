@@ -1,7 +1,7 @@
-@import "@webstacks/ui/styles";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@webstacks/ui/styles";
 
 body {
   background: #111;

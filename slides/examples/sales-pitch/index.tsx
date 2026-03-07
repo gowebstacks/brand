@@ -26,9 +26,18 @@ import {
 export function Slide01_Title() {
   return (
     <TitleSlide
+      date="March 04, 2026"
       eyebrow="Webstacks"
-      title="Build Websites That Actually Convert"
-      subtitle="High-performance web experiences for B2B SaaS"
+      title="Exploring an Agency Partnership"
+      subtitle="Accelerating the evolution of your brand and web presence for your next phase of growth."
+      heroImage="/images/3d-shapes/layered-diamonds.png"
+      teamMembers={[
+        { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
+        { name: "Jesse Schor", role: "Head of Growth", avatarSrc: "/images/headshots/leadership/jesse-schor.png" },
+        { name: "Emily Winsauer", role: "Head of Strategy", avatarSrc: "/images/headshots/leadership/emily-winsauer.png" },
+        { name: "Hunter McLean", role: "Head of Design", avatarSrc: "/images/headshots/leadership/hunter-mcclean.png" },
+        { name: "Tori Wolski", role: "Head of PMO", avatarSrc: "/images/headshots/leadership/tori-wolski.png" },
+      ]}
       theme="dark"
     />
   );

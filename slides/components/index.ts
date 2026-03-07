@@ -2,7 +2,7 @@ export { SlideBase } from "./SlideBase";
 export type { SlideBaseProps } from "./SlideBase";
 
 export { TitleSlide } from "./TitleSlide";
-export type { TitleSlideProps } from "./TitleSlide";
+export type { TitleSlideProps, TeamMemberInfo } from "./TitleSlide";
 
 export { ContentSlide } from "./ContentSlide";
 export type { ContentSlideProps } from "./ContentSlide";

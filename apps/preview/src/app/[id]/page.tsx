@@ -1,17 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, use } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Text } from "@webstacks/ui";
 import { presentations } from "../../../../../slides/presentations";
 import { SlideNavSidebar } from "../../components/SlideNavSidebar";
 
-export default function PresentationPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  console.log("[v0] Looking for presentation with id:", id);
-  console.log("[v0] Available presentations:", presentations.map(p => p.meta.id));
+export default function PresentationPage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const entry = presentations.find((p) => p.meta.id === id);
-  console.log("[v0] Found entry:", entry ? entry.meta.label : "NOT FOUND");
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);

@@ -312,9 +312,41 @@ Client logos are fetched from Sanity CMS. The pattern:
 - **Query**: Fetch `company` documents by name from `slides/lib/queries.ts`
 - **Logo priority**: Use `logoOnDark` (white logo for dark bg). If unavailable, use `logoOnLight` with CSS `brightness-0 invert` to make it white
 - **Grid**: 6 columns, `gap-px`, square cards (`aspect-square`), `bg-white/[0.04]`
-- **Fallback**: Show company names as `Text size={200} opacity-40` if Sanity fetch fails
 - **Data fetching**: `useState` + `useEffect` in the deck component (since page is `"use client"`)
-- **To add/remove logos**: Edit the name array in `slides/lib/queries.ts` and the `fallbackCompanies` array in the slide file. See the comment block in `queries.ts` for full instructions.
+- **To add/remove logos**: Edit the name array in `slides/lib/queries.ts`. See the comment block in `queries.ts` for full instructions.
+
+## Logo Guidelines
+
+**By default, all logos should come from Sanity.** When asked to add, switch, change, or display any logo, your first instinct should be to write or modify a Sanity query.
+
+### Core Principle
+When working with logos (client logos, partner logos, integration logos, etc.):
+1. Write or modify a Sanity query to fetch the logo(s)
+2. Query the `company` document type by `name`
+3. Use the `logoOnDark` or `logoOnLight` fields from Sanity
+
+### Query Pattern
+All logo queries follow this structure:
+```ts
+// slides/lib/queries.ts
+export const myLogosQuery = `
+  *[_type == "company" && name in ["Company A", "Company B", "Company C"] && (defined(logoOnDark) || defined(logoOnLight))] | order(name asc) {
+    _id, name, logoOnDark, logoOnLight
+  }
+`;
+```
+
+### Creating New Logo Queries
+For different use cases, create separate named queries:
+- `companiesWithLogosQuery` — default client logo grid
+- `partnersLogosQuery` — partner/integration logos
+- `caseStudyLogosQuery` — logos for a specific case study
+- `[clientName]LogosQuery` — client-specific logo sets
+
+### How to Add/Change a Logo
+1. **Identify the company name** exactly as it appears in Sanity (case-sensitive)
+2. **Create or modify a query** in `slides/lib/queries.ts` with the company name(s)
+3. **Fetch and render** using the standard pattern with `logoOnDark` priority, `logoOnLight` as fallback with invert filter
 
 ## Animation & Transitions
 For exported or interactive decks:

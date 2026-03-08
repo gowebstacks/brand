@@ -24,7 +24,7 @@ export const metadata: PresentationMeta = {
 };
 
 /* ── Slide 1: Title ─────────────────────────────────── */
-export function Slide01_Title({ clientLogoSrc }: { clientLogoSrc?: string }) {
+export function Slide01_Title({ clientLogoSrc, clientLogoNeedsInvert }: { clientLogoSrc?: string; clientLogoNeedsInvert?: boolean }) {
   return (
     <TitleSlide
       date="March 04, 2026"
@@ -33,7 +33,8 @@ export function Slide01_Title({ clientLogoSrc }: { clientLogoSrc?: string }) {
       subtitle="Accelerating the evolution of your brand and web presence for your next phase of growth."
       heroImage="/images/3d-shapes/layered-diamonds.png"
       clientLogoSrc={clientLogoSrc}
-      clientLogoAlt="Capital One"
+      clientLogoNeedsInvert={clientLogoNeedsInvert}
+      clientLogoAlt="Braze"
       teamMembers={[
         { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
         { name: "Jesse Schor", role: "Head of Growth", avatarSrc: "/images/headshots/leadership/jesse-schor.png" },
@@ -238,11 +239,6 @@ export function Slide03_MeetWebstacks() {
 }
 
 /* ── Slide 4: Clients ──────────────────────────────── */
-const fallbackCompanies = [
-  "Capital One", "SevenRooms", "Curative", "Braze", "Fireworks", "Cribl",
-  "LogicMonitor", "BetterUp", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis",
-];
-
 interface ClientCompany {
   name: string;
   logoUrl: string;
@@ -250,14 +246,11 @@ interface ClientCompany {
 }
 
 export function Slide04_Clients({
-  companies,
+  companies = [],
 }: {
   companies?: ClientCompany[];
 }) {
-  const hasLogos = companies && companies.length > 0;
-  const displayCompanies = hasLogos
-    ? companies.slice(0, 16)
-    : fallbackCompanies.map((name): ClientCompany => ({ name, logoUrl: "" }));
+  const displayCompanies = companies.slice(0, 16);
 
   return (
     <SlideBase theme="dark" className="!p-0">
@@ -1400,7 +1393,7 @@ export default function SalesPitchDeck() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div data-slide-index={0}><Slide01_Title clientLogoSrc={companies.find((c) => c.name === "Capital One")?.logoUrl} /></div>
+      <div data-slide-index={0}><Slide01_Title clientLogoSrc={companies.find((c) => c.name === "Braze")?.logoUrl} clientLogoNeedsInvert={companies.find((c) => c.name === "Braze")?.needsInvert} /></div>
       <div data-slide-index={1}><Slide02_Philosophy /></div>
       <div data-slide-index={2}><Slide_AtAGlance /></div>
       <div data-slide-index={3}><Slide03_MeetWebstacks /></div>

@@ -29,6 +29,8 @@ export interface TitleSlideProps {
   clientLogoSrc?: string;
   /** Alt text for client logo */
   clientLogoAlt?: string;
+  /** Whether to invert the client logo to make it white */
+  clientLogoNeedsInvert?: boolean;
   /** Hero image path (e.g. "/images/3d-shapes/layered-diamonds.png") */
   heroImage?: string;
   /** Team members to display */
@@ -62,6 +64,7 @@ export function TitleSlide({
   date,
   clientLogoSrc,
   clientLogoAlt = "Client logo",
+  clientLogoNeedsInvert = false,
   heroImage,
   teamMembers,
   theme = "dark",
@@ -148,7 +151,7 @@ export function TitleSlide({
                 <img
                   src={clientLogoSrc}
                   alt={clientLogoAlt}
-                  className="h-6 w-auto object-contain"
+                  className={`h-6 w-auto object-contain${clientLogoNeedsInvert ? " brightness-0 invert" : ""}`}
                 />
               </>
             )}

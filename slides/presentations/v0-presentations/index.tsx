@@ -116,7 +116,7 @@ export function Slide03_WhyPresentations() {
       <img
         src="/images/3d-shapes/spiral-band.png"
         alt=""
-        className="pointer-events-none absolute -left-[18%] -bottom-[25%] w-[45%] object-contain select-none"
+        className="pointer-events-none absolute -right-[15%] -bottom-[20%] w-[45%] object-contain select-none"
         aria-hidden="true"
       />
 
@@ -131,11 +131,11 @@ export function Slide03_WhyPresentations() {
         <Heading as="h2" size={2}>
           Why build presentations in v0?
         </Heading>
-        <Text size={500} className="max-w-[60%] opacity-70">
+        <Text size={500} className="max-w-[55%] opacity-70">
           Move beyond static slides to dynamic, on-brand decks.
         </Text>
 
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="mt-4 grid max-w-[75%] grid-cols-2 gap-3">
           {benefitItems.map((item) => (
             <div
               key={item}

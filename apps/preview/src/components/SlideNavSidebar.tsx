@@ -29,7 +29,7 @@ export function SlideNavSidebar({ slides, activeIndex, collapsed, onSelect, onTo
   return (
     <aside 
       className={`
-        relative flex h-full shrink-0 flex-col border-r border-white/[0.06] bg-[#0a0a0a]
+        relative flex h-full max-h-screen shrink-0 flex-col overflow-hidden border-r border-white/[0.06] bg-[#0a0a0a]
         transition-[width] duration-200 ease-out
         ${collapsed ? "w-12" : "w-[260px]"}
       `}

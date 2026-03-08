@@ -595,10 +595,17 @@ export const slides: SlideEntry[] = [
 /* ── Default export: full deck component ───────────── */
 export default function V0PresentationsDeck() {
   return (
-    <>
-      {slides.map((slide, i) => (
-        <slide.Component key={i} />
-      ))}
-    </>
+    <div className="flex flex-col gap-8">
+      <div data-slide-index={0}><Slide01_Title /></div>
+      <div data-slide-index={1}><Slide02_WhatIsV0 /></div>
+      <div data-slide-index={2}><Slide03_WhyPresentations /></div>
+      <div data-slide-index={3}><Slide04_GettingStarted /></div>
+      <div data-slide-index={4}><Slide05_SlideComponents /></div>
+      <div data-slide-index={5}><Slide06_BuildingSection /></div>
+      <div data-slide-index={6}><Slide07_BestPractices /></div>
+      <div data-slide-index={7}><Slide08_AdvancedTechniques /></div>
+      <div data-slide-index={8}><Slide09_LiveDemo /></div>
+      <div data-slide-index={9}><Slide10_Questions /></div>
+    </div>
   );
 }

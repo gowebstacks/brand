@@ -1,5 +1,5 @@
 /**
- * Sales Pitch Deck — 19 slides
+ * Sales Pitch Deck — 21 slides
  *
  * Deck flow:
  * 1. Title → 2. Philosophy → 3. Meet Webstacks → 4. Clients
@@ -20,7 +20,7 @@ import type { PresentationMeta, SlideEntry } from "../types";
 export const metadata: PresentationMeta = {
   id: "sales-pitch",
   label: "Dartmouth Tuck School of Business Demonstration Call",
-  count: 19,
+  count: 21,
 };
 
 /* ── Slide 1: Title ─────────────────────────────────── */
@@ -107,6 +107,58 @@ export function Slide02_Philosophy() {
               </svg>
               <Text as="span" size={300} className="opacity-70">
                 {item}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <SlideFooter />
+    </SlideBase>
+  );
+}
+
+/* ── Slide: At a Glance ────────────────────────────────── */
+const glancePillars = [
+  { label: "Website-first", image: "/images/3d-shapes/split-ring.png" },
+  { label: "Fast & Flexible", image: "/images/3d-shapes/glass-cubes.png" },
+  { label: "Strategic Focus", image: "/images/3d-shapes/glass-panels.png" },
+  { label: "Enterprise-ready", image: "/images/3d-shapes/twisted-torus.png" },
+  { label: "Platform Agnostic", image: "/images/3d-shapes/layered-diamonds.png" },
+];
+
+export function Slide_AtAGlance() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <div className="relative z-10 flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+        {/* Header */}
+        <div className="flex flex-col gap-3">
+          <Text
+            as="span"
+            size={200}
+            className="font-mono uppercase tracking-widest opacity-60"
+          >
+            Webstacks at a Glance
+          </Text>
+          <Heading as="h2" size={1}>
+            How to think of us as a partner.
+          </Heading>
+        </div>
+
+        {/* Pillar tiles */}
+        <div className="grid grid-cols-5 gap-1">
+          {glancePillars.map((pillar) => (
+            <div key={pillar.label} className="flex flex-col gap-4">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img
+                  src={pillar.image}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  aria-hidden="true"
+                />
+              </div>
+              <Text as="span" size={500} className="text-center opacity-90">
+                {pillar.label}
               </Text>
             </div>
           ))}
@@ -1198,10 +1250,101 @@ export function Slide19_HowWeStart() {
   );
 }
 
+/* ── Slide: Closing CTA ────────────────────────────────── */
+const closingTeam = [
+  { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
+  { name: "Jesse Schor", role: "Head of Growth", avatarSrc: "/images/headshots/leadership/jesse-schor.png" },
+  { name: "Emily Winsauer", role: "Head of Web Strategy", avatarSrc: "/images/headshots/leadership/emily-winsauer.png" },
+  { name: "Hunter McLean", role: "Head of Design", avatarSrc: "/images/headshots/leadership/hunter-mcclean.png" },
+  { name: "Tori Wolski", role: "Head of PMO", avatarSrc: "/images/headshots/leadership/tori-wolski.png" },
+];
+
+const closingPhotos = [
+  "/images/photography/coworkers-reviewing-design-layouts.jpg",
+  "/images/photography/man-blue-cap-laptop-high-table-wide.jpg",
+  "/images/photography/four-people-walking-hallway-smiling.jpg",
+  "/images/photography/office-lounge-webstacks-sign-wide.jpg",
+];
+
+export function Slide_ClosingCTA() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      <div className="relative z-10 flex h-full flex-col">
+        {/* Top section: CTA + team */}
+        <div className="flex flex-1 items-start justify-between px-16 pt-16">
+          {/* Left: headline + subtitle + button */}
+          <div className="flex max-w-[50%] flex-col gap-5">
+            <Heading as="h2" size={1}>
+              Let&rsquo;s win together.
+            </Heading>
+            <Text size={400} className="opacity-50">
+              Still have questions? Let&rsquo;s talk.
+            </Text>
+            <div className="mt-2">
+              <span className="inline-block rounded-full bg-[#2563EB] px-6 py-3 text-sm text-white">
+                Book with us
+              </span>
+            </div>
+          </div>
+
+          {/* Right: team grid */}
+          <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+            {closingTeam.map((member) => (
+              <div key={member.name} className="flex items-center gap-3">
+                <img
+                  src={member.avatarSrc}
+                  alt={member.name}
+                  className="h-12 w-12 shrink-0 rounded-none object-cover"
+                />
+                <div className="flex flex-col">
+                  <Text as="span" size={200}>
+                    {member.name}
+                  </Text>
+                  <Text as="span" size={100} className="opacity-50">
+                    {member.role}
+                  </Text>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom: photography strip — edge-to-edge, staggered aspect ratios */}
+        <div className="mb-20 mt-auto flex w-full items-center justify-between gap-5">
+          {closingPhotos.map((src, i) => {
+            const isPortrait = i === 1;
+            return (
+              <div
+                key={src}
+                className="overflow-hidden"
+                style={{
+                  aspectRatio: i === 1 ? "3/4" : i === 2 ? "16/9" : "4/3",
+                  width: i === 1 ? "22%" : "26%",
+                  ...(i === 1 ? { transform: "scale(0.9)" } : {}),
+                }}
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  aria-hidden="true"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <SlideFooter />
+    </SlideBase>
+  );
+}
+
 /** Ordered list of individual slide components with labels for sidebar nav */
 export const slides: SlideEntry[] = [
   { Component: Slide01_Title, label: "Title" },
   { Component: Slide02_Philosophy, label: "Philosophy" },
+  { Component: Slide_AtAGlance, label: "At a Glance" },
   { Component: Slide03_MeetWebstacks, label: "Meet Webstacks" },
   { Component: Slide04_Clients, label: "Clients" },
   { Component: Slide05_RetainerTitle, label: "Retainer Title" },
@@ -1219,6 +1362,7 @@ export const slides: SlideEntry[] = [
   { Component: Slide17_KindsOfWork, label: "Kinds of Work" },
   { Component: Slide18_CommercialFraming, label: "Commercial Framing" },
   { Component: Slide19_HowWeStart, label: "How We Start" },
+  { Component: Slide_ClosingCTA, label: "Let's Win Together" },
 ];
 
 /**
@@ -1258,23 +1402,25 @@ export default function SalesPitchDeck() {
     <div className="flex flex-col gap-8">
       <div data-slide-index={0}><Slide01_Title clientLogoSrc={companies.find((c) => c.name === "Capital One")?.logoUrl} /></div>
       <div data-slide-index={1}><Slide02_Philosophy /></div>
-      <div data-slide-index={2}><Slide03_MeetWebstacks /></div>
-      <div data-slide-index={3}><Slide04_Clients companies={companies} /></div>
-      <div data-slide-index={4}><Slide05_RetainerTitle /></div>
-      <div data-slide-index={5}><Slide06_WhoWeAre /></div>
-      <div data-slide-index={6}><Slide07_PointOfView /></div>
-      <div data-slide-index={7}><Slide08_WhyTeamsBringUsIn /></div>
-      <div data-slide-index={8}><Slide09_WhatMakesUsDifferent /></div>
-      <div data-slide-index={9}><Slide10_CoreDisciplines /></div>
-      <div data-slide-index={10}><Slide11_StrongPartner /></div>
-      <div data-slide-index={11}><Slide12_RoadmapMatters /></div>
-      <div data-slide-index={12}><Slide13_RoadmapAndRetainer /></div>
-      <div data-slide-index={13}><Slide14_MonthlyCapacity /></div>
-      <div data-slide-index={14}><Slide15_FlexModel /></div>
-      <div data-slide-index={15}><Slide16_PodModel /></div>
-      <div data-slide-index={16}><Slide17_KindsOfWork /></div>
-      <div data-slide-index={17}><Slide18_CommercialFraming /></div>
-      <div data-slide-index={18}><Slide19_HowWeStart /></div>
+      <div data-slide-index={2}><Slide_AtAGlance /></div>
+      <div data-slide-index={3}><Slide03_MeetWebstacks /></div>
+      <div data-slide-index={4}><Slide04_Clients companies={companies} /></div>
+      <div data-slide-index={5}><Slide05_RetainerTitle /></div>
+      <div data-slide-index={6}><Slide06_WhoWeAre /></div>
+      <div data-slide-index={7}><Slide07_PointOfView /></div>
+      <div data-slide-index={8}><Slide08_WhyTeamsBringUsIn /></div>
+      <div data-slide-index={9}><Slide09_WhatMakesUsDifferent /></div>
+      <div data-slide-index={10}><Slide10_CoreDisciplines /></div>
+      <div data-slide-index={11}><Slide11_StrongPartner /></div>
+      <div data-slide-index={12}><Slide12_RoadmapMatters /></div>
+      <div data-slide-index={13}><Slide13_RoadmapAndRetainer /></div>
+      <div data-slide-index={14}><Slide14_MonthlyCapacity /></div>
+      <div data-slide-index={15}><Slide15_FlexModel /></div>
+      <div data-slide-index={16}><Slide16_PodModel /></div>
+      <div data-slide-index={17}><Slide17_KindsOfWork /></div>
+      <div data-slide-index={18}><Slide18_CommercialFraming /></div>
+      <div data-slide-index={19}><Slide19_HowWeStart /></div>
+      <div data-slide-index={20}><Slide_ClosingCTA /></div>
     </div>
   );
 }

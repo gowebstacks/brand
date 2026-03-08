@@ -14,11 +14,11 @@ export function SlideTimeline() {
       <img
         src="/images/3d-shapes/ridged-cylinder.png"
         alt=""
-        className="pointer-events-none absolute -right-[10%] bottom-[5%] w-[28%] object-contain opacity-20 select-none"
+        className="pointer-events-none absolute -right-[10%] bottom-[5%] w-[28%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex flex-col gap-3">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-50">
             Rough Timeline
@@ -28,9 +28,9 @@ export function SlideTimeline() {
           </Heading>
         </div>
 
-        <div className="flex flex-col gap-3 flex-1">
+        <div className="mt-8 flex flex-col gap-3">
           {/* Header */}
-          <div className="grid grid-cols-[48px_1fr_200px] gap-4 px-6 pb-2 border-b border-white/[0.08]">
+          <div className="grid grid-cols-[48px_1fr_200px] gap-3 px-6 pb-2 border-b border-white/[0.08]">
             <Text size={200} className="font-mono uppercase tracking-widest opacity-40">
               #
             </Text>
@@ -45,7 +45,7 @@ export function SlideTimeline() {
           {timeline.map((row) => (
             <div
               key={row.module}
-              className="grid grid-cols-[48px_1fr_200px] items-center gap-4 bg-white/[0.04] px-6 py-5"
+              className="grid grid-cols-[48px_1fr_200px] items-center gap-3 bg-white/[0.04] px-6 py-4"
             >
               <div className="flex h-8 w-8 items-center justify-center bg-white/[0.08]">
                 <Text as="span" size={300} className="opacity-80">

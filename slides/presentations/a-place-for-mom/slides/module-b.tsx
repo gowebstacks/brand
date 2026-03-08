@@ -16,11 +16,11 @@ export function SlideModuleB() {
       <img
         src="/images/3d-shapes/spiral-band.png"
         alt=""
-        className="pointer-events-none absolute -right-[10%] -top-[15%] w-[35%] object-contain opacity-20 select-none"
+        className="pointer-events-none absolute -right-[10%] -top-[15%] w-[35%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-8 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center bg-white/[0.08]">
             <Text as="span" size={300} className="opacity-80">B</Text>
@@ -30,15 +30,15 @@ export function SlideModuleB() {
           </Text>
         </div>
 
-        <Heading as="h2" size={4} className="max-w-[80%]">
+        <Heading as="h2" size={4} className="mt-4 max-w-[80%]">
           Comprehensive program leadership across the entire Sanity migration.
         </Heading>
 
-        <Text size={400} className="max-w-[75%] opacity-60">
+        <Text size={400} className="mt-4 max-w-[75%] opacity-60">
           This module governs all workstreams — design system development, schema modeling, internal engineering, content migration, QA, and launch readiness.
         </Text>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-3 flex-1">
+        <div className="mt-8 grid grid-cols-2 gap-3">
           {moduleBDeliverables.map((item, i) => (
             <div key={i} className="flex items-start gap-3">
               <Text as="span" size={300} className="shrink-0 opacity-40">&#10003;</Text>

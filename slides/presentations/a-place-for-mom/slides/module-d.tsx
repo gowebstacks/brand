@@ -20,11 +20,11 @@ export function SlideModuleD() {
       <img
         src="/images/3d-shapes/stacked-blocks.png"
         alt=""
-        className="pointer-events-none absolute -bottom-[10%] -right-[8%] w-[30%] object-contain opacity-20 select-none"
+        className="pointer-events-none absolute -bottom-[10%] -right-[8%] w-[30%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-8 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center bg-white/[0.08]">
             <Text as="span" size={300} className="opacity-80">D</Text>
@@ -34,37 +34,33 @@ export function SlideModuleD() {
           </Text>
         </div>
 
-        <Heading as="h2" size={4} className="max-w-[75%]">
+        <Heading as="h2" size={4} className="mt-4 max-w-[75%]">
           Create a living component library using Storybook to document how the UI is assembled.
         </Heading>
 
-        <div className="grid grid-cols-2 gap-8 flex-1">
-          <div className="flex flex-col gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-3">
             <Text size={300} className="font-mono uppercase tracking-widest opacity-40">
               Deliverables
             </Text>
-            <div className="flex flex-col gap-3">
-              {moduleDDeliverables.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <Text as="span" size={300} className="shrink-0 opacity-40">&#10003;</Text>
-                  <Text size={400} className="opacity-80">{item}</Text>
-                </div>
-              ))}
-            </div>
+            {moduleDDeliverables.map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <Text as="span" size={300} className="shrink-0 opacity-40">&#10003;</Text>
+                <Text size={400} className="opacity-80">{item}</Text>
+              </div>
+            ))}
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <Text size={300} className="font-mono uppercase tracking-widest opacity-40">
               Outcomes
             </Text>
-            <div className="flex flex-col gap-3">
-              {moduleDOutcomes.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <Text as="span" size={300} className="shrink-0 opacity-40">&#10003;</Text>
-                  <Text size={400} className="opacity-80">{item}</Text>
-                </div>
-              ))}
-            </div>
+            {moduleDOutcomes.map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <Text as="span" size={300} className="shrink-0 opacity-40">&#10003;</Text>
+                <Text size={400} className="opacity-80">{item}</Text>
+              </div>
+            ))}
           </div>
         </div>
       </div>

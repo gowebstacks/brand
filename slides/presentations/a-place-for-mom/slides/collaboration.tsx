@@ -22,11 +22,11 @@ export function SlideCollaboration() {
       <img
         src="/images/3d-shapes/glass-cubes.png"
         alt=""
-        className="pointer-events-none absolute -left-[12%] -top-[20%] w-[35%] -rotate-12 object-contain opacity-20 select-none"
+        className="pointer-events-none absolute -left-[12%] -top-[20%] w-[35%] -rotate-12 object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex flex-col gap-3">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-50">
             How We Work Together
@@ -36,7 +36,7 @@ export function SlideCollaboration() {
           </Heading>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 flex-1">
+        <div className="mt-8 grid grid-cols-3 gap-3">
           {collaborationPrinciples.map((item, i) => (
             <div
               key={i}

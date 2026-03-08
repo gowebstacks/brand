@@ -47,7 +47,7 @@ Every slide uses `theme="dark"` (black background, white text). Follow these pat
 - **Card surfaces**: Use `bg-white/[0.04]` for cards and elevated content areas
 - **No rounded corners**: Cards, containers, and surface elements should have sharp corners. Do not use `rounded-lg`, `rounded-md`, `rounded-sm`, or any `rounded-*` classes on cards or containers.
 - **Eyebrows**: Mono uppercase with `opacity-60`
-- **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation
+- **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation. **Never apply `opacity-*` to decorative images** (3D shapes, photography, etc.) — they render at full opacity; the assets are already designed for dark backgrounds.
 
 ## Colors — ALWAYS Use Semantic Tailwind Classes
 
@@ -199,16 +199,38 @@ Create a new folder at `slides/presentations/<kebab-case-name>/index.tsx`.
 
 ### 3. Follow the file structure exactly
 
+Each presentation uses **one file per slide** with a config + index pattern:
+
+```
+slides/presentations/<kebab-case-name>/
+  config.ts        # metadata, slides array, shared types
+  index.tsx        # re-exports config + default deck component
+  slides/
+    title.tsx      # SlideTitle
+    slide-name.tsx # SlideSlugName
+    ...
+```
+
+**Each slide file** (`slides/*.tsx`):
 ```tsx
-/**
- * <Presentation Name> — <N> slides
- *
- * Deck flow:
- * 1. <Slide title> → 2. <Slide title> → ...
- */
 import { Heading, Text } from "@webstacks/ui";
-import { SlideBase, TitleSlide } from "../../components";
-import type { PresentationMeta } from "../types";
+import { SlideBase, SlideFooter } from "../../../components";
+
+export function SlideSlugName() {
+  return (
+    <SlideBase theme="dark" className="!p-0">
+      {/* ... */}
+      <SlideFooter />
+    </SlideBase>
+  );
+}
+```
+
+**`config.ts`** — metadata + ordered slides array:
+```ts
+import type { PresentationMeta, SlideEntry } from "../types";
+import { SlideTitle } from "./slides/title";
+import { SlideSlugName } from "./slides/slide-name";
 
 export const metadata: PresentationMeta = {
   id: "<kebab-case-name>",
@@ -216,27 +238,33 @@ export const metadata: PresentationMeta = {
   count: <number of slides>,
 };
 
-/* ── Slide 1: <Title> ─────────────────────────────────── */
-export function Slide01_Title() {
-  return (
-    <TitleSlide
-      // ...props
-      theme="dark"
-    />
-  );
-}
+export const slides: SlideEntry[] = [
+  { Component: SlideTitle, label: "Title" },
+  { Component: SlideSlugName, label: "Slide Name" },
+];
+```
 
-// ... more slides ...
+**`index.tsx`** — re-exports + deck wrapper:
+```tsx
+export { metadata, slides } from "./config";
+import { slides } from "./config";
 
-/* ── Full Deck ────────────────────────────────────────── */
 export default function <PascalCaseName>Deck() {
   return (
     <div className="flex flex-col gap-8">
-      <Slide01_Title />
-      {/* ...all slides */}
+      {slides.map((slide, i) => (
+        <div key={slide.label} data-slide-index={i}>
+          <slide.Component />
+        </div>
+      ))}
     </div>
   );
 }
+```
+
+**Cross-deck slide reuse:** Import shared slides from another presentation's `slides/` folder:
+```ts
+import { SlideMeetWebstacks } from "../sales-pitch/slides/meet-webstacks";
 ```
 
 ### 4. Dark theme checklist
@@ -246,8 +274,55 @@ Every slide MUST follow these rules:
 - [ ] Footer bar present (Webstacks symbol + URL + copyright)
 - [ ] Opacity hierarchy: `opacity-60/70/50/40` for text levels
 - [ ] Card surfaces use `bg-white/[0.04]`
+- [ ] No rounded corners on cards/containers (no `rounded-lg`, `rounded-md`, etc.)
 - [ ] Eyebrows use mono uppercase with `opacity-60`
 - [ ] Font weight never exceeds `weight="medium"` (500)
+- [ ] Header → content gap is `mt-8` (not `gap-10`, `gap-12`, etc.)
+- [ ] Card/item gap is `gap-3` (not `gap-4`, `gap-5`, `gap-6`)
+- [ ] Card padding is `p-6` or `px-6 py-4`
+
+### 4b. Custom slide spacing — FOLLOW EXACTLY
+
+**All custom slides must use these exact spacing values.** Inconsistent gaps look unprofessional.
+
+| Element | Class | Value |
+|---------|-------|-------|
+| Outer horizontal padding | `px-16` | 64px |
+| Outer top padding | `pt-16` | 64px |
+| Footer clearance (if using flex-col wrapper) | `pb-24` | 96px |
+| Header → content gap | `mt-8` | 32px |
+| Between cards/items in grids | `gap-3` | 12px |
+| Within header group (eyebrow → heading) | `mt-4` | 16px |
+| Card internal padding | `p-6` or `px-6 py-4` | 24px |
+
+**Standard custom slide skeleton:**
+```tsx
+<SlideBase theme="dark" className="!p-0">
+  <div className="relative z-10 flex h-full flex-col px-16 pt-16">
+    <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-60">
+      Eyebrow
+    </Text>
+    <Heading as="h2" size={3} className="mt-4">
+      Slide Title
+    </Heading>
+    <div className="mt-8 grid grid-cols-2 gap-3">
+      {items.map((item) => (
+        <div key={item} className="bg-white/[0.04] px-6 py-4">
+          <Text size={400} className="opacity-70">{item}</Text>
+        </div>
+      ))}
+    </div>
+  </div>
+  <SlideFooter />
+</SlideBase>
+```
+
+**Forbidden spacing patterns:**
+- `gap-4`, `gap-5`, `gap-6` between cards/list items — always `gap-3`
+- `gap-10`, `gap-12` as wrapper flex gaps — use individual `mt-8` margins
+- Mixed gaps like `gap-x-8 gap-y-3` — use uniform `gap-3`
+- `py-5` on row items — use `py-4`
+- `flex-1` on content grids or lists — stretches rows vertically, creating huge gaps between items. Content should sit at natural height, top-aligned. Only valid uses of `flex-1`: horizontal columns sharing width, or layout wrappers pushing an element to the bottom via `mt-auto`.
 
 ### 5. Register the presentation
 

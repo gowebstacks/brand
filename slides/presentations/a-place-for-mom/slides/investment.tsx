@@ -13,7 +13,7 @@ const totalEstimate = "$68,500";
 export function SlideInvestment() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      <div className="flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+      <div className="flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex flex-col gap-3">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-50">
             Investment
@@ -23,9 +23,9 @@ export function SlideInvestment() {
           </Heading>
         </div>
 
-        <div className="flex flex-col gap-3 flex-1">
+        <div className="mt-8 flex flex-col gap-3">
           {/* Header */}
-          <div className="grid grid-cols-[48px_1fr_160px] gap-4 px-6 pb-2 border-b border-white/[0.08]">
+          <div className="grid grid-cols-[48px_1fr_160px] gap-3 px-6 pb-2 border-b border-white/[0.08]">
             <Text size={200} className="font-mono uppercase tracking-widest opacity-40">
               #
             </Text>
@@ -40,7 +40,7 @@ export function SlideInvestment() {
           {pricing.map((row) => (
             <div
               key={row.module}
-              className="grid grid-cols-[48px_1fr_160px] items-center gap-4 bg-white/[0.04] px-6 py-4"
+              className="grid grid-cols-[48px_1fr_160px] items-center gap-3 bg-white/[0.04] px-6 py-4"
             >
               <div className="flex h-8 w-8 items-center justify-center bg-white/[0.08]">
                 <Text as="span" size={300} className="opacity-80">
@@ -53,7 +53,7 @@ export function SlideInvestment() {
           ))}
 
           {/* Total */}
-          <div className="grid grid-cols-[48px_1fr_160px] items-center gap-4 border border-white/[0.12] bg-white/[0.06] px-6 py-4 mt-1">
+          <div className="grid grid-cols-[48px_1fr_160px] items-center gap-3 border border-white/[0.12] bg-white/[0.06] px-6 py-4 mt-1">
             <div />
             <Text size={400} className="opacity-70">Total (all modules)</Text>
             <Text size={500} className="text-right">{totalEstimate}</Text>

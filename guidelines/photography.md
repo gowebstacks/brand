@@ -56,6 +56,7 @@ Rendered 3D shapes (from `/images/3d-shapes/`) are used as bold visual accents o
 - **Safe areas**: 3D shapes must never overlap the footer bar. The footer is a protected safe area — keep shapes clear of the bottom ~48px of the slide
 - **Available shapes**: `layered-diamonds.png`, `glass-cubes.png`, `glass-panels.png`, `stacked-blocks.png`, `twisted-torus.png`, `spiral-band.png`, and others in `/images/3d-shapes/`
 - **Usage**: One or two shapes per slide, on dark backgrounds only
+- **Opacity**: Always render at full opacity — never apply `opacity-*` classes. The 3D assets are already designed for dark backgrounds
 
 ## Headshots & Avatars
 Used in TitleSlide team members and TeamSlide.
@@ -74,6 +75,7 @@ Used in TitleSlide team members and TeamSlide.
 - **Don't** use photos with competing brand colors (bright reds, greens)
 - **Don't** stretch or distort photos — use `object-cover` for cropping
 - **Don't** use more than one photo per slide (unless a grid layout)
+- **Don't** apply `opacity-*` classes to decorative images (3D shapes, photography, etc.) — they should always render at full opacity
 
 ## Image Treatment for Slides
 ```

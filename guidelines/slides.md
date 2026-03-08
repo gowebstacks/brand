@@ -236,12 +236,13 @@ Every custom dark slide must include this footer bar. Copy it exactly:
 ### Muted Card Surfaces
 On dark slides, use `bg-white/[0.04]` for subtle card backgrounds:
 ```tsx
-<div className="rounded-sm bg-white/[0.04] p-8">
+<div className="bg-white/[0.04] p-6">
   {/* Card content */}
 </div>
 ```
-- Use `rounded-sm` (not `rounded-lg`) for cards within slides
-- Use `gap-3` between cards, or `gap-px` for edge-to-edge grids (logo grids)
+- No rounded corners on cards — use sharp edges (no `rounded-*` classes)
+- Use `gap-3` between cards — this is the standard rhythm across all slides
+- Use `gap-px` for edge-to-edge grids (logo grids only)
 
 ### Opacity Hierarchy on Dark Slides
 Use consistent opacity values across all custom dark slides:

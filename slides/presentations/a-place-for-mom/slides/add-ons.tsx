@@ -14,11 +14,11 @@ export function SlideAddOns() {
       <img
         src="/images/3d-shapes/scattered-discs.png"
         alt=""
-        className="pointer-events-none absolute -right-[8%] -top-[10%] w-[30%] object-contain opacity-20 select-none"
+        className="pointer-events-none absolute -right-[8%] -top-[10%] w-[30%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex flex-col gap-3">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-50">
             Optional Add-Ons
@@ -28,7 +28,7 @@ export function SlideAddOns() {
           </Heading>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-3">
           {addOns.map((item, i) => (
             <div
               key={i}

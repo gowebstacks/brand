@@ -30,10 +30,12 @@ The design system uses semantic spacing tokens:
 | `extra-spacious` | 32px | `gap-8`, `p-8` | Major sections |
 
 ### Slide-Specific Spacing
-- **Between slide title and content**: 32–48px (`mb-8` to `mb-12`)
-- **Between content blocks**: 24px (`gap-6`)
-- **Between text elements**: 8–16px (`gap-2` to `gap-4`)
-- **Slide outer padding**: 64px (`p-16`)
+- **Slide outer padding**: 64px (`px-16 pt-16`)
+- **Between slide header and content**: 32px (`mt-8`) — never larger
+- **Between cards/items in grids and lists**: 12px (`gap-3`) — the standard rhythm
+- **Between text elements in header group**: 16px (`mt-4`)
+- **Card internal padding**: 24px (`p-6`) or 24px+16px (`px-6 py-4`)
+- **Footer clearance** (when using flex-col wrapper): 96px (`pb-24`)
 
 ## Composition Principles
 
@@ -81,11 +83,10 @@ Use `<Box>` for padded containers:
 ```
 
 ## Border Radius
-- **Default radius**: 0.5rem (8px) — `--radius`
-- **Cards and containers**: `rounded-lg` (8px)
+- **Cards and containers**: No border radius — sharp corners always
 - **Buttons**: `rounded-full` (pill shape)
-- **Small elements**: `rounded-md` (6px)
 - **Slides**: No border radius on the slide frame itself
+- **Never use** `rounded-lg`, `rounded-md`, `rounded-sm`, or `rounded-xl` on cards, boxes, or container elements
 
 ## Do's and Don'ts
 - **Do** maintain consistent outer padding on all slides (64px)
@@ -94,3 +95,4 @@ Use `<Box>` for padded containers:
 - **Don't** place content in the outer 48px of the slide (safe area)
 - **Don't** use arbitrary pixel values — stick to the spacing tokens
 - **Don't** center everything — left-alignment is the default
+- **Don't** use `flex-1` on content grids or lists — it stretches rows vertically and creates large empty gaps between items. Content should sit at natural height, top-aligned. `flex-1` is only appropriate for horizontal columns sharing width or layout wrappers that push an element to the bottom with `mt-auto`.

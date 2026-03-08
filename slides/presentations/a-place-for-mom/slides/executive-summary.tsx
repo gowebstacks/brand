@@ -30,11 +30,11 @@ export function SlideExecutiveSummary() {
       <img
         src="/images/3d-shapes/glass-panels.png"
         alt=""
-        className="pointer-events-none absolute -right-[15%] -top-[20%] w-[40%] object-contain opacity-30 select-none"
+        className="pointer-events-none absolute -right-[15%] -top-[20%] w-[40%] object-contain select-none"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-10 px-16 pt-16 pb-24">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <div className="flex flex-col gap-3">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-50">
             Executive Summary
@@ -44,7 +44,7 @@ export function SlideExecutiveSummary() {
           </Heading>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 flex-1">
+        <div className="mt-8 grid grid-cols-2 gap-3">
           {modules.map((m) => (
             <div
               key={m.letter}

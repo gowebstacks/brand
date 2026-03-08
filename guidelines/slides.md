@@ -261,15 +261,51 @@ Position 3D shapes as large, cropped accents that bleed off the slide edges:
 <img
   src="/images/3d-shapes/glass-panels.png"
   alt=""
-  className="pointer-events-none absolute -left-[18%] -top-[30%] w-[45%] -rotate-12 object-contain select-none"
+  className="pointer-events-none absolute -right-[15%] -top-[25%] w-[45%] object-contain select-none"
   aria-hidden="true"
 />
 ```
 - Always: `pointer-events-none`, `select-none`, `aria-hidden="true"`, `alt=""`
-- Use negative offsets (`-left-[18%]`, `-top-[30%]`) to crop shapes across edges
-- Scale to 40–80% of slide width
+- Use negative offsets (`-right-[15%]`, `-top-[25%]`) to crop shapes across edges
+- Scale to 40–55% of slide width
 - Optional slight rotation (`-rotate-6`, `-rotate-12`) for dynamism
 - Place behind content with `relative z-10` on the content container
+
+#### Safe Area Rules for 3D Decorative Shapes
+
+**CRITICAL: Text content must never overlap with decorative 3D shapes.** Decorative shapes are visual accents only — they must be placed in "dead zones" where no text or interactive content exists.
+
+**Safe placement zones for 3D shapes:**
+- **Right edge, top corner**: `-right-[10%] -top-[20%]` to `-right-[20%] -top-[30%]`
+- **Right edge, bottom corner**: `-right-[10%] -bottom-[20%]` to `-right-[20%] -bottom-[30%]`
+- **Left edge, top corner** (only if content is right-aligned): `-left-[15%] -top-[25%]`
+
+**Forbidden zones (never place 3D shapes here):**
+- **Left side when content is left-aligned** — most slide content starts from the left
+- **Center of the slide** — this is where primary content lives
+- **Behind any text content** — decorative shapes must not interfere with readability
+- **Behind card grids or data displays** — these need full visual clarity
+
+**Content safe area calculation:**
+When placing a 3D shape, ensure your content container constrains text away from the shape:
+```tsx
+{/* 3D shape on right side */}
+<img src="/images/3d-shapes/..." className="absolute -right-[15%] -top-[25%] w-[45%] ..." />
+
+{/* Content constrained to left 55-60% of slide */}
+<div className="relative z-10 max-w-[60%]">
+  <Heading>...</Heading>
+  <Text>...</Text>
+</div>
+```
+
+**Validation checklist before using a 3D shape:**
+1. Is the shape positioned with negative offsets that push it off-canvas?
+2. Is the shape on the opposite side from where text content lives?
+3. Does the content container have a `max-w-[55%]` or `max-w-[60%]` constraint?
+4. At no viewport size will text ever overlap with the shape?
+
+**If content needs the full slide width:** Do not use a 3D decorative shape. Use a different visual treatment (cards with `bg-white/[0.04]`, iconography, or leave the slide minimal).
 
 ### Logo Grid (Sanity-Powered)
 Client logos are fetched from Sanity CMS. The pattern:

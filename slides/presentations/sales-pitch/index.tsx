@@ -239,7 +239,7 @@ export function Slide03_MeetWebstacks() {
 
 /* ── Slide 4: Clients ──────────────────────────────── */
 const fallbackCompanies = [
-  "Capital One", "SevenRooms", "Curative", "Braze", "Fireworks", "Cribl",
+  "Capital One", "SevenRooms", "Curative", "Drata", "Fireworks", "Cribl",
   "LogicMonitor", "BetterUp", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis",
 ];
 

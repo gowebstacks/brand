@@ -7,4 +7,5 @@ export interface PresentationMeta {
 export interface SlideEntry {
   Component: React.ComponentType;
   label?: string;
+  notes?: string;
 }

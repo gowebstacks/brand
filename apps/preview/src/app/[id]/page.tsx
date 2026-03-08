@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Text } from "@webstacks/ui";
 import { presentations } from "../../../../../slides/presentations";
 import type { SlideEntry } from "../../../../../slides/presentations";
+import ReactMarkdown from "react-markdown";
 import { SlideNavSidebar } from "../../components/SlideNavSidebar";
 
 export default function PresentationPage({ params }: { params: { id: string } }) {
@@ -13,10 +14,62 @@ export default function PresentationPage({ params }: { params: { id: string } })
   const [orderedSlides, setOrderedSlides] = useState<SlideEntry[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [notesOpen, setNotesOpen] = useState(false);
+  const [notesHeight, setNotesHeight] = useState(192);
+  const isDragging = useRef(false);
+  const dragStartY = useRef(0);
+  const dragStartHeight = useRef(0);
   const mainRef = useRef<HTMLDivElement>(null);
   const ratioMap = useRef<Map<number, number>>(new Map());
   const isScrollingTo = useRef<number | null>(null);
   const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  // Restore notes panel preference from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("presenter-notes-open");
+    if (stored === "true") setNotesOpen(true);
+    const storedHeight = localStorage.getItem("presenter-notes-height");
+    if (storedHeight) setNotesHeight(Number(storedHeight));
+  }, []);
+
+  // Drag-to-resize handler
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      const delta = dragStartY.current - e.clientY;
+      const newHeight = Math.min(Math.max(dragStartHeight.current + delta, 80), 500);
+      setNotesHeight(newHeight);
+    };
+    const onMouseUp = () => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+      localStorage.setItem("presenter-notes-height", String(notesHeight));
+    };
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+  }, [notesHeight]);
+
+  const handleDragStart = useCallback((e: React.MouseEvent) => {
+    isDragging.current = true;
+    dragStartY.current = e.clientY;
+    dragStartHeight.current = notesHeight;
+    document.body.style.cursor = "row-resize";
+    document.body.style.userSelect = "none";
+  }, [notesHeight]);
+
+  const toggleNotes = useCallback(() => {
+    setNotesOpen((prev) => {
+      const next = !prev;
+      localStorage.setItem("presenter-notes-open", String(next));
+      return next;
+    });
+  }, []);
 
   // Initialize orderedSlides from entry
   useEffect(() => {
@@ -97,9 +150,15 @@ export default function PresentationPage({ params }: { params: { id: string } })
     }
   }, []);
 
-  // Arrow key navigation between slides
+  // Keyboard navigation + notes toggle
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      // Toggle notes panel with "n"
+      if (e.key === "n" || e.key === "N") {
+        toggleNotes();
+        return;
+      }
+
       let next: number | undefined;
       if (e.key === "ArrowDown" || e.key === "ArrowRight") {
         e.preventDefault();
@@ -122,7 +181,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeIndex, orderedSlides.length, handleSelect]);
+  }, [activeIndex, orderedSlides.length, handleSelect, toggleNotes]);
 
   if (!entry) {
     return (
@@ -181,6 +240,21 @@ export default function PresentationPage({ params }: { params: { id: string } })
           </div>
 
           <div className="ml-auto flex items-center gap-3">
+            <button
+              onClick={toggleNotes}
+              className={`flex items-center gap-1.5 px-2.5 py-1 text-xs transition-colors ${
+                notesOpen
+                  ? "bg-white/[0.08] text-white/80"
+                  : "bg-white/[0.04] text-white/40 hover:text-white/60"
+              }`}
+              title="Toggle presenter notes (N)"
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 3h10v10H3V3z" stroke="currentColor" strokeWidth="1.2" />
+                <path d="M5.5 6h5M5.5 8h5M5.5 10h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+              </svg>
+              <span>Notes</span>
+            </button>
             <div className="flex items-center gap-1.5 rounded-md bg-white/[0.04] px-2.5 py-1">
               <span className="text-xs font-medium tabular-nums text-white/70">{activeIndex + 1}</span>
               <span className="text-xs text-white/30">/</span>
@@ -206,6 +280,33 @@ export default function PresentationPage({ params }: { params: { id: string } })
             </div>
           </div>
         </div>
+
+        {/* Presenter notes panel */}
+        {notesOpen && (
+          <div
+            className="shrink-0 border-t border-white/[0.06] bg-white/[0.04]"
+            style={{ height: notesHeight }}
+          >
+            {/* Drag handle */}
+            <div
+              onMouseDown={handleDragStart}
+              className="flex h-6 cursor-row-resize items-center justify-center"
+            >
+              <div className="h-1 w-8 rounded-full bg-white/20" />
+            </div>
+            {/* Notes content */}
+            <div className="overflow-y-auto px-6 pb-4" style={{ height: notesHeight - 24 }}>
+              <Text size={200} className="mb-2 font-mono uppercase tracking-widest text-white/40">
+                Presenter Notes
+              </Text>
+              <div className="prose-notes text-sm leading-relaxed text-white/60">
+                <ReactMarkdown>
+                  {orderedSlides[activeIndex]?.notes || "*No notes for this slide.*"}
+                </ReactMarkdown>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

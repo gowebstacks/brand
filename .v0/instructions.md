@@ -49,6 +49,7 @@ Every slide uses `theme="dark"` (black background, white text). Follow these pat
 - **Eyebrows**: Mono uppercase with `opacity-60`
 - **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation. **Never apply `opacity-*` to decorative images** (3D shapes, photography, etc.) — they render at full opacity; the assets are already designed for dark backgrounds.
 - **No gradients or fades on images**: Never overlay gradients (`bg-gradient-to-*`) or opacity layers on photos or 3D shapes. Always use a hard crop (`object-cover` + `overflow-hidden`), never a soft blend into the background.
+- **Ordinal numbers stand alone**: Numbers like "01", "02" must never be placed inside circles, badges, or containers. Display them as standalone mono text: `<Text as="span" size={200} className="font-mono opacity-50">`
 
 ## Colors — ALWAYS Use Semantic Tailwind Classes
 

@@ -151,7 +151,7 @@ export function TitleSlide({
                 <img
                   src={clientLogoSrc}
                   alt={clientLogoAlt}
-                  className={`h-6 w-auto object-contain${clientLogoNeedsInvert ? " brightness-0 invert" : ""}`}
+                  className={`h-10 w-auto object-contain${clientLogoNeedsInvert ? " brightness-0 invert" : ""}`}
                 />
               </>
             )}

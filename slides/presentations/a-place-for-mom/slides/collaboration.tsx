@@ -42,11 +42,9 @@ export function SlideCollaboration() {
               key={i}
               className="flex flex-col gap-4 bg-white/[0.04] p-6"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.08]">
-                <Text as="span" size={200} className="opacity-60">
-                  {String(i + 1).padStart(2, "0")}
-                </Text>
-              </div>
+              <Text as="span" size={200} className="font-mono opacity-50">
+                {String(i + 1).padStart(2, "0")}
+              </Text>
               <Text size={400}>{item.title}</Text>
               <Text size={300} className="opacity-60">
                 {item.description}

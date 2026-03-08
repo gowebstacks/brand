@@ -75,7 +75,7 @@ export default function PreviewPage() {
       {/* Grid */}
       <main className="mx-auto max-w-7xl px-6 pt-10 pb-20">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {presentations.map(({ meta, slides }) => {
+          {presentations.map(({ meta, slides }, idx) => {
             const FirstSlide = slides[0]?.Component;
             return (
               <Link
@@ -84,7 +84,10 @@ export default function PreviewPage() {
                 className="group relative flex flex-col overflow-hidden border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
               >
                 {/* Thumbnail */}
-                <div className="relative">
+                <div
+                  className="relative overflow-hidden"
+                  style={idx === 0 ? { transform: "scale(1.5)", transformOrigin: "40% 20%" } : undefined}
+                >
                   <CoverThumbnail>
                     {FirstSlide && <FirstSlide />}
                   </CoverThumbnail>

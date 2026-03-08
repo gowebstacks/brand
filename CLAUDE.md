@@ -74,6 +74,7 @@ All custom slides must follow these exact spacing values. **Never improvise spac
 - **Dark theme only** for slides. Always `theme="dark"` on SlideBase.
 - **Card surfaces**: `bg-white/[0.04]`
 - **Opacity hierarchy**: `opacity-60` eyebrows, `opacity-70` body text, `opacity-50` tertiary, `opacity-40` subtle
+- **Ordinal numbers stand alone**: Numbers like "01", "02" should never be placed inside circles, badges, or containers. Use standalone mono text: `<Text as="span" size={200} className="font-mono opacity-50">`
 - **Never dim decorative images**: 3D shapes, photography, and decorative `<img>` elements must render at full opacity. Do not apply `opacity-*` classes to them — the images themselves are already designed for dark backgrounds.
 - **Never fade or gradient-overlay images**: No gradient overlays (`bg-gradient-to-*`), no opacity overlays on top of photos or 3D shapes. Images should always use a hard crop via `object-cover` and `overflow-hidden` — never a soft blend into the background.
 - **Footer safe area applies to all visuals**: Photos, 3D shapes, and any visual element must never overlap the footer bar (~48px). For split layouts with photos, use `pb-12` on the outer wrapper so the image stops above the footer.

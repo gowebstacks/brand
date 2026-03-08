@@ -31,12 +31,10 @@ export function SlideObjectives() {
         <div className="mt-8 flex flex-col gap-3">
           {objectives.map((item, i) => (
             <div key={i} className="flex items-start gap-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.06]">
-                <Text as="span" size={200} className="opacity-60">
-                  {String(i + 1).padStart(2, "0")}
-                </Text>
-              </div>
-              <Text size={500} className="pt-0.5 opacity-90">
+              <Text as="span" size={200} className="shrink-0 font-mono opacity-50">
+                {String(i + 1).padStart(2, "0")}
+              </Text>
+              <Text size={500} className="opacity-90">
                 {item}
               </Text>
             </div>

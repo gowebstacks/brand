@@ -87,6 +87,7 @@ All custom slides must follow these exact spacing values. **Never improvise spac
 - Body text: `<Text size={400}>`
 - Lead paragraph: `<Text size={500}>` (one per slide)
 - Eyebrow: `<Text size={200}>` with `font-mono uppercase tracking-widest`
+- **Mono text is always uppercase**: Any text using `font-mono` must also include `uppercase tracking-widest`. Never use mono font in mixed or lowercase.
 
 ## Logos
 

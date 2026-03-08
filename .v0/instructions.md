@@ -95,6 +95,7 @@ Examples of correct blue accent usage:
 
 - **Font**: Saans (sans-serif) for everything; TT Interphases Pro Mono for eyebrows/code
 - **Eyebrow pattern**: `<Text as="span" size={200} className="font-mono uppercase tracking-widest">`
+- **Mono text is always uppercase**: Any text using `font-mono` must also include `uppercase tracking-widest`. Never use mono font in mixed or lowercase.
 - **Headings**: Always use the `<Heading>` component at **regular weight** (no bold/semibold) — it applies proper tracking
 - **IMPORTANT — Weight rule**: Never use anything bolder than `weight="medium"`. Headings and headlines are always regular weight. Medium is only for emphasizing individual words or names.
 

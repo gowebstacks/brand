@@ -15,6 +15,7 @@ Used for eyebrows, code, labels, and technical content.
 - **CSS variable**: `--font-code`, `--font-eyebrow`
 - **Available weights**: Regular (400), Bold (700)
 - **Fallback stack**: `ui-monospace, SFMono-Regular, monospace`
+- **Always uppercase**: Mono text must always be uppercase with wide tracking (`font-mono uppercase tracking-widest`). Never use mono font in mixed or lowercase.
 
 ## Type Scale
 

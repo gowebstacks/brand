@@ -2,12 +2,10 @@ import { Heading, Text } from "@webstacks/ui";
 import { SlideBase, SlideFooter } from "../../../components";
 
 const roles = [
-  { title: "Strategist", detail: "Roadmap, migration sequencing, stakeholder alignment" },
-  { title: "Designer", detail: "UX/UI audit, design systems, component architecture" },
-  { title: "Engineer", detail: "Frontend, CMS integration, schema modeling" },
-  { title: "Project Manager", detail: "Planning, coordination, visibility, delivery" },
+  { title: "Design", level: "Sr. Designer or Designer" },
+  { title: "Technical Lead", level: "Engineering Manager or Sr. Engineer" },
+  { title: "Project Management", level: "Sr. Project Manager or Project Manager" },
 ];
-
 
 export function SlideTeamCompetencies() {
   return (
@@ -25,17 +23,23 @@ export function SlideTeamCompetencies() {
         {/* Right: content */}
         <div className="flex w-[55%] flex-col justify-center px-16 pb-24">
           <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-60">
-            Your Team
+            Resourcing
           </Text>
           <Heading as="h2" size={3} className="mt-4">
-            Strategy, design, and engineering — one cross-functional unit.
+            Staffed to the requirements of the project.
           </Heading>
+          <Text size={400} className="mt-4 opacity-60">
+            Specific team members are allocated closer to kickoff. Here are the key roles involved.
+          </Text>
 
-          <div className="mt-8 flex flex-col gap-3">
-            {roles.map((r) => (
-              <div key={r.title} className="bg-white/[0.04] px-6 py-4">
+          <div className="mt-8 flex flex-col">
+            {roles.map((r, i) => (
+              <div
+                key={r.title}
+                className={`flex items-baseline justify-between py-4 ${i < roles.length - 1 ? "border-b border-white/[0.08]" : ""}`}
+              >
                 <Text size={400}>{r.title}</Text>
-                <Text size={300} className="mt-1 opacity-60">{r.detail}</Text>
+                <Text size={200} className="font-mono uppercase tracking-widest opacity-50">{r.level}</Text>
               </div>
             ))}
           </div>

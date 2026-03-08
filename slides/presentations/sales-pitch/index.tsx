@@ -24,7 +24,7 @@ export const metadata: PresentationMeta = {
 };
 
 /* ── Slide 1: Title ─────────────────────────────────── */
-export function Slide01_Title({ clientLogoSrc }: { clientLogoSrc?: string }) {
+export function Slide01_Title({ clientLogoSrc, clientLogoNeedsInvert }: { clientLogoSrc?: string; clientLogoNeedsInvert?: boolean }) {
   return (
     <TitleSlide
       date="March 04, 2026"
@@ -33,6 +33,7 @@ export function Slide01_Title({ clientLogoSrc }: { clientLogoSrc?: string }) {
       subtitle="Accelerating the evolution of your brand and web presence for your next phase of growth."
       heroImage="/images/3d-shapes/layered-diamonds.png"
       clientLogoSrc={clientLogoSrc}
+      clientLogoNeedsInvert={clientLogoNeedsInvert}
       clientLogoAlt="Braze"
       teamMembers={[
         { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
@@ -1392,7 +1393,7 @@ export default function SalesPitchDeck() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div data-slide-index={0}><Slide01_Title clientLogoSrc={companies.find((c) => c.name === "Braze")?.logoUrl} /></div>
+      <div data-slide-index={0}><Slide01_Title clientLogoSrc={companies.find((c) => c.name === "Braze")?.logoUrl} clientLogoNeedsInvert={companies.find((c) => c.name === "Braze")?.needsInvert} /></div>
       <div data-slide-index={1}><Slide02_Philosophy /></div>
       <div data-slide-index={2}><Slide_AtAGlance /></div>
       <div data-slide-index={3}><Slide03_MeetWebstacks /></div>

@@ -1,36 +1,44 @@
 import { Heading, Text } from "@webstacks/ui";
 import { SlideBase, SlideFooter } from "../../../components";
 
-export function SlideLiveDemo() {
+const concepts = [
+  "React Components",
+  "Design Tokens",
+  "Git History",
+  "AI-Assisted",
+  "Live Preview",
+];
+
+export function SlideTheIdea() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      <img
-        src="/images/3d-shapes/cube-grid.png"
-        alt=""
-        className="pointer-events-none absolute -right-[20%] -bottom-[30%] w-[55%] object-contain select-none"
-        aria-hidden="true"
-      />
-      <img
-        src="/images/3d-shapes/scattered-discs.png"
-        alt=""
-        className="pointer-events-none absolute -left-[15%] -top-[20%] w-[40%] object-contain select-none"
-        aria-hidden="true"
-      />
-
       <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 px-16">
         <Text
           as="span"
           size={200}
           className="font-mono uppercase tracking-widest opacity-60"
         >
-          Demonstration
+          The Idea
         </Text>
         <Heading as="h2" size={1} align="center">
-          Live Demo
+          What if slides were components?
         </Heading>
         <Text size={500} align="center" className="max-w-[60%] opacity-70">
-          Watch a new deck come together in real time — from a single prompt.
+          Reusable. Versioned. On-brand by default.
         </Text>
+
+        <div className="mt-8 flex gap-3">
+          {concepts.map((concept) => (
+            <div
+              key={concept}
+              className="bg-white/[0.04] px-6 py-4"
+            >
+              <Text as="span" size={300} className="opacity-70">
+                {concept}
+              </Text>
+            </div>
+          ))}
+        </div>
       </div>
 
       <SlideFooter />

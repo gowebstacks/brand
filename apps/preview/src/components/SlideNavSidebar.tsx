@@ -44,7 +44,7 @@ export function SlideNavSidebar({ slides, activeIndex, collapsed, onSelect, onTo
       {!collapsed && (
         <div
           ref={listRef}
-          className="flex flex-1 flex-col gap-1 overflow-y-auto p-2"
+          className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain p-2"
         >
           {slides.map((slide, i) => (
             <div

@@ -52,60 +52,74 @@ export default function PreviewPage() {
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <img src="/logos/full_logo-lockup-ondark.svg" alt="Webstacks" className="h-5" />
-            <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-medium text-white/40">
-              Preview
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-white/40">{presentations.length} presentations</span>
+            <span className="h-4 w-px bg-white/[0.12]" />
+            <span className="text-xs text-white/40">Presentations</span>
           </div>
         </div>
       </header>
 
-      {/* Content */}
-      <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight text-white">Presentations</h1>
-          <p className="mt-1 text-sm text-white/50">Select a presentation to preview</p>
-        </div>
+      {/* Hero */}
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-12">
+        <p className="text-xs uppercase tracking-widest text-white/30">Brand Library</p>
+        <h1 className="mt-3 text-3xl tracking-tight text-white">Presentations</h1>
+        <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/40">
+          Browse, preview, and present branded slide decks. Select a deck below to get started.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Divider */}
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="border-t border-white/[0.06]" />
+      </div>
+
+      {/* Grid */}
+      <main className="mx-auto max-w-7xl px-6 pt-10 pb-20">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {presentations.map(({ meta, slides }) => {
             const FirstSlide = slides[0]?.Component;
             return (
               <Link
                 key={meta.id}
                 href={`/${meta.id}`}
-                className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] transition-all duration-200 hover:border-white/[0.12] hover:bg-white/[0.04]"
+                className="group relative flex flex-col overflow-hidden border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
               >
-                {/* Thumbnail preview of first slide */}
+                {/* Thumbnail */}
                 <div className="relative">
                   <CoverThumbnail>
                     {FirstSlide && <FirstSlide />}
                   </CoverThumbnail>
 
+                  {/* Gradient fade at bottom of thumbnail */}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
+
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-200 group-hover:bg-black/40 group-hover:opacity-100">
-                    <span className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-black">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/50 group-hover:opacity-100">
+                    <span className="flex items-center gap-2 border border-white/[0.16] bg-white/[0.08] px-4 py-2 text-xs text-white backdrop-blur-md transition-transform duration-300 group-hover:scale-100 scale-95">
+                      Open presentation
                       <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                         <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      View
                     </span>
                   </div>
                 </div>
 
-                {/* Label area */}
-                <div className="border-t border-white/[0.06] px-4 py-3.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-white/90">{meta.label}</span>
-                    <span className="rounded-md bg-white/[0.06] px-2 py-0.5 text-[10px] font-medium tabular-nums text-white/40">
-                      {meta.count}
+                {/* Meta */}
+                <div className="flex flex-1 flex-col justify-between border-t border-white/[0.06] px-5 py-4">
+                  <span className="text-sm text-white/90 leading-snug">{meta.label}</span>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="text-[11px] text-white/30">
+                      {meta.count} {meta.count === 1 ? "slide" : "slides"}
                     </span>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      className="text-white/20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-white/50"
+                    >
+                      <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <span className="mt-1 block text-xs text-white/40">
-                    {meta.count} {meta.count === 1 ? "slide" : "slides"}
-                  </span>
                 </div>
               </Link>
             );

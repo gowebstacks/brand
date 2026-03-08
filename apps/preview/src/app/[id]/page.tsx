@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, use } from "react";
 import Link from "next/link";
-import { Heading, Text } from "@webstacks/ui";
+import { Text } from "@webstacks/ui";
 import { presentations } from "../../../../../slides/presentations";
 import { SlideNavSidebar } from "../../components/SlideNavSidebar";
 
@@ -54,22 +54,30 @@ export default function PresentationPage({ params }: { params: Promise<{ id: str
 
   if (!entry) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-foreground">
-        <Link href="/" className="text-foreground opacity-50 no-underline">
-          <Text as="span" size={300}>&larr; Back</Text>
-        </Link>
-        <Text size={500} className="mt-8">Presentation not found.</Text>
+      <div className="flex h-screen items-center justify-center bg-[#0a0a0a]">
+        <div className="text-center">
+          <Text size={500} className="text-white/60">Presentation not found</Text>
+          <Link 
+            href="/" 
+            className="mt-4 inline-flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white/70"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Back to presentations
+          </Link>
+        </div>
       </div>
     );
   }
 
-  const { meta, Component, slides } = entry;
+  const { meta, Component } = entry;
 
   return (
-    <div className="flex h-screen text-foreground">
+    <div className="noise-bg relative flex h-screen bg-[#0a0a0a] text-foreground">
       {/* Left sidebar */}
       <SlideNavSidebar
-        slides={slides}
+        slides={entry.slides}
         activeIndex={activeIndex}
         collapsed={sidebarCollapsed}
         onSelect={handleSelect}
@@ -77,29 +85,46 @@ export default function PresentationPage({ params }: { params: Promise<{ id: str
       />
 
       {/* Main scrollable area */}
-      <div ref={mainRef} className="flex-1 overflow-y-auto">
-        {/* macOS-style toolbar */}
-        <div className="sticky top-0 z-20 flex h-9 items-center gap-3 border-b border-white/10 bg-white/[0.03] px-3 backdrop-blur-md">
-          <Link href="/" className="text-white/40 no-underline transition-colors hover:text-white/70">
-            <Text as="span" size={100}>&larr; Back</Text>
+      <div className="flex flex-1 flex-col">
+        {/* Header toolbar */}
+        <header className="relative z-20 flex h-12 shrink-0 items-center gap-4 border-b border-white/[0.06] bg-[#0a0a0a]/80 px-4 backdrop-blur-xl">
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 rounded-md px-2 py-1 text-white/50 transition-colors hover:bg-white/[0.04] hover:text-white/80"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-xs font-medium">Back</span>
           </Link>
-          <div className="h-3 w-px bg-white/10" />
-          <Text as="span" size={200} className="opacity-80">
-            {meta.label}
-          </Text>
-          <Text as="span" size={100} className="opacity-30">
-            {meta.count} slides
-          </Text>
-          <div className="ml-auto">
-            <Text as="span" size={100} className="tabular-nums opacity-30">
-              {activeIndex + 1} / {meta.count}
-            </Text>
+          
+          <div className="h-4 w-px bg-white/[0.08]" />
+          
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-white/90">{meta.label}</span>
+            <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-medium text-white/40">
+              {meta.count} slides
+            </span>
           </div>
-        </div>
+          
+          <div className="ml-auto flex items-center gap-3">
+            <div className="flex items-center gap-1.5 rounded-md bg-white/[0.04] px-2.5 py-1">
+              <span className="text-xs font-medium tabular-nums text-white/70">{activeIndex + 1}</span>
+              <span className="text-xs text-white/30">/</span>
+              <span className="text-xs tabular-nums text-white/40">{meta.count}</span>
+            </div>
+          </div>
+        </header>
 
-        <div className="mx-auto max-w-[1360px] px-6 pt-4 pb-8">
-          <div className="origin-top scale-95">
-            <Component />
+        {/* Slide content */}
+        <div 
+          ref={mainRef} 
+          className="flex-1 overflow-y-auto"
+        >
+          <div className="mx-auto max-w-[1400px] px-8 py-6">
+            <div className="origin-top">
+              <Component />
+            </div>
           </div>
         </div>
       </div>

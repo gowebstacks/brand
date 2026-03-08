@@ -75,6 +75,8 @@ All custom slides must follow these exact spacing values. **Never improvise spac
 - **Card surfaces**: `bg-white/[0.04]`
 - **Opacity hierarchy**: `opacity-60` eyebrows, `opacity-70` body text, `opacity-50` tertiary, `opacity-40` subtle
 - **Never dim decorative images**: 3D shapes, photography, and decorative `<img>` elements must render at full opacity. Do not apply `opacity-*` classes to them — the images themselves are already designed for dark backgrounds.
+- **Never fade or gradient-overlay images**: No gradient overlays (`bg-gradient-to-*`), no opacity overlays on top of photos or 3D shapes. Images should always use a hard crop via `object-cover` and `overflow-hidden` — never a soft blend into the background.
+- **Footer safe area applies to all visuals**: Photos, 3D shapes, and any visual element must never overlap the footer bar (~48px). For split layouts with photos, use `pb-12` on the outer wrapper so the image stops above the footer.
 
 ## Typography
 

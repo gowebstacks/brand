@@ -5,6 +5,7 @@ import { SlideAgenda } from "./slides/agenda";
 import { SlideExecutiveSummary } from "./slides/executive-summary";
 import { SlidePhilosophy } from "../sales-pitch/slides/philosophy";
 import { SlideAtAGlance } from "../sales-pitch/slides/at-a-glance";
+import { SlideTeamCompetencies } from "./slides/team-competencies";
 import { SlideMeetWebstacks } from "../sales-pitch/slides/meet-webstacks";
 import { SlideClients } from "../sales-pitch/slides/clients";
 import { SlideObjectives } from "./slides/objectives";
@@ -22,7 +23,7 @@ import { SlideClosingCTA as SlideDartmouthClosingCTA } from "../sales-pitch/slid
 export const metadata: PresentationMeta = {
   id: "a-place-for-mom",
   label: "A Place for Mom — Executive Summary",
-  count: 18,
+  count: 19,
 };
 
 export const slides: SlideEntry[] = [
@@ -30,6 +31,7 @@ export const slides: SlideEntry[] = [
   { Component: SlideAgenda, label: "Agenda" },
   { Component: SlidePhilosophy, label: "Our Philosophy" },
   { Component: SlideAtAGlance, label: "At a Glance" },
+  { Component: SlideTeamCompetencies, label: "Your Team" },
   { Component: SlideExecutiveSummary, label: "Executive Summary" },
   { Component: SlideMeetWebstacks, label: "Meet Webstacks" },
   { Component: SlideClients, label: "Clients" },

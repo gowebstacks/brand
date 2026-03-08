@@ -48,6 +48,7 @@ Every slide uses `theme="dark"` (black background, white text). Follow these pat
 - **No rounded corners**: Cards, containers, and surface elements should have sharp corners. Do not use `rounded-lg`, `rounded-md`, `rounded-sm`, or any `rounded-*` classes on cards or containers.
 - **Eyebrows**: Mono uppercase with `opacity-60`
 - **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation. **Never apply `opacity-*` to decorative images** (3D shapes, photography, etc.) — they render at full opacity; the assets are already designed for dark backgrounds.
+- **No gradients or fades on images**: Never overlay gradients (`bg-gradient-to-*`) or opacity layers on photos or 3D shapes. Always use a hard crop (`object-cover` + `overflow-hidden`), never a soft blend into the background.
 
 ## Colors — ALWAYS Use Semantic Tailwind Classes
 

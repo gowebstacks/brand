@@ -36,8 +36,6 @@ export function SlideTitle() {
       clientLogoAlt="A Place for Mom"
       teamMembers={[
         { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
-        { name: "Jesse Schor", role: "Head of Growth", avatarSrc: "/images/headshots/leadership/jesse-schor.png" },
-        { name: "Emily Winsauer", role: "Head of Strategy", avatarSrc: "/images/headshots/leadership/emily-winsauer.png" },
       ]}
       theme="dark"
     />

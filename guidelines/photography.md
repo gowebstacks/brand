@@ -31,8 +31,7 @@ Photography should feel modern, authentic, and aspirational. We showcase real pe
 
 ### Full-Bleed Images
 - Image must have sufficient contrast for text overlay
-- Apply a gradient overlay: `bg-gradient-to-r from-black/70 to-black/30`
-- Or use a solid overlay: `bg-black/50`
+- **Never use gradient overlays or opacity fades** on images — always hard-crop with `object-cover` and `overflow-hidden`
 - Text on images must always be white
 
 ### Split Layouts
@@ -42,7 +41,7 @@ Photography should feel modern, authentic, and aspirational. We showcase real pe
 
 ### Background Textures
 - Use subtle, desaturated photos as textured backgrounds
-- Apply heavy overlay (60–80% opacity) to maintain readability
+- **No gradient or opacity overlays** — crop and position the image instead
 - Works well with teal or dark backgrounds
 
 ## 3D Decorative Shapes
@@ -54,6 +53,7 @@ Rendered 3D shapes (from `/images/3d-shapes/`) are used as bold visual accents o
 - **Paired shapes**: When using two shapes (e.g. top-left and top-right corners), they should not mirror each other exactly. Vary size, rotation, and how much they're cropped so the composition feels dynamic, not forced
 - **Purpose**: Decorative only — no text should overlap the shape
 - **Safe areas**: 3D shapes must never overlap the footer bar. The footer is a protected safe area — keep shapes clear of the bottom ~48px of the slide
+- **Photography safe areas**: Photos in split layouts must also respect the footer safe area. Use `pb-12` on the outer wrapper so the image stops above the footer — never let a photo bleed into the footer bar
 - **Available shapes**: `layered-diamonds.png`, `glass-cubes.png`, `glass-panels.png`, `stacked-blocks.png`, `twisted-torus.png`, `spiral-band.png`, and others in `/images/3d-shapes/`
 - **Usage**: One or two shapes per slide, on dark backgrounds only
 - **Opacity**: Always render at full opacity — never apply `opacity-*` classes. The 3D assets are already designed for dark backgrounds
@@ -78,9 +78,6 @@ Used in TitleSlide team members and TeamSlide.
 - **Don't** apply `opacity-*` classes to decorative images (3D shapes, photography, etc.) — they should always render at full opacity
 
 ## Image Treatment for Slides
-```
-Overlay for text readability:
-- Light text on image: min 50% black overlay
-- Dark theme: gradient from-black/70 via-black/50 to-transparent
-- Brand tint: mix teal-900 at 80% opacity for branded feel
-```
+- **Hard crop only** — use `object-cover` with `overflow-hidden` to frame images
+- **Never use gradient overlays**, opacity layers, or soft blends on photos or 3D shapes
+- If text needs to sit near an image, use a split layout with a hard edge between the image and content area

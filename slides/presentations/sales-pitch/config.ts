@@ -29,7 +29,7 @@ export interface ClientCompany {
 }
 
 export const metadata: PresentationMeta = {
-  id: "sales-pitch",
+  id: "dartmouth-tuck",
   label: "Dartmouth Tuck School of Business Demonstration Call",
   count: 21,
 };

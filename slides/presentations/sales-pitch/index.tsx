@@ -15,6 +15,13 @@ import { SlideBase, TitleSlide } from "../../components";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { sanityClient, urlFor } from "../../lib/sanity";
 import { companiesWithLogosQuery } from "../../lib/queries";
+import type { PresentationMeta } from "../types";
+
+export const metadata: PresentationMeta = {
+  id: "sales-pitch",
+  label: "Sales Pitch",
+  count: 19,
+};
 
 /* ── Slide 1: Title ─────────────────────────────────── */
 export function Slide01_Title() {
@@ -328,24 +335,24 @@ const whoWeAreItems = [
 
 export function Slide06_WhoWeAre() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full">
         {/* Left column */}
         <div className="flex w-[50%] flex-col gap-4 pl-16 pt-16">
           <Text
             as="span"
             size={200}
-            className="font-mono uppercase tracking-widest text-muted-foreground"
+            className="font-mono uppercase tracking-widest opacity-60"
           >
             Who We Are
           </Text>
           <Heading as="h2" size={3}>
             A web agency, by design
           </Heading>
-          <Text size={500} className="text-muted-foreground">
+          <Text size={500} className="opacity-70">
             We focus on one thing: websites.
           </Text>
-          <Text size={400} className="max-w-[90%] text-muted-foreground">
+          <Text size={400} className="max-w-[90%] opacity-70">
             We partner with B2B companies that need a website to function as:
           </Text>
         </div>
@@ -355,12 +362,26 @@ export function Slide06_WhoWeAre() {
           {whoWeAreItems.map((item) => (
             <div
               key={item}
-              className="rounded-sm bg-muted px-6 py-4"
+              className="rounded-sm bg-white/[0.04] px-6 py-4"
             >
-              <Text size={400}>{item}</Text>
+              <Text size={400} className="opacity-70">{item}</Text>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -463,12 +484,12 @@ const painPoints = [
 
 export function Slide08_WhyTeamsBringUsIn() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           The Challenge
         </Text>
@@ -480,19 +501,33 @@ export function Slide08_WhyTeamsBringUsIn() {
           {painPoints.map((item, i) => (
             <div
               key={i}
-              className="flex items-start gap-4 rounded-sm bg-muted px-6 py-5"
+              className="flex items-start gap-4 rounded-sm bg-white/[0.04] px-6 py-5"
             >
               <Text
                 as="span"
                 size={200}
-                className="mt-0.5 shrink-0 font-mono text-muted-foreground"
+                className="mt-0.5 shrink-0 font-mono opacity-50"
               >
                 {String(i + 1).padStart(2, "0")}
               </Text>
-              <Text size={400}>{item}</Text>
+              <Text size={400} className="opacity-70">{item}</Text>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -598,12 +633,12 @@ const disciplines = [
 
 export function Slide10_CoreDisciplines() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Our Capabilities
         </Text>
@@ -615,18 +650,32 @@ export function Slide10_CoreDisciplines() {
           {disciplines.map((d) => (
             <div
               key={d.title}
-              className="flex flex-col justify-between rounded-sm bg-muted p-8"
+              className="flex flex-col justify-between rounded-sm bg-white/[0.04] p-8"
               style={{ minHeight: 240 }}
             >
               <Heading as="h3" size={4}>
                 {d.title}
               </Heading>
-              <Text size={400} className="text-muted-foreground">
+              <Text size={400} className="opacity-70">
                 {d.description}
               </Text>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -719,12 +768,12 @@ const withRoadmap = [
 
 export function Slide12_RoadmapMatters() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Strategy
         </Text>
@@ -738,21 +787,21 @@ export function Slide12_RoadmapMatters() {
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-50"
             >
               Without a Roadmap
             </Text>
             {withoutRoadmap.map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded-sm bg-muted px-6 py-4"
+                className="flex items-center gap-3 rounded-sm bg-white/[0.04] px-6 py-4"
               >
                 <svg
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
-                  className="shrink-0 text-muted-foreground"
+                  className="shrink-0 opacity-50"
                 >
                   <path
                     d="M4 8h8"
@@ -761,7 +810,7 @@ export function Slide12_RoadmapMatters() {
                     strokeLinecap="round"
                   />
                 </svg>
-                <Text size={400}>{item}</Text>
+                <Text size={400} className="opacity-70">{item}</Text>
               </div>
             ))}
           </div>
@@ -771,14 +820,14 @@ export function Slide12_RoadmapMatters() {
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-50"
             >
               With a Roadmap
             </Text>
             {withRoadmap.map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded-sm bg-muted px-6 py-4"
+                className="flex items-center gap-3 rounded-sm bg-white/[0.04] px-6 py-4"
               >
                 <svg
                   width="16"
@@ -795,11 +844,25 @@ export function Slide12_RoadmapMatters() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <Text size={400}>{item}</Text>
+                <Text size={400} className="opacity-70">{item}</Text>
               </div>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -913,12 +976,12 @@ const adHocRequests = [
 
 export function Slide14_MonthlyCapacity() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Capacity
         </Text>
@@ -928,18 +991,18 @@ export function Slide14_MonthlyCapacity() {
 
         <div className="mt-6 flex items-start gap-6">
           {/* Minimum engagement */}
-          <div className="flex flex-col gap-2 rounded-sm bg-muted p-6" style={{ minWidth: 200 }}>
+          <div className="flex flex-col gap-2 rounded-sm bg-white/[0.04] p-6" style={{ minWidth: 200 }}>
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-50"
             >
               Minimum Engagement
             </Text>
             <Heading as="h3" size={2}>
               100+ hrs
             </Heading>
-            <Text size={300} className="text-muted-foreground">
+            <Text size={300} className="opacity-50">
               per month
             </Text>
           </div>
@@ -949,14 +1012,14 @@ export function Slide14_MonthlyCapacity() {
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-50"
             >
               Roadmap Initiatives — 60–70%
             </Text>
             <div className="grid grid-cols-2 gap-2">
               {roadmapInitiatives.map((item) => (
-                <div key={item} className="rounded-sm bg-muted px-4 py-3">
-                  <Text size={300}>{item}</Text>
+                <div key={item} className="rounded-sm bg-white/[0.04] px-4 py-3">
+                  <Text size={300} className="opacity-70">{item}</Text>
                 </div>
               ))}
             </div>
@@ -967,14 +1030,14 @@ export function Slide14_MonthlyCapacity() {
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-50"
             >
               Ad Hoc Requests — 30–40%
             </Text>
             <div className="grid grid-cols-2 gap-2">
               {adHocRequests.map((item) => (
-                <div key={item} className="rounded-sm bg-muted px-4 py-3">
-                  <Text size={300}>{item}</Text>
+                <div key={item} className="rounded-sm bg-white/[0.04] px-4 py-3">
+                  <Text size={300} className="opacity-70">{item}</Text>
                 </div>
               ))}
             </div>
@@ -982,10 +1045,24 @@ export function Slide14_MonthlyCapacity() {
         </div>
 
         <div className="mt-auto mb-6">
-          <Text size={300} className="text-muted-foreground">
+          <Text size={300} className="opacity-50">
             Executed across: Strategy | Design | Development | Program Management
           </Text>
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -1067,12 +1144,12 @@ const podBenefits = [
 
 export function Slide16_PodModel() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Team Structure
         </Text>
@@ -1084,7 +1161,7 @@ export function Slide16_PodModel() {
           {podBenefits.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-4 rounded-sm bg-muted px-6 py-5"
+              className="flex items-center gap-4 rounded-sm bg-white/[0.04] px-6 py-5"
             >
               <svg
                 width="16"
@@ -1101,10 +1178,24 @@ export function Slide16_PodModel() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <Text size={400}>{item}</Text>
+              <Text size={400} className="opacity-70">{item}</Text>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -1192,12 +1283,12 @@ const commercialPoints = [
 
 export function Slide18_CommercialFraming() {
   return (
-    <SlideBase theme="light" className="!p-0">
+    <SlideBase theme="dark" className="!p-0">
       <div className="flex h-full flex-col px-16 pt-16">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Commercials
         </Text>
@@ -1209,7 +1300,7 @@ export function Slide18_CommercialFraming() {
           {commercialPoints.map((c) => (
             <div
               key={c.label}
-              className="flex flex-col justify-between rounded-sm bg-muted p-8"
+              className="flex flex-col justify-between rounded-sm bg-white/[0.04] p-8"
               style={{ minHeight: 180 }}
             >
               <Heading as="h3" size={1}>
@@ -1218,7 +1309,7 @@ export function Slide18_CommercialFraming() {
               <Text
                 as="span"
                 size={200}
-                className="font-mono uppercase tracking-widest text-muted-foreground"
+                className="font-mono uppercase tracking-widest opacity-50"
               >
                 {c.label}
               </Text>
@@ -1227,12 +1318,26 @@ export function Slide18_CommercialFraming() {
         </div>
 
         <div className="mt-auto mb-6 max-w-[70%]">
-          <Text size={400} className="text-muted-foreground">
+          <Text size={400} className="opacity-50">
             Capacity scales based on goals, pace, and complexity. If the
             capacity is too low, the work becomes too reactive and the value
             drops quickly.
           </Text>
         </div>
+      </div>
+
+      {/* Footer bar */}
+      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
+        <div className="flex items-center gap-2">
+          <img
+            src="/logos/symbol-negative.svg"
+            alt="Webstacks"
+            className="h-4 w-auto"
+          />
+        </div>
+        <Text as="span" size={100} className="opacity-40">
+          &copy; Webstacks LLC Proprietary and Confidential
+        </Text>
       </div>
     </SlideBase>
   );
@@ -1346,6 +1451,21 @@ export default function SalesPitchDeck() {
       <Slide02_Philosophy />
       <Slide03_MeetWebstacks />
       <Slide04_Clients companies={companies} />
+      <Slide05_RetainerTitle />
+      <Slide06_WhoWeAre />
+      <Slide07_PointOfView />
+      <Slide08_WhyTeamsBringUsIn />
+      <Slide09_WhatMakesUsDifferent />
+      <Slide10_CoreDisciplines />
+      <Slide11_StrongPartner />
+      <Slide12_RoadmapMatters />
+      <Slide13_RoadmapAndRetainer />
+      <Slide14_MonthlyCapacity />
+      <Slide15_FlexModel />
+      <Slide16_PodModel />
+      <Slide17_KindsOfWork />
+      <Slide18_CommercialFraming />
+      <Slide19_HowWeStart />
     </div>
   );
 }

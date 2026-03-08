@@ -33,11 +33,20 @@ import { Heading, Text, Stack, Grid, GridColumn, Box, Button, Badge } from "@web
 
 ## Slide Rules
 
-1. **All slides are 16:9** (1280×720). Use `SlideBase` as the wrapper.
+1. **All slides are 16:9** (1280x720). Use `SlideBase` as the wrapper.
 2. **Outer padding**: 64px (`p-16`) on all sides — built into `SlideBase`.
-3. **Themes**: Use the `theme` prop: `"light"` (white bg, dark text) or `"dark"` (black bg, light text). There are no other background options — backgrounds are always white or black.
-4. **Alternate themes**: Alternate between light and dark slides for visual variety. Never use the same theme for more than 2 consecutive slides.
-5. **Content density**: 3–5 elements per slide maximum. Slides are not documents.
+3. **Dark theme only**: Always use `theme="dark"` on `SlideBase`. There is no light theme.
+4. **Content density**: 3-5 elements per slide maximum. Slides are not documents.
+
+## Dark Slide Patterns
+
+Every slide uses `theme="dark"` (black background, white text). Follow these patterns:
+
+- **Footer bar**: Persistent bar at the bottom with Webstacks symbol, URL, and copyright
+- **Opacity hierarchy**: Use `opacity-60` for secondary text, `opacity-70` for descriptions, `opacity-50` for tertiary, `opacity-40` for subtle labels
+- **Card surfaces**: Use `bg-white/[0.04]` for cards and elevated content areas
+- **Eyebrows**: Mono uppercase with `opacity-60`
+- **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation
 
 ## Colors — ALWAYS Use Semantic Tailwind Classes
 
@@ -47,10 +56,8 @@ import { Heading, Text, Stack, Grid, GridColumn, Box, Button, Badge } from "@web
 
 | Purpose | Tailwind class | What it resolves to |
 |---------|---------------|---------------------|
-| Slide background | `bg-background` | White (light) / Black (dark) |
-| Subtle surface | `bg-muted` | Subtle gray |
-| Elevated surface | `bg-accent` | Slightly lighter gray |
-| Default text | `text-foreground` | Black (light) / White (dark) |
+| Slide background | `bg-background` | Black (dark theme) |
+| Default text | `text-foreground` | White (dark theme) |
 | Subdued text | `text-muted-foreground` | Gray |
 | Accent highlights | `text-primary` | Blue (accent only) |
 | Borders | `border-border` | Subtle gray |
@@ -70,9 +77,10 @@ Examples of correct blue accent usage:
 
 ### Do's and Don'ts
 
-- **Do**: `className="bg-muted text-foreground border-border"`
+- **Do**: `className="text-foreground border-border"`
 - **Do**: `className="text-primary"` for small accent highlights
 - **Do**: `className="bg-primary/5"` for subtle tinted areas
+- **Do**: `className="bg-white/[0.04]"` for card surfaces on dark slides
 - **Don't**: `className="bg-[hsl(177,94%,13%)]"` — never use arbitrary values
 - **Don't**: `className="bg-neutral-50"` — never use primitive color scale names
 - **Don't**: `className="text-white"` or `className="text-black"` — use semantic tokens
@@ -98,7 +106,7 @@ Examples of correct blue accent usage:
 | Slide title (with body content) | `size={3}` | ContentSlide, SplitSlide, ComparisonSlide, AgendaSlide, TeamSlide, LogoGridSlide, ThreeUpSlide, MultiStatSlide |
 | Display stat (multi) | `size="display"` | MultiStatSlide (each stat number) |
 
-**Do not improvise heading sizes.** `size={1}` is only for hero moments (opening/closing). `size="display"` is only for stat numbers. `size={3}` is the standard for any slide with body content. Never use `size={4}`–`size={6}` for slide titles.
+**Do not improvise heading sizes.** `size={1}` is only for hero moments (opening/closing). `size="display"` is only for stat numbers. `size={3}` is the standard for any slide with body content. Never use `size={4}`-`size={6}` for slide titles.
 
 ### Text Sizes — FOLLOW EXACTLY
 
@@ -145,23 +153,10 @@ TitleSlide supports a rich layout mode when `heroImage` or `teamMembers` props a
 
 ## Button Style
 
-Buttons are pill-shaped (`rounded-full`). Use the mode×tone system:
+Buttons are pill-shaped (`rounded-full`). Use the mode x tone system:
 - Primary CTA: `<Button mode="filled" tone="primary" size="lg">`
 - Secondary: `<Button mode="stroke" tone="secondary" size="lg">`
 - On dark slides: `<Button mode="stroke" className="border-primary-foreground text-primary-foreground">`
-
-## Deck Pacing
-
-Follow these patterns:
-
-**Sales Pitch (~12 slides):**
-Title → Problem → Stat → Solution → How It Works → Feature × 2 → Quote → Results → Case Study → Logos → CTA
-
-**Case Study (~8 slides):**
-Title → Challenge → Approach → Key Metric → Solution Detail → Results → Quote → CTA
-
-**Client Presentation (~20 slides):**
-Cover → Section (About) → Capabilities (three-up) → Logo Grid → Section (Process) → Discovery (three-up) → Design (three-up) → Build (split) → Section (Results) → Team → Quote → Client Story 1 (content → comparison → multi-stat) → Client Story 2 (content → split → multi-stat) → Client Quote → Section (Next Steps) → CTA
 
 ## Key Guidelines
 
@@ -173,13 +168,98 @@ Read these files for detailed brand rules:
 - `guidelines/slides.md` — Slide types, pacing, and content density
 - `guidelines/photography.md` — Image style and overlay rules
 
-## Example Decks
+## Presentations
 
-Study these for composition patterns:
-- `slides/examples/sales-pitch/index.tsx` — Full 12-slide sales deck (uses TitleSlide rich layout)
-- `slides/examples/case-study/index.tsx` — Full 8-slide case study
-- `slides/examples/client-presentation/index.tsx` — Full 20-slide client presentation with section dividers, three-up cards, and multi-stat slides
+Study the existing presentation for composition patterns:
+- `slides/presentations/sales-pitch/index.tsx` — Full 19-slide sales pitch deck (uses TitleSlide rich layout)
 
 ## Design Tokens
 
 Machine-readable tokens are in `tokens/design-tokens.json` — use this for exact color values, font details, and spacing.
+
+---
+
+## Creating a New Presentation
+
+When the user asks you to create a new presentation, follow this workflow:
+
+### 1. Ask the user first
+
+Before writing any code, ask:
+
+> "Would you like to start from an existing presentation or from scratch? If from scratch, please provide a slide-by-slide outline."
+
+- **From existing**: Duplicate the chosen presentation folder, then modify the content.
+- **From scratch**: The user provides an outline (slide titles, key points per slide), and you create from it.
+
+### 2. Create the presentation folder
+
+Create a new folder at `slides/presentations/<kebab-case-name>/index.tsx`.
+
+### 3. Follow the file structure exactly
+
+```tsx
+/**
+ * <Presentation Name> — <N> slides
+ *
+ * Deck flow:
+ * 1. <Slide title> → 2. <Slide title> → ...
+ */
+import { Heading, Text } from "@webstacks/ui";
+import { SlideBase, TitleSlide } from "../../components";
+import type { PresentationMeta } from "../types";
+
+export const metadata: PresentationMeta = {
+  id: "<kebab-case-name>",
+  label: "<Display Name>",
+  count: <number of slides>,
+};
+
+/* ── Slide 1: <Title> ─────────────────────────────────── */
+export function Slide01_Title() {
+  return (
+    <TitleSlide
+      // ...props
+      theme="dark"
+    />
+  );
+}
+
+// ... more slides ...
+
+/* ── Full Deck ────────────────────────────────────────── */
+export default function <PascalCaseName>Deck() {
+  return (
+    <div className="flex flex-col gap-8">
+      <Slide01_Title />
+      {/* ...all slides */}
+    </div>
+  );
+}
+```
+
+### 4. Dark theme checklist
+
+Every slide MUST follow these rules:
+- [ ] `SlideBase` uses `theme="dark"`
+- [ ] Footer bar present (Webstacks symbol + URL + copyright)
+- [ ] Opacity hierarchy: `opacity-60/70/50/40` for text levels
+- [ ] Card surfaces use `bg-white/[0.04]`
+- [ ] Eyebrows use mono uppercase with `opacity-60`
+- [ ] Font weight never exceeds `weight="medium"` (500)
+
+### 5. Register the presentation
+
+Add the new presentation to `slides/presentations/index.ts`:
+
+```ts
+import NewDeck, { metadata as newMeta } from "./<kebab-case-name>";
+
+// Add to the presentations array:
+export const presentations: PresentationEntry[] = [
+  { meta: salesPitchMeta, Component: SalesPitchDeck },
+  { meta: newMeta, Component: NewDeck }, // <-- add here
+];
+```
+
+This makes it automatically appear in the preview app.

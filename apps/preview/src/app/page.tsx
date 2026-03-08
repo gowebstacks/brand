@@ -1,41 +1,54 @@
 "use client";
 
-import SalesPitchDeck from "../../../../slides/examples/sales-pitch";
-import ClientPresentationDeck from "../../../../slides/examples/client-presentation";
-
-const decks = [
-  { id: "sales-pitch", label: "Sales Pitch", count: 4, Component: SalesPitchDeck },
-  { id: "client-presentation", label: "Client Presentation", count: 20, Component: ClientPresentationDeck },
-];
+import Link from "next/link";
+import { Heading, Text, Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@webstacks/ui";
+import { presentations } from "../../../../slides/presentations";
 
 export default function PreviewPage() {
   return (
-    <div style={{ maxWidth: 1360, margin: "0 auto", padding: "32px 24px" }}>
-      {/* Header */}
-      <div style={{ marginBottom: 32 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 400, marginBottom: 8 }}>
-          Webstacks Brand — Slide Preview
-        </h1>
-        <p style={{ fontSize: 14, opacity: 0.6 }}>
-          Preview all example decks. Slides render at 1280×720.
-        </p>
-      </div>
+    <div className="mx-auto max-w-3xl px-6 py-16 text-foreground">
+      <Heading as="h1" size={3}>
+        Presentations
+      </Heading>
+      <Text size={300} className="mt-2 opacity-50">
+        {presentations.length} presentation{presentations.length !== 1 && "s"}
+      </Text>
 
-      {/* All decks */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 64 }}>
-        {decks.map(({ id, label, count, Component }) => (
-          <section key={id}>
-            <h2 style={{ fontSize: 18, fontWeight: 500, marginBottom: 16, color: "#fff" }}>
-              {label}{" "}
-              <span style={{ fontSize: 14, opacity: 0.5, fontWeight: 400 }}>
-                ({count} slides)
-              </span>
-            </h2>
-            <div style={{ transform: "scale(0.95)", transformOrigin: "top center" }}>
-              <Component />
-            </div>
-          </section>
-        ))}
+      <div className="mt-8">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>
+                <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-40">
+                  Name
+                </Text>
+              </TableHead>
+              <TableHead className="text-right">
+                <Text as="span" size={200} className="font-mono uppercase tracking-widest opacity-40">
+                  Slides
+                </Text>
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {presentations.map(({ meta }) => (
+              <TableRow key={meta.id}>
+                <TableCell>
+                  <Link href={`/${meta.id}`} className="text-foreground no-underline">
+                    <Text as="span" size={400}>
+                      {meta.label}
+                    </Text>
+                  </Link>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Text as="span" size={400} className="opacity-50">
+                    {meta.count}
+                  </Text>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

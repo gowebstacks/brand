@@ -315,12 +315,12 @@ Client logos are fetched from Sanity CMS. The pattern:
 - **Data fetching**: `useState` + `useEffect` in the deck component (since page is `"use client"`)
 - **To add/remove logos**: Edit the name array in `slides/lib/queries.ts`. See the comment block in `queries.ts` for full instructions.
 
-## Logo Guidelines (CRITICAL)
+## Logo Guidelines
 
-**ALL LOGOS MUST COME FROM SANITY.** Never hardcode logos, use fallback arrays, or embed logo URLs directly in code.
+**By default, all logos should come from Sanity.** When asked to add, switch, change, or display any logo, your first instinct should be to write or modify a Sanity query.
 
 ### Core Principle
-When asked to add, switch, change, or display any logo (client logos, partner logos, integration logos, etc.), you MUST:
+When working with logos (client logos, partner logos, integration logos, etc.):
 1. Write or modify a Sanity query to fetch the logo(s)
 2. Query the `company` document type by `name`
 3. Use the `logoOnDark` or `logoOnLight` fields from Sanity
@@ -347,12 +347,6 @@ For different use cases, create separate named queries:
 1. **Identify the company name** exactly as it appears in Sanity (case-sensitive)
 2. **Create or modify a query** in `slides/lib/queries.ts` with the company name(s)
 3. **Fetch and render** using the standard pattern with `logoOnDark` priority, `logoOnLight` as fallback with invert filter
-
-### What NOT to Do
-- Never create `fallbackCompanies` or hardcoded logo arrays
-- Never embed logo URLs directly in components
-- Never use placeholder text as a "fallback" for missing logos
-- Never skip the Sanity query step — if a logo isn't in Sanity, it shouldn't be displayed
 
 ## Animation & Transitions
 For exported or interactive decks:

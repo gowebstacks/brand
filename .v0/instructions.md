@@ -48,6 +48,7 @@ Every slide uses `theme="dark"` (black background, white text). Follow these pat
 - **No rounded corners**: Cards, containers, and surface elements should have sharp corners. Do not use `rounded-lg`, `rounded-md`, `rounded-sm`, or any `rounded-*` classes on cards or containers.
 - **Eyebrows**: Mono uppercase with `opacity-60`
 - **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation. **Never apply `opacity-*` to decorative images** (3D shapes, photography, etc.) — they render at full opacity; the assets are already designed for dark backgrounds.
+- **Supplemental graphics alignment**: Diagrams, mockups, and visual aids you create as part of a slide (e.g., page builder mockups, code examples, flow diagrams) must be aligned to the grid and layout structure — never randomly centered or floating. Use consistent padding (`pt-16 pr-16`) to align with the opposite content column. Only decorative 3D shapes should have random offsets and rotations.
 - **No gradients or fades on images**: Never overlay gradients (`bg-gradient-to-*`) or opacity layers on photos or 3D shapes. Always use a hard crop (`object-cover` + `overflow-hidden`), never a soft blend into the background.
 - **Ordinal numbers stand alone**: Numbers like "01", "02" must never be placed inside circles, badges, or containers. Display them as standalone mono text: `<Text as="span" size={200} className="font-mono opacity-50">`
 

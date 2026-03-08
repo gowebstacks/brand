@@ -272,6 +272,21 @@ Position 3D shapes as large, cropped accents that bleed off the slide edges:
 - Optional slight rotation (`-rotate-6`, `-rotate-12`) for dynamism
 - Place behind content with `relative z-10` on the content container
 
+### Supplemental Graphics vs. Decorative Shapes
+
+**Only 3D decorative shapes should have random offsets and rotations.** All other visuals you create as part of a slide must be aligned to the layout grid.
+
+**Supplemental graphics** (diagrams, mockups, code examples, flow charts, page builder mockups, etc.):
+- Must be aligned to the grid structure — never randomly centered or floating
+- In split layouts, use consistent padding (`pt-16 pr-16` or `pt-16 pl-16`) to align with the opposite column
+- Never use `flex items-center justify-center` to center mockups in otherwise empty space
+- Should sit at the top of their container, top-aligned with the content on the other side
+
+**Decorative 3D shapes** (from `/images/3d-shapes/`):
+- Are the only elements that may be randomly offset and rotated
+- Should use negative positioning to bleed off canvas edges
+- Are purely decorative accents, not content
+
 #### Safe Area Rules for 3D Decorative Shapes
 
 **CRITICAL: Text content must never overlap with decorative 3D shapes.** Decorative shapes are visual accents only — they must be placed in "dead zones" where no text or interactive content exists.

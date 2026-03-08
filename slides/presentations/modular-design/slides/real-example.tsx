@@ -2,13 +2,13 @@ import { Heading, Text, Stack, Grid, GridColumn } from "@webstacks/ui";
 import { SlideBase, SlideFooter } from "../../../components";
 
 const pageModules = [
-  "Hero",
-  "Product Benefits",
-  "Video Section",
-  "Customer Logos",
-  "Testimonials",
-  "Pricing",
-  "CTA",
+  { name: "Hero", height: "h-14" },
+  { name: "Product Benefits", height: "h-12" },
+  { name: "Video Section", height: "h-10" },
+  { name: "Customer Logos", height: "h-6" },
+  { name: "Testimonials", height: "h-10" },
+  { name: "Pricing", height: "h-12" },
+  { name: "CTA", height: "h-8" },
 ];
 
 export function SlideRealExample() {
@@ -39,21 +39,25 @@ export function SlideRealExample() {
         </GridColumn>
 
         {/* Right visual - example page layout */}
-        <GridColumn span={6} className="relative flex items-center justify-center bg-white/[0.02]">
-          <div className="bg-white/[0.04] border border-white/10 p-4 w-72">
-            <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-3">
-              Landing Page
-            </Text>
+        <GridColumn span={6} className="relative bg-white/[0.02] pt-16 pr-16">
+          <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-4">
+            SaaS Product Landing Page
+          </Text>
+          <div className="bg-white/[0.04] border border-white/10 p-3">
             <Stack direction="vertical" gap="condensed">
               {pageModules.map((mod) => (
                 <div
-                  key={mod}
-                  className="bg-white/[0.04] border border-white/10 px-3 py-2 flex items-center"
+                  key={mod.name}
+                  className={`${mod.height} bg-white/[0.04] border border-white/10 px-3 flex items-center`}
                 >
-                  <Text size={200} className="opacity-70">{mod}</Text>
+                  <Text size={200} className="opacity-70">{mod.name}</Text>
                 </div>
               ))}
             </Stack>
+          </div>
+          <div className="mt-4 flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary/50" />
+            <Text size={200} className="opacity-50">7 modules from library</Text>
           </div>
         </GridColumn>
       </Grid>

@@ -61,23 +61,42 @@ export function SlideModulesToPages() {
         </GridColumn>
 
         {/* Right visual - CMS page builder */}
-        <GridColumn span={5} className="relative flex items-center justify-center bg-white/[0.02]">
-          <div className="bg-white/[0.04] border border-white/10 p-4 w-64">
-            <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-3">
-              Page Builder
-            </Text>
+        <GridColumn span={5} className="relative bg-white/[0.02] pt-16 pr-16">
+          <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-4">
+            CMS Page Builder
+          </Text>
+          <div className="bg-white/[0.04] border border-white/10 p-4">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+              <Text size={200} className="font-mono uppercase tracking-widest opacity-70">
+                Homepage
+              </Text>
+              <div className="flex gap-2">
+                <div className="w-6 h-6 bg-white/[0.04] border border-white/10" />
+                <div className="w-6 h-6 bg-white/[0.04] border border-white/10" />
+              </div>
+            </div>
             <Stack direction="vertical" gap="condensed">
               {pageStack.map((mod) => (
                 <div
                   key={mod.name}
-                  className={`${mod.height} bg-white/[0.04] border border-white/10 px-3 flex items-center`}
+                  className={`${mod.height} bg-white/[0.04] border border-white/10 px-3 flex items-center justify-between`}
                 >
                   <Text size={200} className="opacity-70">
                     {mod.name}
                   </Text>
+                  <div className="flex gap-1">
+                    <div className="w-4 h-4 bg-white/[0.04] border border-white/10" />
+                    <div className="w-4 h-4 bg-white/[0.04] border border-white/10" />
+                  </div>
                 </div>
               ))}
             </Stack>
+            <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2">
+              <div className="w-5 h-5 bg-white/[0.04] border border-white/10 flex items-center justify-center">
+                <Text size={100} className="opacity-50">+</Text>
+              </div>
+              <Text size={200} className="opacity-50">Add module</Text>
+            </div>
           </div>
         </GridColumn>
       </Grid>

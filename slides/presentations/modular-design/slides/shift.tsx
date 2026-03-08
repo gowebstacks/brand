@@ -46,46 +46,56 @@ export function SlideShift() {
         </GridColumn>
 
         {/* Right visual - pages to components transition */}
-        <GridColumn span={5} className="relative flex items-center justify-center bg-white/[0.02]">
-          <div className="flex items-center gap-6">
-            {/* Stacked pages (before) */}
-            <div className="relative w-20 opacity-40">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="absolute bg-white/[0.04] border border-white/10 w-20 h-28"
-                  style={{
-                    top: i * 6,
-                    left: i * 6,
-                    zIndex: 3 - i,
-                  }}
-                />
-              ))}
+        <GridColumn span={5} className="relative bg-white/[0.02] pt-16 pr-16">
+          <div className="flex flex-col gap-6">
+            {/* Before - Stacked pages */}
+            <div>
+              <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-3">
+                Before: One-off pages
+              </Text>
+              <div className="flex gap-2">
+                {["Page A", "Page B", "Page C"].map((page) => (
+                  <div
+                    key={page}
+                    className="bg-white/[0.04] border border-white/10 w-20 h-24 p-2"
+                  >
+                    <div className="h-3 bg-white/20 w-full mb-1" />
+                    <div className="h-2 bg-white/10 w-3/4 mb-1" />
+                    <div className="h-2 bg-white/10 w-full" />
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Arrow */}
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-foreground">
-              <path
-                d="M8 20H32M32 20L24 12M32 20L24 28"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <div className="flex items-center gap-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-foreground opacity-50">
+                <path
+                  d="M12 5V19M12 19L5 12M12 19L19 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <Text size={200} className="opacity-50">Transforms to</Text>
+            </div>
 
-            {/* Components (after) */}
-            <div className="flex flex-col gap-2">
-              <div className="bg-white/[0.04] border border-white/10 px-4 py-2 w-28">
-                <div className="h-2 bg-white/20 w-full" />
-              </div>
-              <div className="bg-white/[0.04] border border-white/10 px-4 py-3 w-28">
-                <div className="h-1.5 bg-white/20 w-3/4 mb-1" />
-                <div className="h-1.5 bg-white/10 w-full" />
-              </div>
-              <div className="bg-white/[0.04] border border-white/10 px-4 py-2 w-28">
-                <div className="h-2 bg-white/20 w-2/3" />
-              </div>
+            {/* After - Components */}
+            <div>
+              <Text size={100} className="font-mono uppercase tracking-widest opacity-50 mb-3">
+                After: Reusable modules
+              </Text>
+              <Stack direction="vertical" gap="condensed">
+                {["Hero", "Features", "Testimonial", "CTA"].map((mod) => (
+                  <div
+                    key={mod}
+                    className="bg-white/[0.04] border border-white/10 px-4 py-2"
+                  >
+                    <Text size={200} className="opacity-70">{mod}</Text>
+                  </div>
+                ))}
+              </Stack>
             </div>
           </div>
         </GridColumn>

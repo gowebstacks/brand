@@ -42,3 +42,6 @@ export type { SectionSlideProps } from "./SectionSlide";
 
 export { MultiStatSlide } from "./MultiStatSlide";
 export type { MultiStatSlideProps, StatItem } from "./MultiStatSlide";
+
+export { SlideFooter } from "./SlideFooter";
+export type { SlideFooterProps } from "./SlideFooter";

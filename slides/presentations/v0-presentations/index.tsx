@@ -7,7 +7,7 @@
  * 7. Best Practices → 8. Advanced Techniques → 9. Live Demo → 10. Questions/CTA
  */
 import { Heading, Text } from "@webstacks/ui";
-import { SlideBase, TitleSlide, SectionSlide } from "../../components";
+import { SlideBase, SlideFooter, TitleSlide, SectionSlide } from "../../components";
 import type { PresentationMeta, SlideEntry } from "../types";
 
 export const metadata: PresentationMeta = {
@@ -83,19 +83,7 @@ export function Slide02_WhatIsV0() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -164,19 +152,7 @@ export function Slide03_WhyPresentations() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -228,19 +204,7 @@ export function Slide04_GettingStarted() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -299,19 +263,7 @@ export function Slide05_SlideComponents() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -377,19 +329,7 @@ export function Slide07_BestPractices() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -458,19 +398,7 @@ export function Slide08_AdvancedTechniques() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -508,19 +436,7 @@ export function Slide09_LiveDemo() {
         </Text>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }
@@ -561,19 +477,7 @@ export function Slide10_Questions() {
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; Webstacks LLC Proprietary and Confidential
-        </Text>
-      </div>
+      <SlideFooter />
     </SlideBase>
   );
 }

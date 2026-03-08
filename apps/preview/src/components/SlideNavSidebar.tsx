@@ -18,11 +18,23 @@ export function SlideNavSidebar({ slides, activeIndex, collapsed, onSelect, onTo
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Auto-scroll sidebar to keep active thumbnail visible
+  // Uses manual scroll calculation instead of scrollIntoView to prevent
+  // the scroll from bubbling up and shifting the parent aside element
   useEffect(() => {
     if (collapsed) return;
     const el = itemRefs.current[activeIndex];
-    if (el && listRef.current) {
-      el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    const list = listRef.current;
+    if (!el || !list) return;
+
+    const elTop = el.offsetTop - list.offsetTop;
+    const elBottom = elTop + el.offsetHeight;
+    const scrollTop = list.scrollTop;
+    const viewHeight = list.clientHeight;
+
+    if (elTop < scrollTop) {
+      list.scrollTo({ top: elTop, behavior: "smooth" });
+    } else if (elBottom > scrollTop + viewHeight) {
+      list.scrollTo({ top: elBottom - viewHeight, behavior: "smooth" });
     }
   }, [activeIndex, collapsed]);
 
@@ -73,7 +85,7 @@ export function SlideNavSidebar({ slides, activeIndex, collapsed, onSelect, onTo
       {!collapsed && (
         <div
           ref={listRef}
-          className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto overscroll-contain p-3"
+          className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-x-hidden overflow-y-auto overscroll-contain p-3"
         >
           {slides.map((slide, i) => (
             <div

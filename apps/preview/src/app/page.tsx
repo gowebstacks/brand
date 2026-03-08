@@ -1,12 +1,48 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { presentations } from "../../../../slides/presentations";
 
 const SLIDE_W = 1280;
 const SLIDE_H = 720;
-const SCALE = 0.28;
-const THUMB_H = SLIDE_H * SCALE;
+
+function CoverThumbnail({ children }: { children: React.ReactNode }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setScale(entry.contentRect.width / SLIDE_W);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden bg-[#111]"
+      style={{ aspectRatio: "16/9" }}
+    >
+      {scale > 0 && (
+        <div
+          style={{
+            width: SLIDE_W,
+            height: SLIDE_H,
+            transform: `scale(${scale})`,
+            transformOrigin: "top left",
+          }}
+          className="pointer-events-none select-none"
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function PreviewPage() {
   return (
@@ -15,12 +51,7 @@ export default function PreviewPage() {
       <header className="sticky top-0 z-10 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span className="text-sm font-semibold text-white">Webstacks Brand</span>
+            <img src="/logos/full_logo-lockup-ondark.svg" alt="Webstacks" className="h-5" />
             <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-medium text-white/40">
               Preview
             </span>
@@ -48,22 +79,11 @@ export default function PreviewPage() {
                 className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] transition-all duration-200 hover:border-white/[0.12] hover:bg-white/[0.04]"
               >
                 {/* Thumbnail preview of first slide */}
-                <div
-                  className="relative overflow-hidden bg-[#111]"
-                  style={{ height: THUMB_H }}
-                >
-                  <div
-                    style={{
-                      width: SLIDE_W,
-                      height: SLIDE_H,
-                      transform: `scale(${SCALE})`,
-                      transformOrigin: "top left",
-                    }}
-                    className="pointer-events-none select-none"
-                  >
+                <div className="relative">
+                  <CoverThumbnail>
                     {FirstSlide && <FirstSlide />}
-                  </div>
-                  
+                  </CoverThumbnail>
+
                   {/* Hover overlay */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-200 group-hover:bg-black/40 group-hover:opacity-100">
                     <span className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-black">

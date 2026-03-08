@@ -12,6 +12,8 @@ export default function PresentationPage({ params }: { params: { id: string } })
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
+  const ratioMap = useRef<Map<number, number>>(new Map());
+  const isScrollingTo = useRef<number | null>(null);
 
   // IntersectionObserver to track which slide is visible
   useEffect(() => {
@@ -20,16 +22,28 @@ export default function PresentationPage({ params }: { params: { id: string } })
 
     const observer = new IntersectionObserver(
       (entries) => {
-        let best: IntersectionObserverEntry | null = null;
+        // Accumulate ratios for all observed slides
         for (const e of entries) {
-          if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) {
-            best = e;
+          const idx = Number((e.target as HTMLElement).dataset.slideIndex);
+          if (!isNaN(idx)) {
+            ratioMap.current.set(idx, e.intersectionRatio);
           }
         }
-        if (best) {
-          const idx = Number((best.target as HTMLElement).dataset.slideIndex);
-          if (!isNaN(idx)) setActiveIndex(idx);
+
+        // Skip observer updates during programmatic scroll
+        if (isScrollingTo.current !== null) return;
+
+        // Pick the slide with the highest visibility
+        let bestIdx = 0;
+        let bestRatio = 0;
+        for (const [idx, ratio] of ratioMap.current) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestIdx = idx;
+          }
         }
+
+        setActiveIndex(bestIdx);
       },
       {
         root: container,
@@ -40,15 +54,29 @@ export default function PresentationPage({ params }: { params: { id: string } })
     const slideEls = container.querySelectorAll("[data-slide-index]");
     slideEls.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      ratioMap.current.clear();
+    };
   }, [entry]);
 
   const handleSelect = useCallback((index: number) => {
     const container = mainRef.current;
     if (!container) return;
-    const target = container.querySelector(`[data-slide-index="${index}"]`);
+    const target = container.querySelector(`[data-slide-index="${index}"]`) as HTMLElement | null;
     if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Set active index immediately for responsive feedback
+      setActiveIndex(index);
+      // Suppress observer updates during the smooth scroll animation
+      isScrollingTo.current = index;
+      // Scroll vertically only — avoids any horizontal shift
+      container.scrollTo({
+        top: target.offsetTop - container.offsetTop,
+        behavior: "smooth",
+      });
+      setTimeout(() => {
+        isScrollingTo.current = null;
+      }, 800);
     }
   }, []);
 
@@ -119,7 +147,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
         {/* Slide content */}
         <div 
           ref={mainRef} 
-          className="flex-1 overflow-y-auto"
+          className="flex-1 overflow-x-hidden overflow-y-auto"
         >
           <div className="mx-auto max-w-[1400px] px-8 py-6">
             <div className="origin-top">

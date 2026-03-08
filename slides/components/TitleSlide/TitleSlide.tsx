@@ -8,6 +8,7 @@ import {
   AvatarFallback,
 } from "@webstacks/ui";
 import { SlideBase, type SlideBaseProps } from "../SlideBase";
+import { SlideFooter } from "../SlideFooter";
 
 export interface TeamMemberInfo {
   name: string;
@@ -205,22 +206,7 @@ export function TitleSlide({
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="absolute bottom-0 left-0 z-10 flex w-full items-center justify-between border-t border-white/10 px-16 py-3">
-        <div className="flex items-center gap-2">
-          <img
-            src="/logos/symbol-negative.svg"
-            alt="Webstacks"
-            className="h-4 w-auto"
-          />
-          <Text as="span" size={100} className="opacity-50">
-            webstacks.com
-          </Text>
-        </div>
-        <Text as="span" size={100} className="opacity-40">
-          &copy; {new Date().getFullYear()} Webstacks. All rights reserved.
-        </Text>
-      </div>
+      <SlideFooter variant="title" />
     </SlideBase>
   );
 }

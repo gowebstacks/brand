@@ -13,7 +13,7 @@
  *    filter to make it white.
  */
 export const companiesWithLogosQuery = `
-  *[_type == "company" && name in ["Cribl", "Drata", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis", "Capital One", "SevenRooms", "Curative", "Fireworks", "LogicMonitor", "BetterUp"] && (defined(logoOnDark) || defined(logoOnLight))] | order(name asc) {
+  *[_type == "company" && name in ["Cribl", "Drata", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis", "Braze", "SevenRooms", "Curative", "Fireworks", "LogicMonitor", "BetterUp"] && (defined(logoOnDark) || defined(logoOnLight))] | order(name asc) {
     _id, name, logoOnDark, logoOnLight
   }
 `;

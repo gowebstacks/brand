@@ -1,9 +1,8 @@
 export { metadata, slides } from "./config";
-export type { ClientCompany } from "./config";
 
 import { slides } from "./config";
 
-export default function SalesPitchDeck() {
+export default function APlaceForMomDeck() {
   return (
     <div className="flex flex-col gap-8">
       {slides.map((slide, i) => (

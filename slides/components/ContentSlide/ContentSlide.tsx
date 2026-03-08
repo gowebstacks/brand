@@ -54,7 +54,7 @@ export function ContentSlide({
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover"
             />
           </GridColumn>
         </Grid>

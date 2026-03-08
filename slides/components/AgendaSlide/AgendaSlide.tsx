@@ -26,7 +26,7 @@ export function AgendaSlide({
   return (
     <SlideBase theme={theme}>
       <Stack direction="vertical" gap="extra-spacious" className="h-full">
-        <Heading as="h2" size={3}>
+        <Heading as="h2" size={2}>
           {title}
         </Heading>
         <Stack direction="vertical" gap="normal" className="flex-1">

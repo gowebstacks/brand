@@ -65,7 +65,7 @@ export function SplitSlide({
         <img
           src={media}
           alt=""
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover"
         />
       ) : (
         media

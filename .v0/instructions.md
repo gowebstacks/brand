@@ -45,6 +45,7 @@ Every slide uses `theme="dark"` (black background, white text). Follow these pat
 - **Footer bar**: Persistent bar at the bottom with Webstacks symbol, URL, and copyright
 - **Opacity hierarchy**: Use `opacity-60` for secondary text, `opacity-70` for descriptions, `opacity-50` for tertiary, `opacity-40` for subtle labels
 - **Card surfaces**: Use `bg-white/[0.04]` for cards and elevated content areas
+- **No rounded corners**: Cards, containers, and surface elements should have sharp corners. Do not use `rounded-lg`, `rounded-md`, `rounded-sm`, or any `rounded-*` classes on cards or containers.
 - **Eyebrows**: Mono uppercase with `opacity-60`
 - **3D shape accents**: Decorative 3D shapes from `/images/3d-shapes/`, positioned with overflow and slight rotation
 

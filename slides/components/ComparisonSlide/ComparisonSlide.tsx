@@ -37,7 +37,7 @@ export function ComparisonSlide({
         <Grid columns={2} gap="extra-spacious" className="flex-1">
           {/* Left column */}
           <GridColumn>
-            <Box padding="spacious" className="h-full rounded-lg bg-muted border border-border">
+            <Box padding="spacious" className="h-full bg-muted border border-border">
               <Stack direction="vertical" gap="normal">
                 <Text size={400} weight="medium" className="text-muted-foreground">
                   {leftLabel}
@@ -55,7 +55,7 @@ export function ComparisonSlide({
           </GridColumn>
           {/* Right column */}
           <GridColumn>
-            <Box padding="spacious" className="h-full rounded-lg bg-primary/5 border border-primary/20">
+            <Box padding="spacious" className="h-full bg-primary/5 border border-primary/20">
               <Stack direction="vertical" gap="normal">
                 <Text size={400} weight="medium" className="text-primary">
                   {rightLabel}

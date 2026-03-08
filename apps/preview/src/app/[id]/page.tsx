@@ -16,6 +16,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
   const mainRef = useRef<HTMLDivElement>(null);
   const ratioMap = useRef<Map<number, number>>(new Map());
   const isScrollingTo = useRef<number | null>(null);
+  const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
 
   // Initialize orderedSlides from entry
   useEffect(() => {
@@ -82,20 +83,46 @@ export default function PresentationPage({ params }: { params: { id: string } })
     if (!container) return;
     const target = container.querySelector(`[data-slide-index="${index}"]`) as HTMLElement | null;
     if (target) {
-      // Set active index immediately for responsive feedback
       setActiveIndex(index);
-      // Suppress observer updates during the smooth scroll animation
       isScrollingTo.current = index;
-      // Scroll vertically only — avoids any horizontal shift
       container.scrollTo({
         top: target.offsetTop - container.offsetTop,
         behavior: "smooth",
       });
-      setTimeout(() => {
+      // Cancel any previous timeout so only the LAST scroll re-enables the observer
+      clearTimeout(scrollTimer.current);
+      scrollTimer.current = setTimeout(() => {
         isScrollingTo.current = null;
       }, 800);
     }
   }, []);
+
+  // Arrow key navigation between slides
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      let next: number | undefined;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        next = Math.min(activeIndex + 1, orderedSlides.length - 1);
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        next = Math.max(activeIndex - 1, 0);
+      }
+      if (next === undefined) return;
+      if (next !== activeIndex) {
+        handleSelect(next);
+      } else {
+        // At boundary — keep observer suppressed while key is held
+        isScrollingTo.current = activeIndex;
+        clearTimeout(scrollTimer.current);
+        scrollTimer.current = setTimeout(() => {
+          isScrollingTo.current = null;
+        }, 800);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeIndex, orderedSlides.length, handleSelect]);
 
   if (!entry) {
     return (

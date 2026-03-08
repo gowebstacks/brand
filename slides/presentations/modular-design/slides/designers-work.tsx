@@ -17,37 +17,35 @@ const variations = [
 
 export function SlideDesignersWork() {
   return (
-    <SlideBase theme="light" className="!p-0">
-      <div className="h-full flex flex-col px-16 py-16">
+    <SlideBase theme="dark" className="!p-0">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           For Designers
         </Text>
-        <Heading as="h2" size={2} className="mt-4">
+        <Heading as="h2" size={3} className="mt-4">
           Designers create systems instead of pages
         </Heading>
 
-        <Grid columns={2} gap="extra-spacious" className="mt-10 flex-1">
+        <Grid columns={2} gap="extra-spacious" className="mt-8">
           <GridColumn>
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-60"
             >
               Design Workflow
             </Text>
-            <Stack direction="vertical" gap="normal" className="mt-4">
+            <Stack direction="vertical" gap="condensed" className="mt-4">
               {workflow.map((item, i) => (
                 <Stack key={item} direction="horizontal" gap="normal" align="start">
-                  <div className="w-6 h-6 bg-primary flex items-center justify-center shrink-0">
-                    <Text size={200} className="text-primary-foreground font-medium">
-                      {i + 1}
-                    </Text>
-                  </div>
-                  <Text size={400}>{item}</Text>
+                  <Text as="span" size={200} className="font-mono opacity-50">
+                    {String(i + 1).padStart(2, "0")}
+                  </Text>
+                  <Text size={400} className="opacity-70">{item}</Text>
                 </Stack>
               ))}
             </Stack>
@@ -57,27 +55,29 @@ export function SlideDesignersWork() {
             <Text
               as="span"
               size={200}
-              className="font-mono uppercase tracking-widest text-muted-foreground"
+              className="font-mono uppercase tracking-widest opacity-60"
             >
               Examples of Variations
             </Text>
             <Stack direction="vertical" gap="condensed" className="mt-4">
               {variations.map((item) => (
                 <Stack key={item} direction="horizontal" gap="condensed" align="center">
-                  <div className="w-2 h-2 bg-muted-foreground/50" />
-                  <Text size={400}>{item}</Text>
+                  <div className="w-2 h-2 bg-foreground/50" />
+                  <Text size={400} className="opacity-70">{item}</Text>
                 </Stack>
               ))}
             </Stack>
           </GridColumn>
         </Grid>
 
-        <div className="mt-auto pt-6 border-t border-border">
-          <Text size={400} className="text-muted-foreground">
-            Outcome: <span className="text-foreground font-medium">A scalable design system</span>
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <Text size={400} className="opacity-60">
+            Outcome: <span className="text-foreground opacity-100 font-medium">A scalable design system</span>
           </Text>
         </div>
       </div>
+
+      <SlideFooter />
     </SlideBase>
   );
 }

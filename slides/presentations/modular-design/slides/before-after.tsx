@@ -22,7 +22,7 @@ export function SlideBeforeAfter() {
       leftItems={traditionalItems}
       rightLabel="Modular"
       rightItems={modularItems}
-      theme="light"
+      theme="dark"
     />
   );
 }

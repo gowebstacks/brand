@@ -12,21 +12,21 @@ const modules = [
 
 export function SlideWhatIsModular() {
   return (
-    <SlideBase theme="light" className="!p-0">
-      <div className="h-full flex flex-col px-16 py-16">
+    <SlideBase theme="dark" className="!p-0">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground"
+          className="font-mono uppercase tracking-widest opacity-60"
         >
           Definition
         </Text>
-        <Heading as="h2" size={2} className="mt-4">
+        <Heading as="h2" size={3} className="mt-4">
           Modular design = reusable building blocks
         </Heading>
 
-        <div className="mt-8 bg-muted/50 border border-border p-8 max-w-3xl">
-          <Text size={500}>
+        <div className="mt-8 bg-white/[0.04] border border-white/10 p-6 max-w-3xl">
+          <Text size={500} className="opacity-80">
             Modular design breaks a website into independent, reusable components
             that can be combined to create any page layout.
           </Text>
@@ -35,28 +35,30 @@ export function SlideWhatIsModular() {
         <Text
           as="span"
           size={200}
-          className="font-mono uppercase tracking-widest text-muted-foreground mt-10"
+          className="font-mono uppercase tracking-widest opacity-60 mt-8"
         >
           Examples of Modules
         </Text>
 
-        <Grid columns={3} gap="normal" className="mt-4">
+        <Grid columns={3} gap="condensed" className="mt-4">
           {modules.map((mod) => (
             <GridColumn key={mod}>
               <Stack direction="horizontal" gap="condensed" align="center">
-                <div className="w-2 h-2 bg-primary" />
-                <Text size={400}>{mod}</Text>
+                <div className="w-2 h-2 bg-foreground/50" />
+                <Text size={400} className="opacity-70">{mod}</Text>
               </Stack>
             </GridColumn>
           ))}
         </Grid>
 
-        <div className="mt-auto pt-8 border-t border-border">
-          <Text size={400} className="text-muted-foreground italic">
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <Text size={400} className="opacity-60 italic">
             Each module is designed once and reused many times
           </Text>
         </div>
       </div>
+
+      <SlideFooter />
     </SlideBase>
   );
 }

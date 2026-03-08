@@ -13,7 +13,7 @@ export function SlideShift() {
     <SlideBase theme="dark" className="!p-0">
       <Grid columns={12} gap="extra-spacious" align="stretch" className="h-full">
         {/* Left content */}
-        <GridColumn span={7} className="flex flex-col justify-center pl-16 py-16">
+        <GridColumn span={7} className="flex flex-col px-16 pt-16 pb-24">
           <Text
             as="span"
             size={200}
@@ -21,24 +21,24 @@ export function SlideShift() {
           >
             The Shift
           </Text>
-          <Heading as="h2" size={2} className="mt-4">
+          <Heading as="h2" size={3} className="mt-4">
             Modern websites are built as systems
           </Heading>
 
           <Stack direction="vertical" gap="condensed" className="mt-8">
             {points.map((item) => (
               <Stack key={item} direction="horizontal" gap="normal" align="start">
-                <Text size={400} className="text-emerald-400 shrink-0">
+                <Text size={400} className="text-foreground shrink-0">
                   &#10003;
                 </Text>
-                <Text size={400} className="opacity-80">
+                <Text size={400} className="opacity-70">
                   {item}
                 </Text>
               </Stack>
             ))}
           </Stack>
 
-          <div className="mt-10 border-l-2 border-primary/50 pl-6">
+          <div className="mt-8 border-l-2 border-primary/50 pl-6">
             <Text size={500} weight="medium">
               Design once. Reuse everywhere.
             </Text>
@@ -53,7 +53,7 @@ export function SlideShift() {
               {[0, 1, 2].map((i) => (
                 <div
                   key={i}
-                  className="absolute bg-white/10 border border-white/20 w-20 h-28"
+                  className="absolute bg-white/[0.04] border border-white/10 w-20 h-28"
                   style={{
                     top: i * 6,
                     left: i * 6,
@@ -64,7 +64,7 @@ export function SlideShift() {
             </div>
 
             {/* Arrow */}
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-primary">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-foreground">
               <path
                 d="M8 20H32M32 20L24 12M32 20L24 28"
                 stroke="currentColor"
@@ -76,15 +76,15 @@ export function SlideShift() {
 
             {/* Components (after) */}
             <div className="flex flex-col gap-2">
-              <div className="bg-primary/20 border border-primary/40 px-4 py-2 w-28">
-                <div className="h-2 bg-primary/60 w-full" />
+              <div className="bg-white/[0.04] border border-white/10 px-4 py-2 w-28">
+                <div className="h-2 bg-white/20 w-full" />
               </div>
-              <div className="bg-primary/20 border border-primary/40 px-4 py-3 w-28">
-                <div className="h-1.5 bg-primary/60 w-3/4 mb-1" />
-                <div className="h-1.5 bg-primary/40 w-full" />
+              <div className="bg-white/[0.04] border border-white/10 px-4 py-3 w-28">
+                <div className="h-1.5 bg-white/20 w-3/4 mb-1" />
+                <div className="h-1.5 bg-white/10 w-full" />
               </div>
-              <div className="bg-primary/20 border border-primary/40 px-4 py-2 w-28">
-                <div className="h-2 bg-primary/60 w-2/3" />
+              <div className="bg-white/[0.04] border border-white/10 px-4 py-2 w-28">
+                <div className="h-2 bg-white/20 w-2/3" />
               </div>
             </div>
           </div>

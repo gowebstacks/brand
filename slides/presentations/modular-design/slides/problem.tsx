@@ -14,7 +14,7 @@ export function SlideProblem() {
     <SlideBase theme="dark" className="!p-0">
       <Grid columns={12} gap="extra-spacious" align="stretch" className="h-full">
         {/* Left content */}
-        <GridColumn span={7} className="flex flex-col justify-center pl-16 py-16">
+        <GridColumn span={7} className="flex flex-col px-16 pt-16 pb-24">
           <Text
             as="span"
             size={200}
@@ -22,25 +22,25 @@ export function SlideProblem() {
           >
             The Problem
           </Text>
-          <Heading as="h2" size={2} className="mt-4">
+          <Heading as="h2" size={3} className="mt-4">
             Most websites are built page-by-page
           </Heading>
 
           <Stack direction="vertical" gap="condensed" className="mt-8">
             {problems.map((item) => (
               <Stack key={item} direction="horizontal" gap="normal" align="start">
-                <Text size={400} className="text-red-400 shrink-0">
+                <Text size={400} className="text-foreground shrink-0">
                   &times;
                 </Text>
-                <Text size={400} className="opacity-80">
+                <Text size={400} className="opacity-70">
                   {item}
                 </Text>
               </Stack>
             ))}
           </Stack>
 
-          <div className="mt-10 border-l-2 border-white/20 pl-6">
-            <Text size={500} className="italic opacity-70">
+          <div className="mt-8 border-l-2 border-white/20 pl-6">
+            <Text size={400} className="italic opacity-60">
               The site becomes harder to maintain over time
             </Text>
           </div>
@@ -52,7 +52,7 @@ export function SlideProblem() {
             {[0, 1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="absolute bg-white/10 border border-white/20 w-48 h-64"
+                className="absolute bg-white/[0.04] border border-white/10 w-48 h-64"
                 style={{
                   top: i * 12,
                   left: i * 12,

@@ -1,4 +1,4 @@
-import { Heading, Text, Stack, Grid, GridColumn } from "@webstacks/ui";
+import { Heading, Text, Grid, GridColumn } from "@webstacks/ui";
 import { SlideBase, SlideFooter } from "../../../components";
 
 const benefits = [
@@ -27,7 +27,7 @@ const benefits = [
 export function SlideBenefits() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      <div className="h-full flex flex-col px-16 py-16">
+      <div className="relative z-10 flex h-full flex-col px-16 pt-16 pb-24">
         <Text
           as="span"
           size={200}
@@ -35,32 +35,27 @@ export function SlideBenefits() {
         >
           Why It Matters
         </Text>
-        <Heading as="h2" size={2} className="mt-4">
+        <Heading as="h2" size={3} className="mt-4">
           Why companies adopt modular design
         </Heading>
 
-        <div className="mt-10 grid grid-cols-5 gap-4 flex-1">
+        <Grid columns={5} gap="condensed" className="mt-8">
           {benefits.map((b, i) => (
-            <div
-              key={b.title}
-              className="flex flex-col justify-between bg-white/[0.04] border border-white/10 p-6"
-            >
-              <div className="w-10 h-10 bg-primary/20 border border-primary/40 flex items-center justify-center mb-4">
-                <Text size={400} weight="medium" className="text-primary">
-                  {i + 1}
+            <GridColumn key={b.title}>
+              <div className="flex flex-col bg-white/[0.04] border border-white/10 p-6">
+                <Text as="span" size={200} className="font-mono opacity-50">
+                  {String(i + 1).padStart(2, "0")}
                 </Text>
-              </div>
-              <div className="mt-auto">
-                <Heading as="h3" size={5}>
+                <Heading as="h3" size={5} className="mt-4">
                   {b.title}
                 </Heading>
                 <Text size={300} className="opacity-70 mt-2">
                   {b.description}
                 </Text>
               </div>
-            </div>
+            </GridColumn>
           ))}
-        </div>
+        </Grid>
       </div>
 
       <SlideFooter />

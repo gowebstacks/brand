@@ -24,7 +24,26 @@ export const metadata: PresentationMeta = {
 };
 
 /* ── Slide 1: Title ─────────────────────────────────── */
-export function Slide01_Title({ clientLogoSrc, clientLogoNeedsInvert }: { clientLogoSrc?: string; clientLogoNeedsInvert?: boolean }) {
+export function Slide01_Title({ clientLogoSrc, clientLogoNeedsInvert }: { clientLogoSrc?: string; clientLogoNeedsInvert?: boolean } = {}) {
+  const [logo, setLogo] = useState<{ src: string; needsInvert: boolean } | null>(null);
+
+  useEffect(() => {
+    if (clientLogoSrc !== undefined) return;
+    sanityClient
+      .fetch(companiesWithLogosQuery)
+      .then((results: Array<{ _id: string; name: string; logoOnDark?: SanityImageSource; logoOnLight?: SanityImageSource }>) => {
+        const braze = results.find((c) => c.name === "Braze");
+        if (!braze) return;
+        const useDark = !!braze.logoOnDark;
+        const source = (useDark ? braze.logoOnDark : braze.logoOnLight)!;
+        setLogo({ src: urlFor(source).height(64).url(), needsInvert: !useDark });
+      })
+      .catch(() => {});
+  }, [clientLogoSrc]);
+
+  const resolvedSrc = clientLogoSrc ?? logo?.src;
+  const resolvedInvert = clientLogoNeedsInvert ?? logo?.needsInvert;
+
   return (
     <TitleSlide
       date="March 04, 2026"
@@ -32,8 +51,8 @@ export function Slide01_Title({ clientLogoSrc, clientLogoNeedsInvert }: { client
       title="Exploring an Agency Partnership"
       subtitle="Accelerating the evolution of your brand and web presence for your next phase of growth."
       heroImage="/images/3d-shapes/layered-diamonds.png"
-      clientLogoSrc={clientLogoSrc}
-      clientLogoNeedsInvert={clientLogoNeedsInvert}
+      clientLogoSrc={resolvedSrc}
+      clientLogoNeedsInvert={resolvedInvert}
       clientLogoAlt="Braze"
       teamMembers={[
         { name: "Nikan Shahidi", role: "CEO", avatarSrc: "/images/headshots/leadership/nikan-shahidi.png" },
@@ -246,10 +265,39 @@ interface ClientCompany {
 }
 
 export function Slide04_Clients({
-  companies = [],
+  companies: companiesProp,
 }: {
   companies?: ClientCompany[];
-}) {
+} = {}) {
+  const [fetched, setFetched] = useState<ClientCompany[]>([]);
+
+  useEffect(() => {
+    if (companiesProp !== undefined) return;
+    sanityClient
+      .fetch(companiesWithLogosQuery)
+      .then((results: Array<{ _id: string; name: string; logoOnDark?: SanityImageSource; logoOnLight?: SanityImageSource }>) => {
+        const seen = new Set<string>();
+        const deduped = results.filter((c) => {
+          if (seen.has(c.name)) return false;
+          seen.add(c.name);
+          return true;
+        });
+        setFetched(
+          deduped.map((c) => {
+            const useDark = !!c.logoOnDark;
+            const source = (useDark ? c.logoOnDark : c.logoOnLight)!;
+            return {
+              name: c.name,
+              logoUrl: urlFor(source).height(64).url(),
+              needsInvert: !useDark,
+            };
+          })
+        );
+      })
+      .catch(() => {});
+  }, [companiesProp]);
+
+  const companies = companiesProp ?? fetched;
   const displayCompanies = companies.slice(0, 16);
 
   return (

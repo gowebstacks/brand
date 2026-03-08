@@ -4,21 +4,38 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Text } from "@webstacks/ui";
 import { presentations } from "../../../../../slides/presentations";
+import type { SlideEntry } from "../../../../../slides/presentations";
 import { SlideNavSidebar } from "../../components/SlideNavSidebar";
 
 export default function PresentationPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const entry = presentations.find((p) => p.meta.id === id);
+  const [orderedSlides, setOrderedSlides] = useState<SlideEntry[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const ratioMap = useRef<Map<number, number>>(new Map());
   const isScrollingTo = useRef<number | null>(null);
 
+  // Initialize orderedSlides from entry
+  useEffect(() => {
+    if (entry) setOrderedSlides(entry.slides);
+  }, [entry]);
+
+  const handleReorder = useCallback((newSlides: SlideEntry[]) => {
+    // Find where the currently active slide ended up in the new order
+    const currentSlide = orderedSlides[activeIndex];
+    setOrderedSlides(newSlides);
+    if (currentSlide) {
+      const newIndex = newSlides.indexOf(currentSlide);
+      if (newIndex !== -1) setActiveIndex(newIndex);
+    }
+  }, [orderedSlides, activeIndex]);
+
   // IntersectionObserver to track which slide is visible
   useEffect(() => {
     const container = mainRef.current;
-    if (!container || !entry) return;
+    if (!container || orderedSlides.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,7 +75,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
       observer.disconnect();
       ratioMap.current.clear();
     };
-  }, [entry]);
+  }, [orderedSlides]);
 
   const handleSelect = useCallback((index: number) => {
     const container = mainRef.current;
@@ -99,25 +116,26 @@ export default function PresentationPage({ params }: { params: { id: string } })
     );
   }
 
-  const { meta, Component } = entry;
+  const { meta } = entry;
 
   return (
     <div className="noise-bg relative flex h-screen bg-[#0a0a0a] text-foreground">
       {/* Left sidebar */}
       <SlideNavSidebar
-        slides={entry.slides}
+        slides={orderedSlides}
         activeIndex={activeIndex}
         collapsed={sidebarCollapsed}
         onSelect={handleSelect}
         onToggle={() => setSidebarCollapsed((v) => !v)}
+        onReorder={handleReorder}
       />
 
       {/* Main scrollable area */}
       <div className="flex flex-1 flex-col">
         {/* Header toolbar */}
         <header className="relative z-20 flex h-12 shrink-0 items-center gap-4 border-b border-white/[0.06] bg-[#0a0a0a]/80 px-4 backdrop-blur-xl">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center gap-2 rounded-md px-2 py-1 text-white/50 transition-colors hover:bg-white/[0.04] hover:text-white/80"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -125,33 +143,39 @@ export default function PresentationPage({ params }: { params: { id: string } })
             </svg>
             <span className="text-xs font-medium">Back</span>
           </Link>
-          
+
           <div className="h-4 w-px bg-white/[0.08]" />
-          
+
           <div className="flex items-center gap-3">
             <span className="text-sm font-medium text-white/90">{meta.label}</span>
             <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-medium text-white/40">
               {meta.count} slides
             </span>
           </div>
-          
+
           <div className="ml-auto flex items-center gap-3">
             <div className="flex items-center gap-1.5 rounded-md bg-white/[0.04] px-2.5 py-1">
               <span className="text-xs font-medium tabular-nums text-white/70">{activeIndex + 1}</span>
               <span className="text-xs text-white/30">/</span>
-              <span className="text-xs tabular-nums text-white/40">{meta.count}</span>
+              <span className="text-xs tabular-nums text-white/40">{orderedSlides.length}</span>
             </div>
           </div>
         </header>
 
         {/* Slide content */}
-        <div 
-          ref={mainRef} 
+        <div
+          ref={mainRef}
           className="flex-1 overflow-x-hidden overflow-y-auto"
         >
           <div className="mx-auto max-w-[1400px] px-8 py-6">
             <div className="origin-top">
-              <Component />
+              <div className="flex flex-col gap-8">
+                {orderedSlides.map((slide, i) => (
+                  <div key={slide.label ?? i} data-slide-index={i}>
+                    <slide.Component />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

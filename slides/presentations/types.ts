@@ -3,3 +3,8 @@ export interface PresentationMeta {
   label: string;
   count: number;
 }
+
+export interface SlideEntry {
+  Component: React.ComponentType;
+  label?: string;
+}

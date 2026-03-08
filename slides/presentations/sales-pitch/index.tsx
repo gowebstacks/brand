@@ -15,7 +15,7 @@ import { SlideBase, TitleSlide } from "../../components";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { sanityClient, urlFor } from "../../lib/sanity";
 import { companiesWithLogosQuery } from "../../lib/queries";
-import type { PresentationMeta } from "../types";
+import type { PresentationMeta, SlideEntry } from "../types";
 
 export const metadata: PresentationMeta = {
   id: "sales-pitch",
@@ -1412,6 +1412,29 @@ export function Slide19_HowWeStart() {
   );
 }
 
+/** Ordered list of individual slide components with labels for sidebar nav */
+export const slides: SlideEntry[] = [
+  { Component: Slide01_Title, label: "Title" },
+  { Component: Slide02_Philosophy, label: "Philosophy" },
+  { Component: Slide03_MeetWebstacks, label: "Meet Webstacks" },
+  { Component: Slide04_Clients, label: "Clients" },
+  { Component: Slide05_RetainerTitle, label: "Retainer Title" },
+  { Component: Slide06_WhoWeAre, label: "Who We Are" },
+  { Component: Slide07_PointOfView, label: "Point of View" },
+  { Component: Slide08_WhyTeamsBringUsIn, label: "Why Teams Bring Us In" },
+  { Component: Slide09_WhatMakesUsDifferent, label: "What Makes Us Different" },
+  { Component: Slide10_CoreDisciplines, label: "Core Disciplines" },
+  { Component: Slide11_StrongPartner, label: "Strong Partner" },
+  { Component: Slide12_RoadmapMatters, label: "Roadmap Matters" },
+  { Component: Slide13_RoadmapAndRetainer, label: "Roadmap + Retainer" },
+  { Component: Slide14_MonthlyCapacity, label: "Monthly Capacity" },
+  { Component: Slide15_FlexModel, label: "Flex Model" },
+  { Component: Slide16_PodModel, label: "Pod Model" },
+  { Component: Slide17_KindsOfWork, label: "Kinds of Work" },
+  { Component: Slide18_CommercialFraming, label: "Commercial Framing" },
+  { Component: Slide19_HowWeStart, label: "How We Start" },
+];
+
 /**
  * Full deck — renders all 19 slides in sequence.
  */
@@ -1447,25 +1470,25 @@ export default function SalesPitchDeck() {
 
   return (
     <div className="flex flex-col gap-8">
-      <Slide01_Title />
-      <Slide02_Philosophy />
-      <Slide03_MeetWebstacks />
-      <Slide04_Clients companies={companies} />
-      <Slide05_RetainerTitle />
-      <Slide06_WhoWeAre />
-      <Slide07_PointOfView />
-      <Slide08_WhyTeamsBringUsIn />
-      <Slide09_WhatMakesUsDifferent />
-      <Slide10_CoreDisciplines />
-      <Slide11_StrongPartner />
-      <Slide12_RoadmapMatters />
-      <Slide13_RoadmapAndRetainer />
-      <Slide14_MonthlyCapacity />
-      <Slide15_FlexModel />
-      <Slide16_PodModel />
-      <Slide17_KindsOfWork />
-      <Slide18_CommercialFraming />
-      <Slide19_HowWeStart />
+      <div data-slide-index={0}><Slide01_Title /></div>
+      <div data-slide-index={1}><Slide02_Philosophy /></div>
+      <div data-slide-index={2}><Slide03_MeetWebstacks /></div>
+      <div data-slide-index={3}><Slide04_Clients companies={companies} /></div>
+      <div data-slide-index={4}><Slide05_RetainerTitle /></div>
+      <div data-slide-index={5}><Slide06_WhoWeAre /></div>
+      <div data-slide-index={6}><Slide07_PointOfView /></div>
+      <div data-slide-index={7}><Slide08_WhyTeamsBringUsIn /></div>
+      <div data-slide-index={8}><Slide09_WhatMakesUsDifferent /></div>
+      <div data-slide-index={9}><Slide10_CoreDisciplines /></div>
+      <div data-slide-index={10}><Slide11_StrongPartner /></div>
+      <div data-slide-index={11}><Slide12_RoadmapMatters /></div>
+      <div data-slide-index={12}><Slide13_RoadmapAndRetainer /></div>
+      <div data-slide-index={13}><Slide14_MonthlyCapacity /></div>
+      <div data-slide-index={14}><Slide15_FlexModel /></div>
+      <div data-slide-index={15}><Slide16_PodModel /></div>
+      <div data-slide-index={16}><Slide17_KindsOfWork /></div>
+      <div data-slide-index={17}><Slide18_CommercialFraming /></div>
+      <div data-slide-index={18}><Slide19_HowWeStart /></div>
     </div>
   );
 }

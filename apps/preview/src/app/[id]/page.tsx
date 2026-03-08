@@ -8,7 +8,10 @@ import { SlideNavSidebar } from "../../components/SlideNavSidebar";
 
 export default function PresentationPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  console.log("[v0] Looking for presentation with id:", id);
+  console.log("[v0] Available presentations:", presentations.map(p => p.meta.id));
   const entry = presentations.find((p) => p.meta.id === id);
+  console.log("[v0] Found entry:", entry ? entry.meta.label : "NOT FOUND");
   const [activeIndex, setActiveIndex] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);

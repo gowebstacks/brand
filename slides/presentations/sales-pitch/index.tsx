@@ -238,11 +238,6 @@ export function Slide03_MeetWebstacks() {
 }
 
 /* ── Slide 4: Clients ──────────────────────────────── */
-const fallbackCompanies = [
-  "Capital One", "SevenRooms", "Curative", "Drata", "Fireworks", "Cribl",
-  "LogicMonitor", "BetterUp", "Klaviyo", "ServiceTitan", "Calendly", "Snowflake", "Varonis",
-];
-
 interface ClientCompany {
   name: string;
   logoUrl: string;
@@ -250,14 +245,11 @@ interface ClientCompany {
 }
 
 export function Slide04_Clients({
-  companies,
+  companies = [],
 }: {
   companies?: ClientCompany[];
 }) {
-  const hasLogos = companies && companies.length > 0;
-  const displayCompanies = hasLogos
-    ? companies.slice(0, 16)
-    : fallbackCompanies.map((name): ClientCompany => ({ name, logoUrl: "" }));
+  const displayCompanies = companies.slice(0, 16);
 
   return (
     <SlideBase theme="dark" className="!p-0">

@@ -17,7 +17,7 @@ import { SlideAssumptions } from "./slides/assumptions";
 import { SlideTimeline } from "./slides/timeline";
 import { SlideInvestment } from "./slides/investment";
 import { SlideAddOns } from "./slides/add-ons";
-import { SlideClosingCTA } from "./slides/closing-cta";
+import { SlideClosingCTA as SlideDartmouthClosingCTA } from "../sales-pitch/slides/closing-cta";
 
 export const metadata: PresentationMeta = {
   id: "a-place-for-mom",
@@ -43,5 +43,5 @@ export const slides: SlideEntry[] = [
   { Component: SlideTimeline, label: "Timeline" },
   { Component: SlideInvestment, label: "Investment" },
   { Component: SlideAddOns, label: "Optional Add-Ons" },
-  { Component: SlideClosingCTA, label: "Let's Get Started" },
+  { Component: SlideDartmouthClosingCTA, label: "Let's Win Together" },
 ];

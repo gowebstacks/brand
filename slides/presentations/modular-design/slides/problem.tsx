@@ -12,13 +12,6 @@ const challenges = [
 export function SlideProblem() {
   return (
     <SlideBase theme="light" className="!p-0">
-      <img
-        src="/images/3d-shapes/stacked-blocks.png"
-        alt=""
-        className="pointer-events-none absolute -right-[15%] -bottom-[20%] w-[45%] object-contain select-none opacity-20"
-        aria-hidden="true"
-      />
-
       <div className="relative z-10 flex h-full flex-col justify-center gap-6 px-16">
         <Text
           as="span"

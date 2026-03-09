@@ -12,13 +12,6 @@ const marketingNeeds = [
 export function SlideShift() {
   return (
     <SlideBase theme="dark" className="!p-0">
-      <img
-        src="/images/3d-shapes/layered-disks.png"
-        alt=""
-        className="pointer-events-none absolute -left-[10%] -bottom-[30%] w-[40%] object-contain select-none"
-        aria-hidden="true"
-      />
-
       <div className="relative z-10 flex h-full flex-col justify-center gap-6 px-16">
         <Text
           as="span"

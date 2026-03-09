@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { Text } from "@webstacks/ui";
+import { Text, Popover, PopoverTrigger, PopoverContent } from "@webstacks/ui";
 import { presentations } from "../../../../../slides/presentations";
 import type { SlideEntry } from "../../../../../slides/presentations";
 import ReactMarkdown from "react-markdown";
 import { SlideNavSidebar } from "../../components/SlideNavSidebar";
+import { PresentationMode } from "../../components/PresentationMode";
 
 export default function PresentationPage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -16,6 +17,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [notesHeight, setNotesHeight] = useState(192);
+  const [presentMode, setPresentMode] = useState<"slides-only" | "with-notes" | null>(null);
   const isDragging = useRef(false);
   const dragStartY = useRef(0);
   const dragStartHeight = useRef(0);
@@ -153,6 +155,22 @@ export default function PresentationPage({ params }: { params: { id: string } })
   // Keyboard navigation + notes toggle
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      // Shift+Alt+P → present with notes
+      if (e.key === "P" && e.shiftKey && e.altKey) {
+        e.preventDefault();
+        setPresentMode("with-notes");
+        return;
+      }
+      // Shift+P → present slides only
+      if (e.key === "P" && e.shiftKey) {
+        e.preventDefault();
+        setPresentMode("slides-only");
+        return;
+      }
+
+      // Block page-level keys while in presentation mode
+      if (presentMode) return;
+
       // Toggle notes panel with "n"
       if (e.key === "n" || e.key === "N") {
         toggleNotes();
@@ -181,7 +199,7 @@ export default function PresentationPage({ params }: { params: { id: string } })
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeIndex, orderedSlides.length, handleSelect, toggleNotes]);
+  }, [activeIndex, orderedSlides.length, handleSelect, toggleNotes, presentMode]);
 
   if (!entry) {
     return (
@@ -240,6 +258,61 @@ export default function PresentationPage({ params }: { params: { id: string } })
           </div>
 
           <div className="ml-auto flex items-center gap-3">
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  className="flex items-center gap-1.5 bg-white/[0.04] px-2.5 py-1 text-xs text-white/40 transition-colors hover:text-white/60"
+                  title="Present (Shift+P)"
+                >
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M5.5 3.5L12 8L5.5 12.5V3.5Z" fill="currentColor" />
+                  </svg>
+                  <span>Play</span>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="end"
+                sideOffset={6}
+                className="!rounded-none border-white/[0.08] bg-[#141414] p-0"
+                style={{ width: 320 }}
+              >
+                <button
+                  className="flex w-full items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-white/[0.04]"
+                  onClick={() => setPresentMode("slides-only")}
+                >
+                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" className="mt-0.5 shrink-0">
+                    <rect x="0.5" y="0.5" width="31" height="21" stroke="currentColor" strokeOpacity="0.3" />
+                  </svg>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-white/80">Presentation</span>
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-white/25">Shift+P</span>
+                    </div>
+                    <span className="text-xs text-white/40">Just one view — no presenter notes.</span>
+                  </div>
+                </button>
+                <div className="mx-4 border-t border-white/[0.06]" />
+                <button
+                  className="flex w-full items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-white/[0.04]"
+                  onClick={() => setPresentMode("with-notes")}
+                >
+                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" className="mt-0.5 shrink-0">
+                    <rect x="0.5" y="0.5" width="21" height="21" stroke="currentColor" strokeOpacity="0.3" />
+                    <rect x="22.5" y="0.5" width="9" height="21" stroke="currentColor" strokeOpacity="0.3" />
+                    <line x1="24.5" y1="5" x2="29.5" y2="5" stroke="currentColor" strokeOpacity="0.2" />
+                    <line x1="24.5" y1="8" x2="29.5" y2="8" stroke="currentColor" strokeOpacity="0.2" />
+                    <line x1="24.5" y1="11" x2="28" y2="11" stroke="currentColor" strokeOpacity="0.2" />
+                  </svg>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-white/80">Presentation with notes</span>
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-white/25">Shift+Alt+P</span>
+                    </div>
+                    <span className="text-xs text-white/40">One view for sharing, another for your notes.</span>
+                  </div>
+                </button>
+              </PopoverContent>
+            </Popover>
             <button
               onClick={toggleNotes}
               className={`flex items-center gap-1.5 px-2.5 py-1 text-xs transition-colors ${
@@ -308,6 +381,19 @@ export default function PresentationPage({ params }: { params: { id: string } })
           </div>
         )}
       </div>
+
+      {/* Presentation mode overlay */}
+      {presentMode && (
+        <PresentationMode
+          slides={orderedSlides}
+          initialIndex={activeIndex}
+          mode={presentMode}
+          onExit={(index) => {
+            setPresentMode(null);
+            handleSelect(index);
+          }}
+        />
+      )}
     </div>
   );
 }
